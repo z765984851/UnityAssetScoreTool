@@ -1,0 +1,16 @@
+{
+    "name": "AssetScoreTool.Tests.Runtime",
+    "rootNamespace": "majsoul.tools.assetscoretool.tests.runtime",
+    "references": [
+        "UnityEngine.TestRunner"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": false,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

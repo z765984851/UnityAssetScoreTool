@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf01b6815d6044968006dde490bc0346, type: 3}
+  m_Name: BasicRuleApplyConfig
+  m_EditorClassIdentifier: 
+  ruleApplyItems:
+  - ruleConfig: {fileID: 11400000, guid: 8a230715e61fd734eb21666ee3f1fc1d, type: 2}
+    assetTypeConfigs:
+    - {fileID: 11400000, guid: d7c9705c2ad5b1d4ab9dd9bd196e8606, type: 2}
+    profiles:
+    - {fileID: 11400000, guid: b4fdb87fe7e7a7f46a99d99cf93e67c4, type: 2}
+    isEnabled: 1

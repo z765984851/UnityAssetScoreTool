@@ -1,0 +1,123 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements"
+         xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements"
+         noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
+    <Style src="project://database/Assets/Tools/asset_score_tool/Editor/UI/ScanWindow.uss?fileID=7433441132597879392&amp;guid=c3a9d48021bc4594e8cfa2e738640996&amp;type=3#ScanWindow"/>
+    <ui:VisualElement name="Root" style="flex-grow: 1;">
+        <ui:Label text="Asset Score Tool" name="TitleLabel" style="height: 27px;"/>
+        <ui:VisualElement name="TopInputArea" style="flex-grow: 0;">
+            <ui:VisualElement name="ProfileRow" style="flex-grow: 0; flex-direction: row; align-items: center;">
+                <ui:DropdownField label="Profile" name="ProfileDropdown" style="flex-grow: 1; flex-shrink: 1;"/>
+            </ui:VisualElement>
+            <ui:VisualElement name="PathRow" style="flex-grow: 0; flex-direction: row; align-items: center;">
+                <ui:TextField picking-mode="Ignore" label="检测路径" name="PathTextField"
+                              style="flex-grow: 1; flex-shrink: 1;"/>
+                <ui:Button text="选择文件夹" parse-escape-sequences="true" display-tooltip-when-elided="true"
+                           name="SelectFolderButton"/>
+                <ui:Button text="选择文件" parse-escape-sequences="true" display-tooltip-when-elided="true"
+                           name="SelectFileButton"/>
+            </ui:VisualElement>
+            <ui:VisualElement name="ScanActionRow" style="flex-grow: 0; flex-direction: row; align-items: center;">
+                <ui:VisualElement name="Space"
+                                  style="flex-grow: 0; flex-direction: column; width: 120px; flex-shrink: 0;"/>
+                <ui:Button text="开始评分" parse-escape-sequences="true" display-tooltip-when-elided="true"
+                           name="StartScanButton" style="width: 160px; height: 28px; align-items: auto;"/>
+            </ui:VisualElement>
+            <ui:VisualElement name="ExportRow" style="flex-grow: 0; flex-direction: row; align-items: center;">
+                <ui:VisualElement name="Space"
+                                  style="flex-grow: 0; flex-direction: column; width: 120px; flex-shrink: 0;"/>
+                <ui:Button text="导出 Json" parse-escape-sequences="true" display-tooltip-when-elided="true"
+                           name="ExportJsonButton" style="flex-grow: 0; width: 120px;"/>
+                <ui:Button text="导出 Csv" parse-escape-sequences="true" display-tooltip-when-elided="true"
+                           name="ExportCsvButton" style="flex-grow: 0; width: 120px;"/>
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="MainContentArea" style="flex-grow: 1; flex-direction: row;">
+            <ui:VisualElement name="ResultListPanel" style="flex-grow: 1; width: 500px; flex-shrink: 0;">
+                <ui:Label tabindex="-1" text="检测结果" parse-escape-sequences="true" display-tooltip-when-elided="true"
+                          name="ResultListTitleLabel" enable-rich-text="true"/>
+                <ui:VisualElement name="FilterBar"
+                                  style="flex-grow: 0; flex-direction: row; height: 24px; align-items: center;">
+                    <ui:DropdownField label="类型" name="AssetTypeFilterDropdown" style="width: 150px; flex-grow: 1;"/>
+                    <ui:DropdownField label="严重度筛选" name="SeverityFilterDropdown"
+                                      style="width: 150px; flex-grow: 1;"/>
+                    <ui:DropdownField label="排序" name="SortDropdown" style="width: 150px; flex-grow: 1;"/>
+                </ui:VisualElement>
+                <ui:VisualElement name="ResultHeaderRow"
+                                  style="flex-grow: 0; flex-direction: row; height: 24px; align-items: center;">
+                    <ui:Label tabindex="-1" parse-escape-sequences="true" display-tooltip-when-elided="true"
+                              name="HeaderExpandLabel" enable-rich-text="true" style="width: 24px;"/>
+                    <ui:Label tabindex="-1" text="资源名" parse-escape-sequences="true"
+                              display-tooltip-when-elided="true" name="HeaderNameLabel" enable-rich-text="true"
+                              style="width: 120px;"/>
+                    <ui:Label tabindex="-1" text="类型" parse-escape-sequences="true" display-tooltip-when-elided="true"
+                              name="HeaderTypeLabel" enable-rich-text="true" style="width: 80px;"/>
+                    <ui:Label tabindex="-1" text="分数" parse-escape-sequences="true" display-tooltip-when-elided="true"
+                              name="HeaderScoreLabel" enable-rich-text="true" style="width: 50px;"/>
+                    <ui:Label tabindex="-1" text="等级" parse-escape-sequences="true" display-tooltip-when-elided="true"
+                              name="HeaderGradeLabel" enable-rich-text="true" style="width: 50px;"/>
+                    <ui:Label tabindex="-1" text="最高严重度" parse-escape-sequences="true"
+                              display-tooltip-when-elided="true" name="HeaderSeverityLabel" enable-rich-text="true"
+                              style="width: 90px;"/>
+                    <ui:Label tabindex="-1" text="问题数" parse-escape-sequences="true"
+                              display-tooltip-when-elided="true" name="HeaderIssueCountLabel" enable-rich-text="true"
+                              style="width: 60px;"/>
+                    <ui:Label tabindex="-1" text="路径" parse-escape-sequences="true" display-tooltip-when-elided="true"
+                              name="HeaderPathLabel" enable-rich-text="true" style="flex-grow: 1;"/>
+                </ui:VisualElement>
+                <ui:ScrollView name="ResultScrollView" style="flex-grow: 1;"/>
+            </ui:VisualElement>
+            <ui:VisualElement name="DetailPanel" style="flex-grow: 1; flex-direction: column;">
+                <ui:Label tabindex="-1" text="资源详情" parse-escape-sequences="true" display-tooltip-when-elided="true"
+                          name="DetailTitleLabel" enable-rich-text="true" style="-unity-font: initial;"/>
+                <ui:ScrollView name="DetailScrollView" style="flex-grow: 1;">
+                    <ui:VisualElement name="DetailActionRow"
+                                      style="flex-grow: 1; flex-direction: row; height: 28px; align-items: center;">
+                        <ui:Button text="在编辑器内选中" parse-escape-sequences="true"
+                                   display-tooltip-when-elided="true" name="PingMainAssetButton" style="width: 110px;"/>
+                        <ui:Button text="打开所在文件夹" parse-escape-sequences="true"
+                                   display-tooltip-when-elided="true" name="OpenFolderButton" style="width: 110px;"/>
+                    </ui:VisualElement>
+                    <ui:VisualElement name="DetailInfoContainer" style="flex-grow: 1;">
+                        <ui:Label tabindex="-1" text="资源名：未选择" parse-escape-sequences="true"
+                                  display-tooltip-when-elided="true" name="DetailAssetNameLabel"/>
+                        <ui:Label tabindex="-1" text="路径：-" parse-escape-sequences="true"
+                                  display-tooltip-when-elided="true" name="DetailAssetPathLabel"/>
+                        <ui:Label tabindex="-1" text="类型：-" parse-escape-sequences="true"
+                                  display-tooltip-when-elided="true" name="DetailAssetTypeLabel"/>
+                        <ui:Label tabindex="-1" text="Profile：-" parse-escape-sequences="true"
+                                  display-tooltip-when-elided="true" name="DetailProfileLabel"/>
+                        <ui:Label tabindex="-1" text="分数：-" parse-escape-sequences="true"
+                                  display-tooltip-when-elided="true" name="DetailScoreLabel"/>
+                        <ui:Label tabindex="-1" text="等级：-" parse-escape-sequences="true"
+                                  display-tooltip-when-elided="true" name="DetailGradeLabel"/>
+                        <ui:Label tabindex="-1" text="问题数：0" parse-escape-sequences="true"
+                                  display-tooltip-when-elided="true" name="DetailIssueCountLabel"/>
+                    </ui:VisualElement>
+                    <ui:Foldout text="扣分详情" name="IssueFoldout" style="-unity-font-style: normal;">
+                        <ui:VisualElement name="IssueListContainer" style="flex-grow: 1;">
+                            <ui:Label tabindex="-1" text="暂无问题" parse-escape-sequences="true"
+                                      display-tooltip-when-elided="true" name="IssueEmptyLabel"/>
+                        </ui:VisualElement>
+                    </ui:Foldout>
+                    <ui:Foldout text="关联资源 / 依赖" name="DependencyFoldout" style="-unity-font-style: normal;">
+                        <ui:VisualElement name="DependencyListContainer" style="flex-grow: 1;">
+                            <ui:Label tabindex="-1" text="暂无问题" parse-escape-sequences="true"
+                                      display-tooltip-when-elided="true" name="DependencyEmptyLabel"/>
+                        </ui:VisualElement>
+                    </ui:Foldout>
+                </ui:ScrollView>
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="BottomStatusBar" style="flex-grow: 0; flex-direction: row; height: 24px;">
+            <ui:Label tabindex="-1" text="进度：" parse-escape-sequences="true" display-tooltip-when-elided="true"
+                      name="ScanStatusLabel" enable-rich-text="true" style="width: auto;"/>
+            <ui:ProgressBar value="22" title="检测进度" name="ScanProgressBar" style="width: 300px;"/>
+            <ui:Label tabindex="-1" text="耗时：0 ms" parse-escape-sequences="true" display-tooltip-when-elided="true"
+                      name="ScanTimeLabel" enable-rich-text="true"/>
+            <ui:Label tabindex="-1" text="显示资源：0" parse-escape-sequences="true" display-tooltip-when-elided="true"
+                      name="VisibleCountLabel" enable-rich-text="true"/>
+            <ui:Label tabindex="-1" text="问题总数：0" parse-escape-sequences="true" display-tooltip-when-elided="true"
+                      name="IssueCountLabel" enable-rich-text="true"/>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

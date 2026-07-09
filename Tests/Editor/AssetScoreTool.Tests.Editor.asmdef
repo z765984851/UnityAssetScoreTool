@@ -1,0 +1,19 @@
+{
+    "name": "AssetScoreTool.Tests.Editor",
+    "rootNamespace": "majsoul.tools.assetscoretool.tests.editor",
+    "references": [
+        "UnityEngine.TestRunner",
+        "UnityEditor.TestRunner"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": false,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
