@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99511ab169e84641b15383800502a0cf, type: 3}
+  m_Name: ScoreRule_ParticleSystemCount10
+  m_EditorClassIdentifier: 
+  ruleId: basic.particle.systemcount10
+  displayName: "Particle System(粒子系统)数量超过10"
+  description: "检查Prefab(预制体)中Particle System(粒子系统)数量是否超过10。"
+  priority: 0
+  issueInfos:
+  - issueInfoId: is_larger
+    displayName: "Particle System(粒子系统)数量超过10"
+    deductScore: 5
+    issueLevel: 1
+    issueMessage: "Particle System(粒子系统)数量过多会增加更新和渲染开销。建议：合并粒子层级，删除重复层，减少表现相近的粒子系统。"

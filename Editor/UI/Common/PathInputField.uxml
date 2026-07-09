@@ -1,0 +1,27 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements"
+         xmlns:uie="UnityEditor.UIElements"
+         xsi="http://www.w3.org/2001/XMLSchema-instance"
+         engine="UnityEngine.UIElements"
+         editor="UnityEditor.UIElements"
+         noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd"
+         editor-extension-mode="True">
+
+    <Style src="Common.uss"/>
+
+    <ui:VisualElement name="PathInputRoot"
+                      class="path-input-field">
+        <ui:Label name="PathInputLabel"
+                  class="path-input-label"/>
+
+        <ui:VisualElement name="PathInputRow"
+                          class="path-input-row">
+            <ui:TextField name="PathInputTextField"
+                          class="path-input-text"/>
+            <ui:Button name="PathInputBrowseButton"
+                       class="path-input-browse-button"/>
+        </ui:VisualElement>
+
+        <ui:Label name="PathInputHint"
+                  class="path-input-hint"/>
+    </ui:VisualElement>
+</ui:UXML>

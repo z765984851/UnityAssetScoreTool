@@ -1,0 +1,86 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements"
+         xmlns:uie="UnityEditor.UIElements"
+         xsi="http://www.w3.org/2001/XMLSchema-instance"
+         engine="UnityEngine.UIElements"
+         editor="UnityEditor.UIElements"
+         noNamespaceSchemaLocation="../../../../../../UIElementsSchema/UIElements.xsd"
+         editor-extension-mode="True">
+
+    <Style src="../ConfigWindow.uss"/>
+
+    <ui:VisualElement class="item-create-dialog-content">
+        <ui:ScrollView class="item-create-dialog-scroll"
+                       mode="Vertical"
+                       horizontal-scroller-visibility="Hidden"
+                       vertical-scroller-visibility="Auto">
+            <ui:VisualElement class="item-create-form-container dialog-form">
+                <ui:VisualElement class="dialog-field-row">
+                    <ui:Label text="问题 ID *"
+                              class="dialog-field-label"/>
+                    <ui:VisualElement class="dialog-field-content">
+                        <ui:TextField name="CreateIssueInfoIdField"
+                                      class="dialog-control"/>
+                        <ui:Label text="必填。问题的唯一 ID，例如 is_open。仅允许小写字母、数字、下划线和点；必须以小写字母开头、以小写字母或数字结尾，分隔符不能连续。"
+                                  class="field-hint required-field-hint"/>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+
+                <ui:VisualElement class="dialog-field-row">
+                    <ui:Label text="显示名称 *"
+                              class="dialog-field-label"/>
+                    <ui:VisualElement class="dialog-field-content">
+                        <ui:TextField name="CreateIssueInfoDisplayNameField"
+                                      class="dialog-control"/>
+                        <ui:Label text="必填。配置中心中显示的问题名称。"
+                                  class="field-hint required-field-hint"/>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+
+                <ui:VisualElement class="dialog-field-row">
+                    <ui:Label text="扣分"
+                              class="dialog-field-label"/>
+                    <ui:VisualElement class="dialog-field-content">
+                        <ui:IntegerField name="CreateIssueInfoDeductScoreField"
+                                         value="0"
+                                         class="dialog-control"/>
+                        <ui:Label text="命中该问题时扣除的分数，允许为 0。"
+                                  class="field-hint"/>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+
+                <ui:VisualElement class="dialog-field-row">
+                    <ui:Label text="问题级别"
+                              class="dialog-field-label"/>
+                    <ui:VisualElement class="dialog-field-content">
+                        <ui:DropdownField name="CreateIssueInfoLevelField"
+                                          value="Warning"
+                                          class="dialog-control"/>
+                        <ui:Label text="问题的严重等级，默认 Warning。"
+                                  class="field-hint"/>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+
+                <ui:VisualElement class="dialog-field-row">
+                    <ui:Label text="问题提示 *"
+                              class="dialog-field-label"/>
+                    <ui:VisualElement class="dialog-field-content">
+                        <ui:TextField name="CreateIssueInfoMessageField"
+                                      multiline="true"
+                                      class="dialog-control dialog-multiline-control"/>
+                        <ui:Label text="必填。填写问题原因和修改建议。"
+                                  class="field-hint required-field-hint"/>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:ScrollView>
+
+        <ui:VisualElement class="dialog-footer">
+            <ui:Button name="CreateIssueInfoCancelButton"
+                       text="取消"
+                       class="tool-button"/>
+            <ui:Button name="CreateIssueInfoConfirmButton"
+                       text="添加"
+                       class="tool-button primary-button"/>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

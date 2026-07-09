@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99511ab169e84641b15383800502a0cf, type: 3}
+  m_Name: ScoreRule_ParticleMaxParticles800
+  m_EditorClassIdentifier: 
+  ruleId: basic.particle.maxparticles800
+  displayName: "Max Particles(最大粒子数)超过800"
+  description: "检查Particle System(粒子系统)的Max Particles(最大粒子数)是否超过800。"
+  priority: 0
+  issueInfos:
+  - issueInfoId: is_larger
+    displayName: "Max Particles(最大粒子数)超过800"
+    deductScore: 5
+    issueLevel: 1
+    issueMessage: "Max Particles(最大粒子数)过多会造成CPU(中央处理器)更新和GPU(图形处理器)渲染压力。建议：降低Max Particles(最大粒子数)，缩短生命周期并降低发射速率。"

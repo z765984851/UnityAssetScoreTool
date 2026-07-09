@@ -1,0 +1,106 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements"
+         xmlns:uie="UnityEditor.UIElements"
+         xsi="http://www.w3.org/2001/XMLSchema-instance"
+         engine="UnityEngine.UIElements"
+         editor="UnityEditor.UIElements"
+         noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd"
+         editor-extension-mode="True">
+
+    <Style src="../Common/Common.uss"/>
+    <Style src="ConfigWindow.uss"/>
+
+    <ui:VisualElement name="ConfigWindowRoot"
+                      class="config-window-root"
+                      style="flex-grow: 1;">
+
+        <ui:VisualElement name="TopToolbar"
+                          class="top-toolbar"
+                          style="flex-grow: 0; flex-direction: row; align-items: center;">
+            <ui:Button name="SaveAllButton"
+                       text="保存全部"
+                       class="tool-button primary-button"/>
+            <ui:Button name="RevertButton"
+                       text="还原修改"
+                       class="tool-button"/>
+            <ui:Button name="RefreshButton"
+                       text="刷新"
+                       class="tool-button"/>
+            <ui:VisualElement class="grow"/>
+            <ui:Button name="OpenConfigFolderButton"
+                       text="打开配置目录"
+                       class="tool-button"/>
+        </ui:VisualElement>
+
+        <ui:VisualElement name="MainContainer"
+                          class="main-container"
+                          style="flex-grow: 1; flex-direction: row;">
+
+            <ui:VisualElement name="TabSidebar"
+                              class="tab-sidebar"
+                              style="width: 238px; flex-shrink: 0;">
+                <ui:Button name="ProfileTabButton"
+                           class="tab-button">
+                    <ui:Label text="检测配置档"
+                              class="tab-title"/>
+                    <ui:Label name="ProfileTabCountLabel"
+                              text="0"
+                              class="tab-count"/>
+                </ui:Button>
+
+                <ui:Button name="RuleApplyTabButton"
+                           class="tab-button selected-tab">
+                    <ui:Label text="规则应用配置"
+                              class="tab-title"/>
+                    <ui:Label name="RuleApplyTabCountLabel"
+                              text="0"
+                              class="tab-count"/>
+                </ui:Button>
+
+                <ui:Button name="RuleTabButton"
+                           class="tab-button">
+                    <ui:Label text="检测规则配置"
+                              class="tab-title"/>
+                    <ui:Label name="RuleTabCountLabel"
+                              text="0"
+                              class="tab-count"/>
+                </ui:Button>
+
+                <ui:Button name="AssetTypeTabButton"
+                           class="tab-button">
+                    <ui:Label text="资源类型配置"
+                              class="tab-title"/>
+                    <ui:Label name="AssetTypeTabCountLabel"
+                              text="0"
+                              class="tab-count"/>
+                </ui:Button>
+
+                <ui:Button name="ProjectSettingsTabButton"
+                           class="tab-button">
+                    <ui:Label text="项目设置"
+                              class="tab-title"/>
+                </ui:Button>
+            </ui:VisualElement>
+
+            <ui:VisualElement name="PageContainer"
+                              class="page-container"
+                              style="flex-grow: 1; flex-shrink: 1;">
+            </ui:VisualElement>
+        </ui:VisualElement>
+
+        <ui:VisualElement name="StatusBar"
+                          class="status-bar"
+                          style="flex-grow: 0; flex-direction: row; height: 30px;">
+            <ui:Label name="StatusLabel"
+                      text="当前页面：规则应用配置"
+                      class="status-text"/>
+            <ui:VisualElement class="grow"/>
+            <ui:Label name="DirtyCountLabel"
+                      text="未保存修改：0"
+                      class="status-text"/>
+        </ui:VisualElement>
+
+        <ui:VisualElement name="DialogHost"
+                          class="dialog-host"/>
+
+    </ui:VisualElement>
+</ui:UXML>

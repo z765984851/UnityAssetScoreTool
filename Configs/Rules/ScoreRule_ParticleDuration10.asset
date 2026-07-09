@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99511ab169e84641b15383800502a0cf, type: 3}
+  m_Name: ScoreRule_ParticleDuration10
+  m_EditorClassIdentifier: 
+  ruleId: basic.particle.duration10
+  displayName: "Particle System(粒子系统)持续时间超过10秒"
+  description: "检查Particle System(粒子系统)的持续时间是否超过10秒。"
+  priority: 0
+  issueInfos:
+  - issueInfoId: is_larger
+    displayName: "Particle System(粒子系统)持续时间超过10秒"
+    deductScore: 5
+    issueLevel: 1
+    issueMessage: "Particle System(粒子系统)持续时间过长会导致粒子堆积并增加长期性能压力。建议：缩短生命周期和发射时间。"

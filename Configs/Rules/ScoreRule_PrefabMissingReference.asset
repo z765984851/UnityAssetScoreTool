@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99511ab169e84641b15383800502a0cf, type: 3}
+  m_Name: ScoreRule_PrefabMissingReference
+  m_EditorClassIdentifier: 
+  ruleId: basic.prefab.missingreference
+  displayName: Prefab(预制体)存在Missing Reference(缺失引用)
+  description: 检查Prefab(预制体)是否存在Missing Reference(缺失引用)。
+  priority: 0
+  issueInfos:
+  - issueInfoId: is_missing
+    displayName: 存在Missing Reference(缺失引用)
+    deductScore: 10
+    issueLevel: 2
+    issueMessage: Missing Reference(缺失引用)容易造成运行时异常或表现缺失。建议：修复丢失引用，重新绑定资源，或删除无效字段。

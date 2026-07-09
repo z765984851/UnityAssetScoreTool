@@ -1,0 +1,68 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements"
+         xmlns:uie="UnityEditor.UIElements"
+         xsi="http://www.w3.org/2001/XMLSchema-instance"
+         engine="UnityEngine.UIElements"
+         editor="UnityEditor.UIElements"
+         noNamespaceSchemaLocation="../../../../../../UIElementsSchema/UIElements.xsd"
+         editor-extension-mode="True">
+
+    <Style src="../ConfigWindow.uss"/>
+
+    <ui:VisualElement class="create-config-dialog-content">
+        <ui:VisualElement class="dialog-body dialog-form">
+            <ui:VisualElement class="dialog-field-row">
+                <ui:Label text="资源文件名 *"
+                          class="dialog-field-label"/>
+                <ui:VisualElement class="dialog-field-content">
+                    <ui:TextField name="CreateConfigAssetNameField"
+                                  class="dialog-control"/>
+                    <ui:Label text="必填。用于生成 .asset 文件名，不等同于显示名称。"
+                              class="field-hint required-field-hint"/>
+                </ui:VisualElement>
+            </ui:VisualElement>
+
+            <ui:VisualElement name="CreateConfigSaveFolderContainer"/>
+
+            <ui:VisualElement name="CreateConfigIdRow"
+                              class="dialog-field-row">
+                <ui:Label name="CreateConfigIdLabel"
+                          text="配置 ID *"
+                          class="dialog-field-label"/>
+                <ui:VisualElement class="dialog-field-content">
+                    <ui:VisualElement class="create-config-id-input">
+                        <ui:TextField name="CreateConfigIdField"
+                                      class="dialog-control"/>
+                        <ui:Label name="CreateConfigIdPlaceholderLabel"
+                                  picking-mode="Ignore"
+                                  class="create-config-id-placeholder"/>
+                    </ui:VisualElement>
+                    <ui:Label name="CreateConfigIdHintLabel"
+                              text="必填。配置的唯一标识。"
+                              class="field-hint required-field-hint"/>
+                </ui:VisualElement>
+            </ui:VisualElement>
+
+            <ui:VisualElement name="CreateConfigDisplayNameRow"
+                              class="dialog-field-row">
+                <ui:Label text="显示名称 *"
+                          class="dialog-field-label"/>
+                <ui:VisualElement class="dialog-field-content">
+                    <ui:TextField name="CreateConfigDisplayNameField"
+                                  class="dialog-control"/>
+                    <ui:Label name="CreateConfigDisplayNameHintLabel"
+                              text="必填。配置中心中显示的名称。"
+                              class="field-hint required-field-hint"/>
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+
+        <ui:VisualElement class="dialog-footer">
+            <ui:Button name="CreateConfigCancelButton"
+                       text="取消"
+                       class="tool-button"/>
+            <ui:Button name="CreateConfigConfirmButton"
+                       text="创建"
+                       class="tool-button primary-button"/>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

@@ -1,0 +1,2049 @@
+/* 配置窗口及其弹窗中的静态与运行时创建文本统一使用项目字体。 */
+* {
+    -unity-font-definition: url("../../../Fonts/SourceHanSansSC-Regular SDF.asset");
+}
+
+.config-window-root {
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-direction: column;
+    background-color: rgb(23, 25, 29);
+    color: rgb(232, 236, 241);
+    font-size: 15px;
+}
+
+.hidden {
+    display: none;
+}
+
+.grow {
+    flex-grow: 1;
+}
+
+.top-toolbar {
+    height: 58px;
+    min-height: 58px;
+    flex-shrink: 0;
+    padding-left: 16px;
+    padding-right: 16px;
+    border-bottom-width: 1px;
+    border-bottom-color: rgb(52, 58, 66);
+    background-color: rgb(32, 35, 40);
+}
+
+.tool-button,
+.small-button {
+    height: 34px;
+    min-width: 76px;
+    margin-right: 8px;
+    padding-left: 15px;
+    padding-right: 15px;
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    border-left-color: rgb(74, 82, 92);
+    border-right-color: rgb(74, 82, 92);
+    border-top-color: rgb(74, 82, 92);
+    border-bottom-color: rgb(74, 82, 92);
+    border-radius: 5px;
+    background-color: rgb(43, 48, 54);
+    color: rgb(226, 231, 236);
+}
+
+.tool-button:hover,
+.small-button:hover {
+    background-color: rgb(52, 59, 67);
+}
+
+.tool-button:disabled,
+.small-button:disabled {
+    opacity: 0.4;
+}
+
+.primary-button {
+    background-color: rgb(53, 109, 181);
+    border-left-color: rgb(79, 134, 217);
+    border-right-color: rgb(79, 134, 217);
+    border-top-color: rgb(79, 134, 217);
+    border-bottom-color: rgb(79, 134, 217);
+    color: rgb(255, 255, 255);
+}
+
+.primary-button:hover {
+    background-color: rgb(66, 123, 197);
+}
+
+.warning-button {
+    background-color: rgb(112, 83, 39);
+    border-left-color: rgb(177, 133, 64);
+    border-right-color: rgb(177, 133, 64);
+    border-top-color: rgb(177, 133, 64);
+    border-bottom-color: rgb(177, 133, 64);
+    color: rgb(255, 235, 190);
+}
+
+.warning-button:hover {
+    background-color: rgb(132, 99, 45);
+}
+
+.danger-button {
+    background-color: rgb(91, 50, 53);
+    border-left-color: rgb(143, 74, 74);
+    border-right-color: rgb(143, 74, 74);
+    border-top-color: rgb(143, 74, 74);
+    border-bottom-color: rgb(143, 74, 74);
+    color: rgb(255, 215, 215);
+}
+
+.small-button {
+    height: 29px;
+    min-width: 0;
+    padding-left: 11px;
+    padding-right: 11px;
+    font-size: 13px;
+}
+
+.main-container {
+    flex-grow: 1;
+    flex-shrink: 1;
+    min-width: 0;
+    min-height: 0;
+}
+
+.tab-sidebar {
+    min-width: 238px;
+    padding-left: 12px;
+    padding-right: 12px;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    border-right-width: 1px;
+    border-right-color: rgb(52, 58, 66);
+    background-color: rgb(27, 30, 34);
+}
+
+.tab-button {
+    height: 48px;
+    margin-bottom: 8px;
+    padding-left: 12px;
+    padding-right: 12px;
+    flex-direction: row;
+    align-items: center;
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    border-left-color: rgb(52, 58, 66);
+    border-right-color: rgb(52, 58, 66);
+    border-top-color: rgb(52, 58, 66);
+    border-bottom-color: rgb(52, 58, 66);
+    border-radius: 6px;
+    background-color: rgb(34, 38, 43);
+    color: rgb(199, 206, 214);
+}
+
+.tab-button:hover {
+    border-left-color: rgb(74, 83, 93);
+    border-right-color: rgb(74, 83, 93);
+    border-top-color: rgb(74, 83, 93);
+    border-bottom-color: rgb(74, 83, 93);
+    background-color: rgb(41, 46, 52);
+}
+
+.selected-tab {
+    border-left-color: rgb(79, 134, 217);
+    border-right-color: rgb(79, 134, 217);
+    border-top-color: rgb(79, 134, 217);
+    border-bottom-color: rgb(79, 134, 217);
+    background-color: rgb(35, 52, 76);
+    color: rgb(255, 255, 255);
+}
+
+.tab-title {
+    flex-grow: 1;
+    -unity-text-align: middle-left;
+    font-size: 14px;
+}
+
+.tab-count {
+    min-width: 28px;
+    height: 22px;
+    padding-left: 7px;
+    padding-right: 7px;
+    border-radius: 11px;
+    background-color: rgb(48, 54, 61);
+    color: rgb(184, 192, 202);
+    font-size: 12px;
+    -unity-text-align: middle-center;
+}
+
+.selected-tab .tab-count {
+    background-color: rgb(58, 110, 169);
+    color: rgb(255, 255, 255);
+}
+
+.page-container {
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-direction: column;
+    min-width: 0;
+    min-height: 0;
+    background-color: rgb(23, 25, 29);
+}
+
+.config-page {
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-direction: column;
+    min-width: 0;
+    min-height: 0;
+    padding: 0;
+}
+
+.page-toolbar {
+    height: 78px;
+    min-height: 78px;
+    flex-shrink: 0;
+    margin-bottom: 0;
+    padding-left: 18px;
+    padding-right: 18px;
+    border-bottom-width: 1px;
+    border-bottom-color: rgb(45, 50, 56);
+    background-color: rgb(29, 32, 36);
+}
+
+.search-field {
+    width: 270px;
+    min-width: 220px;
+    max-width: 270px;
+    height: 34px;
+    margin-left: 9px;
+}
+
+.search-field > .unity-base-field__label {
+    width: 42px;
+    min-width: 42px;
+    color: rgb(167, 167, 167);
+}
+
+.search-field > .unity-base-text-field__input,
+.search-field .unity-base-text-field__input,
+.search-field > .unity-text-field__input,
+.search-field .unity-text-field__input {
+    padding-left: 10px;
+    padding-right: 10px;
+    background-color: rgb(21, 24, 27);
+    color: rgb(230, 235, 240);
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    border-left-color: rgb(65, 73, 82);
+    border-right-color: rgb(65, 73, 82);
+    border-top-color: rgb(65, 73, 82);
+    border-bottom-color: rgb(65, 73, 82);
+    border-radius: 5px;
+}
+
+.page-scroll {
+    flex-grow: 1;
+    flex-shrink: 1;
+    min-width: 0;
+    min-height: 0;
+    background-color: rgb(23, 25, 29);
+}
+
+.list-container {
+    flex-grow: 1;
+    min-width: 0;
+    padding-left: 18px;
+    padding-right: 18px;
+    padding-top: 16px;
+    padding-bottom: 28px;
+}
+
+.empty-label {
+    min-height: 160px;
+    color: rgb(146, 156, 167);
+    -unity-text-align: middle-center;
+}
+
+.config-card {
+    min-width: 0;
+    margin-bottom: 16px;
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    border-left-color: rgb(58, 65, 73);
+    border-right-color: rgb(58, 65, 73);
+    border-top-color: rgb(58, 65, 73);
+    border-bottom-color: rgb(58, 65, 73);
+    border-radius: 7px;
+    background-color: rgb(32, 36, 41);
+}
+
+.config-card-header {
+    min-height: 66px;
+    flex-direction: row;
+    align-items: center;
+    padding-left: 11px;
+    padding-right: 11px;
+    padding-top: 9px;
+    padding-bottom: 9px;
+    background-color: rgb(41, 46, 52);
+}
+
+.config-card-header:hover {
+    background-color: rgb(47, 53, 60);
+}
+
+.config-card-body {
+    padding: 16px;
+    border-top-width: 1px;
+    border-top-color: rgb(54, 61, 69);
+    background-color: rgb(32, 36, 41);
+}
+
+.fold-arrow {
+    width: 30px;
+    min-width: 30px;
+    height: 30px;
+    margin-right: 6px;
+    color: rgb(171, 181, 192);
+    font-size: 15px;
+    -unity-text-align: middle-center;
+}
+
+.so-icon {
+    width: 36px;
+    min-width: 36px;
+    height: 36px;
+    margin-right: 10px;
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    border-left-color: rgb(77, 119, 159);
+    border-right-color: rgb(77, 119, 159);
+    border-top-color: rgb(77, 119, 159);
+    border-bottom-color: rgb(77, 119, 159);
+    border-radius: 5px;
+    background-color: rgb(32, 50, 67);
+    color: rgb(143, 196, 241);
+    font-size: 12px;
+    -unity-text-align: middle-center;
+}
+
+.config-title-container {
+    flex-grow: 1;
+    min-width: 180px;
+}
+
+.display-name {
+    margin-bottom: 3px;
+    color: rgb(240, 243, 246);
+    font-size: 16px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.asset-name {
+    margin-top: 0;
+    color: rgb(146, 156, 167);
+    font-size: 12px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.config-summary {
+    min-width: 0;
+    flex-shrink: 1;
+    margin-left: 14px;
+    color: rgb(168, 177, 187);
+    font-size: 13px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.local-badge,
+.package-badge {
+    min-height: 24px;
+    min-width: 0;
+    margin-left: 8px;
+    padding-left: 9px;
+    padding-right: 9px;
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    border-radius: 12px;
+    font-size: 12px;
+    -unity-text-align: middle-center;
+}
+
+.local-badge {
+    color: rgb(140, 219, 172);
+    border-left-color: rgb(60, 128, 89);
+    border-right-color: rgb(60, 128, 89);
+    border-top-color: rgb(60, 128, 89);
+    border-bottom-color: rgb(60, 128, 89);
+    background-color: rgb(34, 60, 44);
+}
+
+.package-badge {
+    color: rgb(199, 207, 216);
+    border-left-color: rgb(76, 86, 97);
+    border-right-color: rgb(76, 86, 97);
+    border-top-color: rgb(76, 86, 97);
+    border-bottom-color: rgb(76, 86, 97);
+    background-color: rgb(48, 54, 61);
+}
+
+.config-property-field {
+    margin-bottom: 16px;
+}
+
+/* 项目设置中的 Spine 可选检测开关。 */
+.spine-checks-control {
+    min-height: 68px;
+    flex-direction: row;
+    align-items: center;
+    padding-left: 14px;
+    padding-right: 14px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    border-left-color: rgb(57, 65, 75);
+    border-right-color: rgb(57, 65, 75);
+    border-top-color: rgb(57, 65, 75);
+    border-bottom-color: rgb(57, 65, 75);
+    border-radius: 6px;
+    background-color: rgb(27, 31, 36);
+}
+
+.spine-checks-copy {
+    min-width: 0;
+    flex-grow: 1;
+}
+
+.spine-checks-title {
+    color: rgb(232, 237, 242);
+    font-size: 14px;
+}
+
+.spine-checks-description {
+    margin-top: 3px;
+    color: rgb(142, 153, 165);
+    font-size: 12px;
+}
+
+.spine-checks-switch-host {
+    flex-direction: row;
+    align-items: center;
+    flex-shrink: 0;
+    margin-left: 18px;
+}
+
+.spine-checks-state {
+    min-width: 42px;
+    margin-right: 9px;
+    color: rgb(143, 154, 166);
+    font-size: 12px;
+    -unity-text-align: middle-right;
+}
+
+.spine-checks-state-enabled {
+    color: rgb(127, 206, 160);
+}
+
+.spine-checks-toggle {
+    min-width: 44px;
+    min-height: 24px;
+    margin-bottom: 0;
+    flex-direction: row;
+    align-items: center;
+}
+
+.spine-checks-toggle > .unity-toggle__label {
+    display: none;
+}
+
+.spine-checks-toggle > .unity-toggle__input {
+    width: 44px;
+    min-width: 44px;
+    height: 24px;
+    min-height: 24px;
+    padding-left: 2px;
+    padding-right: 2px;
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    border-left-color: rgb(77, 87, 99);
+    border-right-color: rgb(77, 87, 99);
+    border-top-color: rgb(77, 87, 99);
+    border-bottom-color: rgb(77, 87, 99);
+    border-radius: 12px;
+    background-color: rgb(60, 68, 78);
+}
+
+.spine-checks-toggle > .unity-toggle__input:checked {
+    border-left-color: rgb(65, 137, 215);
+    border-right-color: rgb(65, 137, 215);
+    border-top-color: rgb(65, 137, 215);
+    border-bottom-color: rgb(65, 137, 215);
+    background-color: rgb(46, 111, 184);
+}
+
+.spine-checks-toggle > .unity-toggle__input > .unity-toggle__checkmark {
+    display: flex;
+    position: absolute;
+    left: 2px;
+    top: 2px;
+    width: 18px;
+    height: 18px;
+    border-radius: 9px;
+    background-image: none;
+    background-color: rgb(232, 237, 242);
+    -unity-background-image-tint-color: rgb(232, 237, 242);
+}
+
+.spine-checks-toggle > .unity-toggle__input:checked > .unity-toggle__checkmark {
+    left: 22px;
+    background-color: rgb(255, 255, 255);
+    -unity-background-image-tint-color: rgb(255, 255, 255);
+}
+
+.spine-checks-toggle > .unity-toggle__input:hover {
+    border-left-color: rgb(101, 113, 126);
+    border-right-color: rgb(101, 113, 126);
+    border-top-color: rgb(101, 113, 126);
+    border-bottom-color: rgb(101, 113, 126);
+}
+
+.checker-state {
+    min-height: 64px;
+    flex-direction: row;
+    align-items: center;
+    padding: 12px;
+    border-top-width: 1px;
+    border-top-color: rgb(54, 61, 69);
+    background-color: rgb(32, 37, 42);
+}
+
+.checker-state-missing {
+    background-color: rgba(157, 96, 38, 0.12);
+}
+
+.checker-state-title,
+.checker-state-warning-title {
+    width: 170px;
+    min-width: 170px;
+}
+
+.checker-state-warning-title {
+    color: rgb(255, 210, 139);
+}
+
+.checker-state-description {
+    flex-grow: 1;
+    min-width: 0;
+    margin-right: 10px;
+    color: rgb(167, 167, 167);
+    font-size: 12px;
+    white-space: normal;
+}
+
+.status-bar {
+    min-height: 30px;
+    flex-shrink: 0;
+    align-items: center;
+    padding-left: 12px;
+    padding-right: 12px;
+    border-top-width: 1px;
+    border-top-color: rgb(47, 53, 60);
+    background-color: rgb(29, 32, 36);
+}
+
+.status-text {
+    color: rgb(127, 137, 148);
+    font-size: 12px;
+}
+
+.config-page-heading {
+    flex-grow: 1;
+    min-width: 0;
+    margin-right: 16px;
+}
+
+.config-page-title {
+    color: rgb(237, 241, 245);
+    margin-bottom: 4px;
+    color: rgb(243, 246, 249);
+    font-size: 20px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.config-page-description {
+    color: rgb(146, 156, 167);
+    font-size: 13px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* 页面操作区与 HTML 基准保持同一组右侧控件间距。 */
+.page-toolbar > .grow {
+    flex-grow: 0;
+}
+
+/* Profile 与 AssetType 的表单在 HTML 基准中直接位于卡片内容区，
+ * 不显示额外的内层分区标题，也不叠加第二层边框和内边距。 */
+#ProfilePage .config-section,
+#AssetTypePage .config-section {
+    margin-bottom: 0;
+    border-left-width: 0;
+    border-right-width: 0;
+    border-top-width: 0;
+    border-bottom-width: 0;
+    border-radius: 0;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+#ProfilePage .config-section-header,
+#AssetTypePage .config-section-header {
+    display: none;
+}
+
+#ProfilePage .config-section-body,
+#AssetTypePage .config-section-body {
+    padding: 0;
+    border-top-width: 0;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+/* 设置页复用 Common 的 FoldoutCardView；内部内容区保持 HTML 的无嵌套卡片布局。 */
+#ProjectSettingsPage .settings-page-card .foldout-card-content {
+    min-width: 0;
+}
+
+#ProjectSettingsPage .settings-page-card .config-section {
+    min-width: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-top: 0;
+    border-left-width: 0;
+    border-right-width: 0;
+    border-top-width: 0;
+    border-bottom-width: 0;
+    border-radius: 0;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+#ProjectSettingsPage .settings-page-card .settings-section-divider {
+    margin-top: 24px;
+    padding-top: 16px;
+    border-top-width: 1px;
+    border-top-color: rgb(59, 66, 74);
+}
+
+#ProjectSettingsPage .settings-page-card .config-section-header {
+    min-height: 38px;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 12px;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+#ProjectSettingsPage .settings-page-card .config-section-title {
+    margin-bottom: 0;
+    font-size: 17px;
+}
+
+#ProjectSettingsPage .settings-page-card .config-section-body {
+    padding: 0;
+    border-top-width: 0;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+#ProjectSettingsPage .settings-page-card .path-input-label {
+    font-size: 14px;
+}
+
+#ProjectSettingsPage .settings-page-card .path-input-browse-button {
+    height: 29px;
+    min-height: 29px;
+    min-width: 0;
+    margin-right: 0;
+    padding-left: 11px;
+    padding-right: 11px;
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    border-left-color: rgb(74, 82, 92);
+    border-right-color: rgb(74, 82, 92);
+    border-top-color: rgb(74, 82, 92);
+    border-bottom-color: rgb(74, 82, 92);
+    border-radius: 5px;
+    background-color: rgb(43, 48, 54);
+    color: rgb(226, 231, 236);
+    font-size: 13px;
+}
+
+#ProjectSettingsPage .settings-page-card .path-input-browse-button:hover {
+    background-color: rgb(52, 59, 67);
+}
+
+/* RuleApply 与 Rule 页面的区块对应 HTML content-section，标题不再显示为嵌套卡片标题栏。 */
+#RuleApplyPage .html-content-section,
+#RulePage .html-content-section {
+    min-width: 0;
+    margin-top: 24px;
+    margin-bottom: 0;
+    padding-top: 16px;
+    border-left-width: 0;
+    border-right-width: 0;
+    border-top-width: 1px;
+    border-bottom-width: 0;
+    border-top-color: rgb(59, 66, 74);
+    border-radius: 0;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+#RuleApplyPage .html-content-section-first,
+#RulePage .html-content-section-first {
+    margin-top: 0;
+    padding-top: 0;
+    border-top-width: 0;
+}
+
+#RuleApplyPage .html-content-section-divider,
+#RulePage .html-content-section-divider {
+    border-top-width: 1px;
+    border-top-color: rgb(59, 66, 74);
+}
+
+#RuleApplyPage .html-content-section .config-section-header,
+#RulePage .html-content-section .config-section-header {
+    min-height: 38px;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 12px;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+#RuleApplyPage .html-content-section .config-section-title,
+#RulePage .html-content-section .config-section-title {
+    margin-bottom: 0;
+    font-size: 17px;
+}
+
+#RuleApplyPage .html-content-section .config-section-body,
+#RulePage .html-content-section .config-section-body {
+    padding: 0;
+    border-top-width: 0;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+/* 配置页中的字段对齐 HTML 的纵向表单布局。 */
+.config-page .config-field-block {
+    min-width: 0;
+    margin-bottom: 16px;
+}
+
+.config-page .config-field-block:last-child {
+    margin-bottom: 0;
+}
+
+.config-page .config-property-field {
+    flex-direction: column;
+    align-items: stretch;
+}
+
+.config-page .config-field-block > .config-property-field,
+.config-page .config-field-block > .config-text-field,
+.config-page .config-field-block > .multiline-text-field {
+    margin-bottom: 0;
+}
+
+.config-page .config-property-field.unity-property-field,
+.config-page .config-property-field .unity-base-field,
+.config-page .config-property-field .unity-base-popup-field,
+.config-page .config-property-field .unity-popup-field,
+.config-page .config-property-field .unity-base-field__aligned {
+    flex-direction: column;
+    align-items: stretch;
+}
+
+.config-page .config-property-field .unity-property-field__label,
+.config-page .config-property-field .unity-base-field__label,
+.config-page .config-property-field .unity-base-popup-field__label,
+.config-page .config-property-field .unity-popup-field__label {
+    width: auto;
+    min-width: 0;
+    margin-right: 0;
+    margin-bottom: 7px;
+}
+
+.config-page .config-property-field .unity-property-field__input,
+.config-page .config-property-field .unity-base-field__input,
+.config-page .config-property-field .unity-base-popup-field__input,
+.config-page .config-property-field .unity-popup-field__input {
+    width: auto;
+    min-width: 0;
+    flex-grow: 1;
+}
+
+.config-page .config-text-field,
+.config-page .multiline-text-field {
+    flex-direction: column;
+    align-items: stretch;
+}
+
+.config-page .config-text-field .unity-text-field,
+.config-page .multiline-text-field .unity-text-field,
+.config-page .config-text-field .unity-base-field,
+.config-page .multiline-text-field .unity-base-field,
+.config-page .config-text-field .unity-base-field__aligned,
+.config-page .multiline-text-field .unity-base-field__aligned {
+    flex-direction: column;
+    align-items: stretch;
+}
+
+.config-page .config-text-field .unity-text-field__label,
+.config-page .multiline-text-field .unity-text-field__label,
+.config-page .config-text-field .unity-base-text-field__label,
+.config-page .multiline-text-field .unity-base-text-field__label,
+.config-page .config-text-field .unity-base-field__label,
+.config-page .multiline-text-field .unity-base-field__label {
+    width: auto;
+    min-width: 0;
+    margin-right: 0;
+    margin-bottom: 7px;
+}
+
+.config-page .config-text-field .unity-text-field__input,
+.config-page .multiline-text-field .unity-text-field__input,
+.config-page .config-text-field .unity-base-text-field__input,
+.config-page .multiline-text-field .unity-base-text-field__input,
+.config-page .config-text-field .unity-base-field__input,
+.config-page .multiline-text-field .unity-base-field__input {
+    width: auto;
+    min-width: 0;
+    flex-grow: 1;
+}
+
+.config-page .config-field-block > .field-hint {
+    margin-bottom: 0;
+    line-height: 18px;
+}
+
+#DirtyCountLabel {
+    color: rgb(176, 137, 83);
+}
+
+/* ---------- RuleApply 专用编辑结构 ---------- */
+
+.rule-apply-section {
+    margin-bottom: 16px;
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    border-left-color: rgb(59, 66, 74);
+    border-right-color: rgb(59, 66, 74);
+    border-top-color: rgb(59, 66, 74);
+    border-bottom-color: rgb(59, 66, 74);
+    border-radius: 6px;
+    background-color: rgb(32, 36, 41);
+}
+
+.rule-apply-section-header {
+    min-height: 42px;
+    flex-direction: row;
+    align-items: center;
+    padding-left: 12px;
+    padding-right: 7px;
+    background-color: rgb(41, 46, 52);
+}
+
+.rule-apply-section-title {
+    flex-grow: 1;
+    color: rgb(237, 241, 245);
+    font-size: 16px;
+}
+
+.rule-apply-section-body {
+    padding: 12px;
+    border-top-width: 1px;
+    border-top-color: rgb(54, 61, 69);
+    background-color: rgb(32, 36, 41);
+}
+
+.rule-apply-empty-label {
+    min-height: 54px;
+    color: rgb(143, 153, 164);
+    -unity-text-align: middle-center;
+}
+
+.rule-apply-item {
+    margin-bottom: 12px;
+    border-left-width: 3px;
+    border-right-width: 1px;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    border-left-color: rgb(79, 139, 215);
+    border-right-color: rgb(65, 74, 84);
+    border-top-color: rgb(65, 74, 84);
+    border-bottom-color: rgb(65, 74, 84);
+    border-radius: 6px;
+    background-color: rgb(32, 37, 42);
+}
+
+.rule-apply-item-header {
+    min-height: 52px;
+    flex-direction: row;
+    align-items: center;
+    padding-left: 10px;
+    padding-right: 5px;
+    background-color: rgb(41, 46, 52);
+}
+
+.rule-apply-item-index {
+    width: 78px;
+    min-width: 78px;
+}
+
+.rule-apply-item-title-container {
+    flex-grow: 1;
+    min-width: 0;
+}
+
+.rule-apply-item-display-name {
+    color: rgb(240, 243, 246);
+    font-size: 14px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.rule-apply-item-rule-id {
+    margin-top: 2px;
+    color: rgb(146, 156, 167);
+    font-size: 12px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.rule-apply-item-body {
+    padding: 14px;
+    border-top-width: 1px;
+    border-top-color: rgb(54, 61, 69);
+}
+
+.rule-apply-field,
+.rule-apply-array-field {
+    margin-bottom: 16px;
+}
+
+.rule-state-enabled,
+.rule-state-disabled {
+    min-height: 24px;
+    min-width: 0;
+    margin-left: 8px;
+    padding-left: 9px;
+    padding-right: 9px;
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    border-radius: 12px;
+    font-size: 12px;
+    -unity-text-align: middle-center;
+}
+
+.rule-state-enabled {
+    color: rgb(145, 223, 175);
+    border-left-color: rgb(57, 119, 85);
+    border-right-color: rgb(57, 119, 85);
+    border-top-color: rgb(57, 119, 85);
+    border-bottom-color: rgb(57, 119, 85);
+    background-color: rgb(36, 68, 47);
+}
+
+.rule-state-disabled {
+    color: rgb(176, 184, 193);
+    border-left-color: rgb(100, 109, 118);
+    border-right-color: rgb(100, 109, 118);
+    border-top-color: rgb(100, 109, 118);
+    border-bottom-color: rgb(100, 109, 118);
+    background-color: rgb(52, 58, 64);
+}
+
+
+/* ============================================================
+ * HTML 确认版：配置页专用结构
+ * ============================================================ */
+
+.config-section {
+    margin-bottom: 16px;
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    border-left-color: rgb(59, 66, 74);
+    border-right-color: rgb(59, 66, 74);
+    border-top-color: rgb(59, 66, 74);
+    border-bottom-color: rgb(59, 66, 74);
+    border-radius: 6px;
+    background-color: rgb(32, 36, 41);
+}
+
+.config-section-header {
+    min-height: 42px;
+    flex-direction: row;
+    align-items: center;
+    padding-left: 12px;
+    padding-right: 7px;
+    background-color: rgb(41, 46, 52);
+}
+
+.config-section-title {
+    flex-grow: 1;
+    color: rgb(237, 241, 245);
+    font-size: 16px;
+}
+
+.config-section-body {
+    padding: 14px;
+    border-top-width: 1px;
+    border-top-color: rgb(54, 61, 69);
+}
+
+.config-item {
+    margin-bottom: 12px;
+    border-left-width: 3px;
+    border-right-width: 1px;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    border-left-color: rgb(79, 139, 215);
+    border-right-color: rgb(65, 74, 84);
+    border-top-color: rgb(65, 74, 84);
+    border-bottom-color: rgb(65, 74, 84);
+    border-radius: 6px;
+    background-color: rgb(32, 37, 42);
+}
+
+.config-item-header {
+    min-height: 52px;
+    flex-direction: row;
+    align-items: center;
+    padding-left: 10px;
+    padding-right: 5px;
+    background-color: rgb(41, 46, 52);
+}
+
+.config-item-index {
+    width: 78px;
+    min-width: 78px;
+}
+
+.config-item-title-container {
+    flex-grow: 1;
+    min-width: 0;
+}
+
+.config-item-display-name {
+    color: rgb(240, 243, 246);
+    font-size: 14px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.config-item-id {
+    margin-top: 2px;
+    color: rgb(146, 156, 167);
+    font-size: 12px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.config-item-body {
+    padding: 14px;
+    border-top-width: 1px;
+    border-top-color: rgb(54, 61, 69);
+}
+
+.config-property-field {
+    margin-bottom: 16px;
+}
+
+.config-property-field .unity-base-field__label {
+    width: 140px;
+    min-width: 140px;
+    margin-right: 12px;
+    color: rgb(215, 221, 228);
+    font-size: 14px;
+}
+
+.config-property-field .unity-base-field__input,
+.config-text-field .unity-base-text-field__input,
+.config-text-field .unity-text-field__input,
+.multiline-text-field .unity-base-text-field__input,
+.multiline-text-field .unity-text-field__input {
+    min-height: 34px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    border-left-color: rgb(65, 73, 82);
+    border-right-color: rgb(65, 73, 82);
+    border-top-color: rgb(65, 73, 82);
+    border-bottom-color: rgb(65, 73, 82);
+    border-radius: 5px;
+    background-color: rgb(23, 26, 30);
+    color: rgb(237, 241, 245);
+}
+
+.config-text-field,
+.multiline-text-field {
+    flex-direction: column;
+    align-items: stretch;
+    margin-bottom: 16px;
+}
+
+.config-text-field > .unity-base-field__label,
+.multiline-text-field > .unity-base-field__label {
+    width: auto;
+    min-width: 0;
+    margin-bottom: 7px;
+    color: rgb(215, 221, 228);
+    font-size: 14px;
+}
+
+.empty-inline-label {
+    min-height: 54px;
+    color: rgb(143, 153, 164);
+    -unity-text-align: middle-center;
+}
+
+.warning-message {
+    min-height: 38px;
+    padding: 8px;
+    color: rgb(255, 210, 139);
+    background-color: rgba(157, 96, 38, 0.12);
+    white-space: normal;
+}
+
+/* ---------- 状态 ---------- */
+
+.status-success,
+.status-warning,
+.status-error,
+.status-info {
+    min-height: 24px;
+    min-width: 0;
+    margin-left: 8px;
+    padding-left: 9px;
+    padding-right: 9px;
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    border-radius: 12px;
+    font-size: 12px;
+    -unity-text-align: middle-center;
+}
+
+.status-success {
+    color: rgb(131, 215, 163);
+    border-left-color: rgb(57, 119, 85);
+    border-right-color: rgb(57, 119, 85);
+    border-top-color: rgb(57, 119, 85);
+    border-bottom-color: rgb(57, 119, 85);
+    background-color: rgb(32, 58, 42);
+}
+
+.status-warning {
+    color: rgb(232, 189, 107);
+    border-left-color: rgb(138, 102, 45);
+    border-right-color: rgb(138, 102, 45);
+    border-top-color: rgb(138, 102, 45);
+    border-bottom-color: rgb(138, 102, 45);
+    background-color: rgb(70, 54, 31);
+}
+
+.status-error {
+    color: rgb(255, 170, 170);
+    border-left-color: rgb(165, 77, 84);
+    border-right-color: rgb(165, 77, 84);
+    border-top-color: rgb(165, 77, 84);
+    border-bottom-color: rgb(165, 77, 84);
+    background-color: rgb(82, 40, 45);
+}
+
+.status-info {
+    color: rgb(184, 216, 255);
+    border-left-color: rgb(63, 99, 142);
+    border-right-color: rgb(63, 99, 142);
+    border-top-color: rgb(63, 99, 142);
+    border-bottom-color: rgb(63, 99, 142);
+    background-color: rgb(37, 59, 82);
+}
+
+/* ---------- DisplayName 优先的对象引用 ---------- */
+
+.reference-form-row {
+    min-height: 48px;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.reference-form-label {
+    width: 140px;
+    min-width: 140px;
+    margin-right: 12px;
+    color: rgb(215, 221, 228);
+    font-size: 14px;
+}
+
+.object-reference-display {
+    min-height: 48px;
+    flex-grow: 1;
+    min-width: 0;
+    flex-direction: row;
+    align-items: center;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-right: 7px;
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    border-left-color: rgb(65, 73, 82);
+    border-right-color: rgb(65, 73, 82);
+    border-top-color: rgb(65, 73, 82);
+    border-bottom-color: rgb(65, 73, 82);
+    border-radius: 5px;
+    background-color: rgb(25, 28, 32);
+}
+
+.object-reference-icon {
+    width: 18px;
+    min-width: 18px;
+    margin-right: 6px;
+    color: rgb(143, 196, 241);
+}
+
+.object-reference-text {
+    flex-grow: 1;
+    min-width: 0;
+}
+
+.object-reference-display-name {
+    color: rgb(238, 242, 246);
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.object-reference-asset-name {
+    margin-top: 2px;
+    color: rgb(146, 156, 167);
+    font-size: 12px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+/* ---------- AssetType / Profile 数组 ---------- */
+
+.reference-array-list {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    min-width: 0;
+    margin-top: -5px;
+}
+
+/* ---------- 白名单地址输入 ---------- */
+
+.white-list-path-row {
+    min-width: 0;
+    align-items: center;
+}
+
+.white-list-path-content {
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: 0;
+    min-width: 0;
+    flex-direction: row;
+    align-items: center;
+}
+
+.white-list-path-field {
+    width: auto;
+    min-width: 0;
+    min-height: 34px;
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: auto;
+    margin-right: 6px;
+}
+
+.white-list-path-field > .unity-base-field__input,
+.white-list-path-field .unity-base-field__input,
+.white-list-path-field > .unity-base-text-field__input,
+.white-list-path-field .unity-base-text-field__input,
+.white-list-path-field > .unity-text-field__input,
+.white-list-path-field .unity-text-field__input {
+    min-width: 0;
+    flex-grow: 1;
+    flex-shrink: 1;
+    min-height: 34px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    border-left-color: rgb(65, 73, 82);
+    border-right-color: rgb(65, 73, 82);
+    border-top-color: rgb(65, 73, 82);
+    border-bottom-color: rgb(65, 73, 82);
+    border-radius: 5px;
+    background-color: rgb(23, 26, 30);
+    color: rgb(237, 241, 245);
+}
+
+.white-list-path-actions {
+    flex-shrink: 0;
+    flex-direction: row;
+    align-items: center;
+}
+
+.white-list-path-button {
+    min-width: 76px;
+    margin-right: 4px;
+}
+
+.white-list-path-button:last-child {
+    min-width: 88px;
+    margin-right: 0;
+}
+
+.multiline-text-field {
+    min-height: 84px;
+    margin-bottom: 16px;
+}
+
+.rule-apply-item-subsection {
+    min-width: 0;
+    margin-top: 18px;
+    padding-top: 14px;
+    border-top-width: 1px;
+    border-top-color: rgb(57, 65, 74);
+}
+
+.rule-apply-item-subsection-first {
+    margin-top: 0;
+    padding-top: 0;
+    border-top-width: 0;
+}
+
+.rule-apply-item-subsection-divider {
+    border-top-width: 1px;
+    border-top-color: rgb(57, 65, 74);
+}
+
+.rule-reference-content {
+    min-width: 0;
+}
+
+.subsection-title {
+    margin-bottom: 9px;
+    color: rgb(203, 211, 220);
+    font-size: 14px;
+}
+
+.rule-reference-content .reference-form-row {
+    margin-bottom: 0;
+}
+
+.config-reference-chip {
+    min-height: 27px;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 5px;
+    margin-right: 6px;
+    padding-left: 10px;
+    padding-right: 2px;
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    border-radius: 14px;
+    background-color: rgb(42, 49, 56);
+}
+
+.config-reference-chip-asset-type {
+    border-left-color: rgb(69, 111, 158);
+    border-right-color: rgb(69, 111, 158);
+    border-top-color: rgb(69, 111, 158);
+    border-bottom-color: rgb(69, 111, 158);
+    background-color: rgb(37, 59, 82);
+}
+
+.config-reference-chip-profile {
+    border-left-color: rgb(112, 93, 145);
+    border-right-color: rgb(112, 93, 145);
+    border-top-color: rgb(112, 93, 145);
+    border-bottom-color: rgb(112, 93, 145);
+    background-color: rgb(54, 47, 70);
+}
+
+.config-reference-chip-label {
+    margin-right: 3px;
+    color: rgb(208, 216, 224);
+    font-size: 12px;
+}
+
+.config-reference-chip-asset-type .config-reference-chip-label {
+    color: rgb(169, 210, 245);
+}
+
+.config-reference-chip-profile .config-reference-chip-label {
+    color: rgb(208, 189, 240);
+}
+
+.config-reference-chip-remove {
+    width: 22px;
+    min-width: 22px;
+    height: 22px;
+    margin-left: 1px;
+    padding-left: 0;
+    padding-right: 0;
+    border-width: 0;
+    background-color: transparent;
+    color: rgb(201, 211, 221);
+    font-size: 14px;
+}
+
+.multiline-text-field .unity-base-text-field__input,
+.multiline-text-field .unity-text-field__input {
+    min-height: 84px;
+    padding-top: 9px;
+    padding-bottom: 9px;
+    white-space: normal;
+}
+
+
+/* ============================================================
+ * 规则应用页中的 Profile 白名单分组
+ * ============================================================ */
+
+.white-list-profile-group {
+    margin-bottom: 12px;
+    border-left-width: 3px;
+    border-right-width: 1px;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    border-left-color: rgb(79, 139, 215);
+    border-right-color: rgb(65, 74, 84);
+    border-top-color: rgb(65, 74, 84);
+    border-bottom-color: rgb(65, 74, 84);
+    border-radius: 6px;
+    background-color: rgb(32, 37, 42);
+}
+
+.white-list-profile-header {
+    min-height: 52px;
+    flex-direction: row;
+    align-items: center;
+    padding-left: 10px;
+    padding-right: 5px;
+    background-color: rgb(41, 46, 52);
+}
+
+.white-list-profile-title-container {
+    flex-grow: 1;
+    min-width: 0;
+}
+
+.white-list-profile-display-name {
+    color: rgb(240, 243, 246);
+    font-size: 14px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.white-list-profile-asset-name {
+    margin-top: 2px;
+    color: rgb(146, 156, 167);
+    font-size: 12px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.white-list-profile-body {
+    padding: 14px;
+    border-top-width: 1px;
+    border-top-color: rgb(54, 61, 69);
+}
+
+/* ============================================================
+ * 字段提示与校验
+ * ============================================================ */
+
+.field-hint {
+    margin-top: 6px;
+    margin-bottom: 10px;
+    color: rgb(128, 139, 150);
+    font-size: 12px;
+    white-space: normal;
+}
+
+.required-field-hint {
+    color: rgb(185, 154, 98);
+}
+
+.validation-error-field {
+    border-left-width: 2px;
+    border-left-color: rgb(210, 74, 74);
+    background-color: rgba(140, 45, 45, 0.10);
+}
+
+.validation-warning-field {
+    border-left-width: 2px;
+    border-left-color: rgb(202, 157, 74);
+    background-color: rgba(160, 116, 45, 0.10);
+}
+
+.validation-error-badge {
+    min-height: 24px;
+    margin-left: 8px;
+    padding-left: 9px;
+    padding-right: 9px;
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    border-left-color: rgb(165, 77, 84);
+    border-right-color: rgb(165, 77, 84);
+    border-top-color: rgb(165, 77, 84);
+    border-bottom-color: rgb(165, 77, 84);
+    border-radius: 12px;
+    background-color: rgb(82, 40, 45);
+    color: rgb(255, 170, 170);
+    font-size: 12px;
+    -unity-text-align: middle-center;
+}
+
+/* ============================================================
+ * 独立 UXML 弹窗
+ * ============================================================ */
+
+.dialog-host,
+.dialog-template-instance,
+.dialog-overlay {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+}
+
+.dialog-overlay {
+    min-width: 0;
+    min-height: 0;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.66);
+}
+
+.dialog-panel {
+    width: 760px;
+    min-width: 460px;
+    max-width: 92%;
+    max-height: 86%;
+    flex-direction: column;
+    flex-shrink: 1;
+    overflow: hidden;
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    border-left-color: rgb(89, 99, 110);
+    border-right-color: rgb(89, 99, 110);
+    border-top-color: rgb(89, 99, 110);
+    border-bottom-color: rgb(89, 99, 110);
+    border-radius: 7px;
+    background-color: rgb(35, 39, 44);
+}
+
+.dialog-header {
+    height: 52px;
+    min-height: 52px;
+    flex-shrink: 0;
+    flex-direction: row;
+    align-items: center;
+    padding-left: 12px;
+    padding-right: 12px;
+    border-bottom-width: 1px;
+    border-bottom-color: rgb(60, 68, 77);
+    background-color: rgb(45, 50, 56);
+}
+
+.dialog-title {
+    min-width: 0;
+    flex-grow: 1;
+    color: rgb(241, 244, 247);
+    font-size: 17px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.dialog-body {
+    min-width: 0;
+    min-height: 0;
+    flex-shrink: 1;
+    padding: 16px;
+}
+
+.dialog-footer {
+    height: 58px;
+    min-height: 58px;
+    flex-shrink: 0;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    padding-left: 12px;
+    padding-right: 12px;
+    border-top-width: 1px;
+    border-top-color: rgb(60, 68, 77);
+    background-color: rgb(40, 45, 51);
+}
+
+.create-config-dialog-panel > .modal-panel-surface,
+.create-checker-dialog-panel > .modal-panel-surface {
+    width: 760px;
+}
+
+.item-create-dialog-panel > .modal-panel-surface {
+    width: 980px;
+    height: 620px;
+    min-height: 420px;
+}
+
+.selection-dialog-panel > .modal-panel-surface {
+    width: 760px;
+    height: 620px;
+    min-height: 420px;
+}
+
+.edit-rule-config-dialog-panel > .modal-panel-surface {
+    width: 980px;
+    height: 760px;
+    min-height: 520px;
+}
+
+.edit-rule-config-dialog-content {
+    min-width: 0;
+    min-height: 0;
+    flex-grow: 1;
+    flex-direction: column;
+}
+
+.edit-rule-config-summary {
+    min-height: 64px;
+    flex-shrink: 0;
+    flex-direction: row;
+    align-items: center;
+    padding-left: 16px;
+    padding-right: 16px;
+    border-bottom-width: 1px;
+    border-bottom-color: rgb(60, 68, 77);
+    background-color: rgb(40, 45, 51);
+}
+
+.edit-rule-config-summary-main {
+    min-width: 0;
+    flex-grow: 1;
+    margin-left: 10px;
+}
+
+.edit-rule-config-summary-name {
+    color: rgb(240, 243, 246);
+    font-size: 15px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.edit-rule-config-summary-metadata {
+    margin-top: 3px;
+    color: rgb(146, 156, 167);
+    font-size: 12px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.edit-rule-config-scroll {
+    min-width: 0;
+    min-height: 0;
+    flex-grow: 1;
+    flex-shrink: 1;
+}
+
+.edit-rule-config-fields {
+    min-width: 0;
+    flex-shrink: 0;
+    padding: 16px;
+}
+
+/* ============================================================
+ * 弹窗表单布局
+ * ============================================================ */
+
+.dialog-form {
+    min-width: 0;
+    flex-shrink: 0;
+}
+
+.dialog-field-row {
+    min-width: 0;
+    flex-shrink: 0;
+    flex-direction: column;
+    align-items: stretch;
+    margin-bottom: 17px;
+}
+
+.dialog-field-label {
+    width: auto;
+    min-width: 0;
+    flex-shrink: 0;
+    padding-top: 0;
+    padding-right: 0;
+    margin-bottom: 7px;
+    color: rgb(232, 237, 242);
+    font-size: 14px;
+    -unity-text-align: upper-left;
+}
+
+.dialog-field-content {
+    width: auto;
+    min-width: 0;
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-direction: column;
+    align-self: stretch;
+}
+
+.dialog-form > .dialog-field-row:last-child,
+.dialog-form > .path-input-field:last-child {
+    margin-bottom: 0;
+}
+
+.dialog-field-content > .field-hint {
+    margin-bottom: 0;
+    line-height: 18px;
+}
+
+.dialog-control {
+    min-width: 0;
+    min-height: 34px;
+    flex-shrink: 0;
+    align-self: stretch;
+}
+
+.create-config-id-input {
+    position: relative;
+    min-width: 0;
+    min-height: 34px;
+    align-self: stretch;
+}
+
+.create-config-id-input > .dialog-control {
+    flex-grow: 1;
+}
+
+.create-config-id-placeholder {
+    position: absolute;
+    top: 8px;
+    left: 11px;
+    color: rgb(128, 139, 150);
+    font-size: 14px;
+}
+
+.dialog-control .unity-base-field__input,
+.dialog-control .unity-base-text-field__input,
+.dialog-control .unity-text-field__input,
+.selection-search-field .unity-base-text-field__input,
+.selection-search-field .unity-text-field__input {
+    min-height: 34px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    border-left-color: rgb(65, 73, 82);
+    border-right-color: rgb(65, 73, 82);
+    border-top-color: rgb(65, 73, 82);
+    border-bottom-color: rgb(65, 73, 82);
+    border-radius: 5px;
+    background-color: rgb(23, 26, 30);
+    color: rgb(237, 241, 245);
+}
+
+.dialog-multiline-control {
+    min-height: 84px;
+}
+
+.dialog-toggle-control {
+    min-height: 22px;
+    align-self: flex-start;
+}
+
+.dialog-control-line {
+    min-width: 0;
+    min-height: 34px;
+    flex-shrink: 0;
+    flex-direction: row;
+    align-items: center;
+    align-self: stretch;
+}
+
+.dialog-control-line > .dialog-control {
+    width: 0;
+    min-width: 0;
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: 0;
+}
+
+.dialog-control-line > .small-button {
+    min-width: 74px;
+    flex-shrink: 0;
+    margin-left: 6px;
+    margin-right: 0;
+}
+
+.dialog-reference-container {
+    min-width: 0;
+    min-height: 24px;
+    flex-shrink: 0;
+    align-self: stretch;
+}
+
+.dialog-reference-list {
+    min-width: 0;
+    min-height: 40px;
+    flex-shrink: 0;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 8px;
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    border-left-color: rgb(65, 73, 82);
+    border-right-color: rgb(65, 73, 82);
+    border-top-color: rgb(65, 73, 82);
+    border-bottom-color: rgb(65, 73, 82);
+    border-radius: 5px;
+    background-color: rgb(25, 28, 32);
+}
+
+.dialog-reference-chip-list {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.dialog-reference-row {
+    min-width: 0;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.dialog-reference-row > .object-reference-display {
+    width: 0;
+    min-width: 0;
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: 0;
+}
+
+.dialog-reference-row > .small-button {
+    min-width: 58px;
+    flex-shrink: 0;
+    margin-left: 6px;
+    margin-right: 0;
+}
+
+.dialog-reference-list > .small-button {
+    align-self: flex-start;
+    margin-top: 5px;
+    margin-right: 0;
+}
+
+.dialog-preview-placeholder {
+    min-height: 30px;
+    color: rgb(142, 153, 164);
+    font-size: 12px;
+    -unity-font-style: italic;
+    -unity-text-align: middle-left;
+}
+
+.item-create-dialog-scroll {
+    min-width: 0;
+    min-height: 0;
+    flex-grow: 1;
+    flex-shrink: 1;
+}
+
+.item-create-form-container {
+    min-width: 0;
+    flex-shrink: 0;
+    padding: 16px;
+}
+
+/* ============================================================
+ * 选择配置弹窗
+ * ============================================================ */
+
+.selection-dialog-body {
+    min-width: 0;
+    min-height: 0;
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-direction: column;
+}
+
+.selection-search-row {
+    min-width: 0;
+    flex-shrink: 0;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.selection-search-label {
+    width: 60px;
+    min-width: 60px;
+    flex-shrink: 0;
+    padding-right: 10px;
+    color: rgb(232, 237, 242);
+}
+
+.selection-search-field {
+    min-width: 0;
+    min-height: 34px;
+    flex-grow: 1;
+    flex-shrink: 1;
+}
+
+.selection-list-scroll {
+    min-width: 0;
+    min-height: 0;
+    flex-grow: 1;
+    flex-shrink: 1;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    border-top-color: rgb(65, 73, 82);
+    border-bottom-color: rgb(65, 73, 82);
+}
+
+.selection-list-container {
+    min-width: 0;
+    flex-grow: 1;
+}
+
+.selection-row {
+    min-height: 52px;
+    flex-direction: row;
+    align-items: center;
+    padding-left: 4px;
+    padding-right: 4px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    margin-bottom: 0;
+    border-left-width: 0;
+    border-right-width: 0;
+    border-top-width: 0;
+    border-bottom-width: 1px;
+    border-bottom-color: rgb(48, 54, 61);
+    border-radius: 0;
+    background-color: rgba(0, 0, 0, 0);
+    color: rgb(233, 238, 243);
+    -unity-text-align: middle-left;
+}
+
+.selection-row:hover {
+    background-color: rgb(36, 42, 48);
+}
+
+.selection-row-selected {
+    background-color: rgb(38, 56, 79);
+}
+
+.selection-row-text {
+    min-width: 0;
+    flex-grow: 1;
+}
+
+.selection-row-display-name {
+    color: rgb(233, 238, 243);
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.selection-row-asset-name {
+    margin-top: 3px;
+    color: rgb(142, 153, 164);
+    font-size: 12px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.selection-row-state {
+    width: 60px;
+    min-width: 60px;
+    color: rgb(141, 189, 240);
+    font-size: 12px;
+    -unity-text-align: middle-right;
+}

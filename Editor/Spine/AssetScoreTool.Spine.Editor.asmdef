@@ -1,0 +1,22 @@
+{
+    "name": "AssetScoreTool.Spine.Editor",
+    "rootNamespace": "majsoul.tools.assetscoretool.editor",
+    "references": [
+        "AssetScoreTool.Editor",
+        "spine-unity",
+        "spine-csharp"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [
+        "ASSET_SCORE_TOOL_SPINE"
+    ],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

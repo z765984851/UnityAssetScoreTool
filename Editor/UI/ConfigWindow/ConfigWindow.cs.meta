@@ -1,0 +1,29 @@
+fileFormatVersion: 2
+guid: 7b3958e6ea3afeb41858463aabe6e530
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - m_ViewDataDictionary: {instanceID: 0}
+  - visualTreeAsset: {fileID: 9197481963319205126, guid: 4317fd91347bd2b41a2b440c33dc68ee, type: 3}
+  - profilePageVisualTreeAsset: {fileID: 9197481963319205126, guid: 94b0dd75e38b6814aa8ee5d652d8ba28, type: 3}
+  - projectSettingsPageVisualTreeAsset: {fileID: 9197481963319205126, guid: d0ea7f92690495e498a6fdc0496bdfff, type: 3}
+  - assetTypePageVisualTreeAsset: {fileID: 9197481963319205126, guid: 0c4f9e9cd58622a48bd2b6688fa1213d, type: 3}
+  - rulePageVisualTreeAsset: {fileID: 9197481963319205126, guid: dc998fd0bfe9bd345808db91ab3bcc6e, type: 3}
+  - ruleApplyPageVisualTreeAsset: {fileID: 9197481963319205126, guid: e3001623521a9d746aee5a1137e67b00, type: 3}
+  - pathInputFieldVisualTreeAsset: {fileID: 9197481963319205126, guid: b5d926539eb46574184bfa09ed92c045, type: 3}
+  - objectReferenceSelectorVisualTreeAsset: {fileID: 9197481963319205126, guid: d65456e538d38a4438294e531903f479, type: 3}
+  - foldoutCardViewVisualTreeAsset: {fileID: 9197481963319205126, guid: badc2ce4fa3c1fc4da273f3305e02e62, type: 3}
+  - createConfigDialogVisualTreeAsset: {fileID: 9197481963319205126, guid: 7128403bb3eb29541851141ca5e8c78a, type: 3}
+  - createCheckerDialogVisualTreeAsset: {fileID: 9197481963319205126, guid: b47cc4caac6bf7e40833d1298282ebc1, type: 3}
+  - createRuleApplyItemDialogVisualTreeAsset: {fileID: 9197481963319205126, guid: 9695bd79741784c419b5712c6a665ef2, type: 3}
+  - createIssueInfoDialogVisualTreeAsset: {fileID: 9197481963319205126, guid: a7087ea9c34fa68489c3c95944c18b94, type: 3}
+  - createWhiteListDialogVisualTreeAsset: {fileID: 9197481963319205126, guid: 522db24cd30abc640b41e0cc11125fe3, type: 3}
+  - editRuleConfigDialogVisualTreeAsset: {instanceID: 0}
+  - validationMessageViewVisualTreeAsset: {instanceID: 0}
+  - selectionDialogVisualTreeAsset: {fileID: 9197481963319205126, guid: 16e744c1494c6ee419f4146b0d77ff44, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

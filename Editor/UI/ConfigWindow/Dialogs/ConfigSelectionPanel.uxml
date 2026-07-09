@@ -1,0 +1,19 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
+    <Style src="project://database/Assets/Tools/asset_score_tool/Editor/UI/ConfigWindow/ConfigWindow.uss?fileID=7433441132597879392&amp;guid=adbc944d6ff36644fa24dc8f51ef91fd&amp;type=3#ConfigWindow" />
+    <ui:VisualElement class="selection-dialog-content">
+        <ui:VisualElement class="dialog-body selection-dialog-body">
+            <ui:VisualElement class="selection-search-row">
+                <ui:Label text="搜索" class="selection-search-label" />
+                <ui:TextField name="SelectionSearchField" class="selection-search-field" />
+            </ui:VisualElement>
+            <ui:ScrollView mode="Vertical" horizontal-scroller-visibility="Hidden" vertical-scroller-visibility="Auto" class="selection-list-scroll">
+                <ui:VisualElement name="SelectionListContainer" class="selection-list-container" />
+                <ui:Label name="SelectionEmptyLabel" text="没有可选配置" class="empty-label" />
+            </ui:ScrollView>
+        </ui:VisualElement>
+        <ui:VisualElement class="dialog-footer">
+            <ui:Button name="SelectionCancelButton" text="取消" class="tool-button" />
+            <ui:Button name="SelectionConfirmButton" text="选择" class="tool-button primary-button" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99511ab169e84641b15383800502a0cf, type: 3}
+  m_Name: ScoreRule_TextureReadWrite
+  m_EditorClassIdentifier: 
+  ruleId: basic.texture.readwrite
+  displayName: "Texture(贴图)已启用Read/Write(读写)"
+  description: "检查Texture(贴图)是否启用Read/Write(读写)。"
+  priority: 0
+  issueInfos:
+  - issueInfoId: isopen
+    displayName: "Texture(贴图)已启用Read/Write(读写)"
+    deductScore: 5
+    issueLevel: 1
+    issueMessage: "Read/Write(读写)会额外保留CPU(中央处理器)侧的Texture(贴图)数据并增加内存占用。建议：在Texture Importer中关闭Read/Write(读写)，必要时补充用途说明。"

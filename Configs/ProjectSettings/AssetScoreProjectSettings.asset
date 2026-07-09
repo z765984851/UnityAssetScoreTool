@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d981ebe5ce648544ca78d00c1cf4ce5e, type: 3}
+  m_Name: AssetScoreProjectSettings
+  m_EditorClassIdentifier: 
+  activeRuleApplyConfig: {fileID: 11400000, guid: 775ba1df84bd05244860beb499201cac, type: 2}
+  enableSpineChecks: 1
+  profileConfigDefaultFolder: {fileID: 102900000, guid: 3a7226f461636cb46b3b6d42251b5bcd, type: 3}
+  ruleApplyConfigDefaultFolder: {fileID: 102900000, guid: 38f91343da374744cb895b1ec12a7173, type: 3}
+  scoreRuleConfigDefaultFolder: {fileID: 102900000, guid: ca89a533634b6b446a3b3b6ea83cce3e, type: 3}
+  assetTypeConfigDefaultFolder: {fileID: 102900000, guid: 68a93fcd2ba14f32afd5cb088f3d8db1, type: 3}
+  checkRuleScriptDefaultFolder: {fileID: 102900000, guid: ca89a533634b6b446a3b3b6ea83cce3e, type: 3}

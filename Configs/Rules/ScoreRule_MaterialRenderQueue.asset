@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99511ab169e84641b15383800502a0cf, type: 3}
+  m_Name: ScoreRule_MaterialRenderQueue
+  m_EditorClassIdentifier:
+  ruleId: basic.material.renderqueue
+  displayName: 材质 Render Queue 不符合规范
+  description: 检查材质 Render Queue 是否为 2000、2450 或 3000。
+  priority: 0
+  issueInfos:
+  - issueInfoId: is_invalid
+    displayName: 材质 Render Queue 不符合规范
+    deductScore: 0
+    issueLevel: 0
+    issueMessage: Render Queue 异常会导致渲染顺序或透明排序问题。建议：修正 Render Queue。Opaque 应为 2000，AlphaTest 应为 2450，Transparent 应为 3000。

@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99511ab169e84641b15383800502a0cf, type: 3}
+  m_Name: ScoreRule_PrefabMissingScript
+  m_EditorClassIdentifier: 
+  ruleId: basic.prefab.missingscript
+  displayName: Prefab(预制体)存在Missing Script(缺失脚本)
+  description: 检查Prefab(预制体)是否存在Missing Script(缺失脚本)。
+  priority: 0
+  issueInfos:
+  - issueInfoId: is_missing
+    displayName: 存在Missing Script(缺失脚本)
+    deductScore: 10
+    issueLevel: 2
+    issueMessage: Missing Script(缺失脚本)会导致运行时逻辑缺失并影响资源维护。建议：删除丢失脚本组件，或恢复对应脚本文件。

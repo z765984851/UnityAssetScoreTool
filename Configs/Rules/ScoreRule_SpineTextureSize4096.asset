@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99511ab169e84641b15383800502a0cf, type: 3}
+  m_Name: ScoreRule_SpineTextureSize4096
+  m_EditorClassIdentifier:
+  ruleId: basic.spine.texturesize4096
+  displayName: Spine Atlas贴图尺寸是否超过4096
+  description: 检查Spine Atlas贴图尺寸是否超过限制。
+  priority: 0
+  issueInfos:
+  - issueInfoId: is_larger
+    displayName: Spine Atlas贴图尺寸超过4096
+    deductScore: 5
+    issueLevel: 1
+    issueMessage: Spine贴图过大会增加显存和加载压力。建议：降低Spine导出贴图尺寸，减少过大附件，拆分非必要皮肤。

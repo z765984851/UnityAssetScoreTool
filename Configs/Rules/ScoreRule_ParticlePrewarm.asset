@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99511ab169e84641b15383800502a0cf, type: 3}
+  m_Name: ScoreRule_ParticlePrewarm
+  m_EditorClassIdentifier: 
+  ruleId: basic.particle.prewarm
+  displayName: "Particle System(粒子系统)已启用Prewarm(预热)"
+  description: "检查Particle System(粒子系统)是否启用Prewarm(预热)。"
+  priority: 0
+  issueInfos:
+  - issueInfoId: is_enabled
+    displayName: "Particle System(粒子系统)已启用Prewarm(预热)"
+    deductScore: 5
+    issueLevel: 1
+    issueMessage: "Prewarm(预热)会增加初始化成本，可能导致打开界面或播放特效时卡顿。建议：关闭Prewarm(预热)，或减少预热所需粒子数量；循环常驻特效请单独评估。"

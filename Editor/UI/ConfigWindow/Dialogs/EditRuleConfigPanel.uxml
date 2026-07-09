@@ -1,0 +1,34 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements"
+         xmlns:uie="UnityEditor.UIElements"
+         xsi="http://www.w3.org/2001/XMLSchema-instance"
+         engine="UnityEngine.UIElements"
+         editor="UnityEditor.UIElements"
+         noNamespaceSchemaLocation="../../../../../../UIElementsSchema/UIElements.xsd"
+         editor-extension-mode="True">
+
+    <Style src="../ConfigWindow.uss"/>
+
+    <ui:VisualElement class="edit-rule-config-dialog-content">
+        <ui:VisualElement class="edit-rule-config-summary">
+            <ui:Label text="SO"
+                      class="so-icon"/>
+            <ui:VisualElement class="edit-rule-config-summary-main">
+                <ui:Label name="EditRuleConfigDisplayName"
+                          text="未命名规则"
+                          class="edit-rule-config-summary-name"/>
+                <ui:Label name="EditRuleConfigMetadata"
+                          class="edit-rule-config-summary-metadata"/>
+            </ui:VisualElement>
+            <ui:Label name="EditRuleConfigSourceLabel"
+                      class="local-badge"/>
+        </ui:VisualElement>
+
+        <ui:ScrollView class="edit-rule-config-scroll"
+                       mode="Vertical"
+                       horizontal-scroller-visibility="Hidden"
+                       vertical-scroller-visibility="Auto">
+            <ui:VisualElement name="EditRuleConfigFieldsContainer"
+                              class="edit-rule-config-fields"/>
+        </ui:ScrollView>
+    </ui:VisualElement>
+</ui:UXML>

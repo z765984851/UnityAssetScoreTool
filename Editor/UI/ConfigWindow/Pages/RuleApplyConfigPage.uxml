@@ -1,0 +1,7 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
+    <Style src="../../Common/Common.uss" /><Style src="../ConfigWindow.uss" />
+    <ui:VisualElement name="RuleApplyPage" class="config-page" style="flex-grow: 1;">
+        <ui:VisualElement class="page-toolbar" style="flex-grow: 0; flex-direction: row; align-items: center;"><ui:VisualElement class="config-page-heading"><ui:Label text="规则应用配置" class="config-page-title" /><ui:Label text="决定规则、资源类型和检测配置档之间的应用关系。" class="config-page-description" /></ui:VisualElement><ui:Button name="CreateRuleApplyButton" text="新建规则应用配置" class="tool-button primary-button" /><ui:VisualElement class="grow" /><ui:TextField name="RuleApplySearchField" label="搜索" class="search-field" style="width: 270px; flex-shrink: 1;" /></ui:VisualElement>
+        <ui:VisualElement name="RuleApplyValidationHost" class="validation-message-host" /><ui:ScrollView name="RuleApplyScrollView" class="page-scroll" mode="Vertical" horizontal-scroller-visibility="Hidden" vertical-scroller-visibility="Auto" style="flex-grow: 1;"><ui:VisualElement name="RuleApplyListContainer" class="list-container" /><ui:Label name="RuleApplyEmptyLabel" text="没有规则应用配置" class="empty-label" /></ui:ScrollView>
+    </ui:VisualElement>
+</ui:UXML>

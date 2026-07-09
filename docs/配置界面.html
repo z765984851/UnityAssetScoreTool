@@ -1,0 +1,3502 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>资产评分配置中心 · 样式原型 V7</title>
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    html,
+    body {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        overflow: hidden;
+        background-color: #15171a;
+        color: #e8ecf1;
+        font-family: "Microsoft YaHei", "Segoe UI", sans-serif;
+        font-size: 15px;
+    }
+
+    button,
+    input,
+    select,
+    textarea {
+        font-family: inherit;
+        font-size: 14px;
+    }
+
+    button {
+        cursor: pointer;
+    }
+
+    .hidden {
+        display: none !important;
+    }
+
+    .app {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        background-color: #17191d;
+    }
+
+    /* ---------- 工具栏 ---------- */
+
+    .toolbar {
+        min-height: 58px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        flex-shrink: 0;
+        padding: 0 16px;
+        border-bottom: 1px solid #343a42;
+        background-color: #202328;
+    }
+
+    .tool-title {
+        min-width: 238px;
+        margin-right: 18px;
+        color: #f5f7fa;
+        font-size: 18px;
+        font-weight: 700;
+    }
+
+    .toolbar-main {
+        min-width: 0;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        flex-grow: 1;
+    }
+
+    .toolbar-end {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        flex-shrink: 0;
+    }
+
+    .button {
+        min-height: 34px;
+        margin-right: 8px;
+        padding: 0 15px;
+        border: 1px solid #4a525c;
+        border-radius: 5px;
+        background-color: #2b3036;
+        color: #e2e7ec;
+    }
+
+    .button:hover {
+        background-color: #343b43;
+    }
+
+    .button-primary {
+        border-color: #4f86d9;
+        background-color: #356db5;
+        color: #ffffff;
+    }
+
+    .button-primary:hover {
+        background-color: #427bc5;
+    }
+
+    .button-danger {
+        border-color: #8f4a4a;
+        background-color: #5b3235;
+        color: #ffd7d7;
+    }
+
+    .button-small {
+        min-height: 29px;
+        padding: 0 11px;
+        font-size: 13px;
+    }
+
+    .dirty-state {
+        margin-right: 16px;
+        color: #d5a55f;
+        font-size: 13px;
+    }
+
+    /* ---------- 主布局 ---------- */
+
+    .workspace {
+        min-height: 0;
+        display: flex;
+        flex-direction: row;
+        flex-grow: 1;
+    }
+
+    .sidebar {
+        width: 238px;
+        min-width: 238px;
+        display: flex;
+        flex-direction: column;
+        flex-shrink: 0;
+        padding: 16px 12px;
+        border-right: 1px solid #343a42;
+        background-color: #1b1e22;
+    }
+
+    .sidebar-label {
+        margin: 0 8px 11px;
+        color: #8d97a2;
+        font-size: 12px;
+        font-weight: 700;
+    }
+
+    .nav-button {
+        min-height: 48px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        margin-bottom: 8px;
+        padding: 0 12px;
+        border: 1px solid #343a42;
+        border-radius: 6px;
+        background-color: #22262b;
+        color: #c7ced6;
+        text-align: left;
+    }
+
+    .nav-button:hover {
+        border-color: #4a535d;
+        background-color: #292e34;
+    }
+
+    .nav-button.active {
+        border-color: #4f86d9;
+        background-color: #23344c;
+        color: #ffffff;
+    }
+
+    .nav-title {
+        min-width: 0;
+        flex-grow: 1;
+        font-size: 14px;
+        font-weight: 700;
+    }
+
+    .nav-count {
+        min-width: 28px;
+        height: 22px;
+        padding: 0 7px;
+        border-radius: 11px;
+        background-color: #30363d;
+        color: #b8c0ca;
+        font-size: 12px;
+        line-height: 22px;
+        text-align: center;
+    }
+
+    .nav-button.active .nav-count {
+        background-color: #3a6ea9;
+        color: #ffffff;
+    }
+
+    .content {
+        min-width: 0;
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+    }
+
+    .page-toolbar {
+        min-height: 78px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        flex-shrink: 0;
+        padding: 13px 18px;
+        border-bottom: 1px solid #2d3238;
+        background-color: #1d2024;
+    }
+
+    .page-heading {
+        min-width: 0;
+        flex-grow: 1;
+    }
+
+    .page-title {
+        margin-bottom: 4px;
+        color: #f3f6f9;
+        font-size: 20px;
+        font-weight: 700;
+    }
+
+    .page-description {
+        color: #929ca7;
+        font-size: 13px;
+    }
+
+    .page-actions {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        flex-shrink: 0;
+    }
+
+    .search-input {
+        width: 270px;
+        height: 34px;
+        margin-left: 9px;
+        padding: 0 10px;
+        border: 1px solid #414952;
+        border-radius: 5px;
+        outline: none;
+        background-color: #15181b;
+        color: #e6ebf0;
+    }
+
+    .scroll {
+        min-width: 0;
+        min-height: 0;
+        flex-grow: 1;
+        overflow-y: auto;
+        overflow-x: hidden;
+        padding: 16px 18px 28px;
+    }
+
+    .page {
+        display: none;
+    }
+
+    .page.active {
+        display: block;
+    }
+
+    /* ---------- 配置卡片 ---------- */
+
+    .config-card {
+        min-width: 0;
+        margin-bottom: 16px;
+        border: 1px solid #3a4149;
+        border-radius: 7px;
+        overflow: hidden;
+        background-color: #202429;
+    }
+
+    .config-card.active-card {
+        border-color: #4e739d;
+    }
+
+    .config-header {
+        min-height: 66px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding: 9px 11px;
+        background-color: #292e34;
+    }
+
+    .fold-button {
+        width: 30px;
+        min-width: 30px;
+        height: 30px;
+        margin-right: 6px;
+        padding: 0;
+        border: 0;
+        background-color: transparent;
+        color: #abb5c0;
+        font-size: 15px;
+    }
+
+    .asset-icon {
+        width: 36px;
+        min-width: 36px;
+        height: 36px;
+        margin-right: 10px;
+        border: 1px solid #4d779f;
+        border-radius: 5px;
+        background-color: #203243;
+        color: #8fc4f1;
+        line-height: 34px;
+        text-align: center;
+        font-size: 12px;
+        font-weight: 700;
+    }
+
+    .config-title {
+        min-width: 180px;
+        flex-grow: 1;
+    }
+
+    .config-display-name {
+        margin-bottom: 3px;
+        color: #f0f3f6;
+        font-size: 16px;
+        font-weight: 700;
+    }
+
+    .config-asset-name {
+        color: #929ca7;
+        font-size: 12px;
+    }
+
+    .config-summary {
+        min-width: 0;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        flex-shrink: 1;
+        margin-left: 14px;
+        color: #a8b1bb;
+        font-size: 13px;
+    }
+
+    .summary-item {
+        margin-left: 14px;
+        white-space: nowrap;
+    }
+
+    .badge {
+        min-height: 24px;
+        display: inline-flex;
+        align-items: center;
+        margin-left: 8px;
+        padding: 0 9px;
+        border: 1px solid #4c5661;
+        border-radius: 12px;
+        background-color: #30363d;
+        color: #c7cfd8;
+        font-size: 12px;
+        white-space: nowrap;
+    }
+
+    .badge-local {
+        border-color: #3c8059;
+        background-color: #223c2c;
+        color: #8cdbac;
+    }
+
+    .badge-success {
+        border-color: #397755;
+        background-color: #203a2a;
+        color: #83d7a3;
+    }
+
+    .badge-warning {
+        border-color: #8a662d;
+        background-color: #46361f;
+        color: #e8bd6b;
+    }
+
+    .badge-error {
+        border-color: #a54d54;
+        background-color: #52282d;
+        color: #ffaaaa;
+    }
+
+    .badge-muted {
+        border-color: #59616a;
+        background-color: #30353a;
+        color: #adb5be;
+    }
+
+    .header-actions {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        margin-left: 10px;
+        flex-shrink: 0;
+    }
+
+    .config-body {
+        padding: 16px;
+        border-top: 1px solid #363d45;
+    }
+
+    /* ---------- 纵向字段 ---------- */
+
+    .vertical-form {
+        min-width: 0;
+    }
+
+    .field-block {
+        min-width: 0;
+        margin-bottom: 16px;
+    }
+
+    .field-block:last-child {
+        margin-bottom: 0;
+    }
+
+    .field-title {
+        margin-bottom: 7px;
+        color: #d7dde4;
+        font-size: 14px;
+        font-weight: 700;
+    }
+
+    .input,
+    .select,
+    .textarea {
+        width: 100%;
+        border: 1px solid #414952;
+        border-radius: 5px;
+        outline: none;
+        background-color: #171a1e;
+        color: #edf1f5;
+    }
+
+    .input,
+    .select {
+        height: 34px;
+        padding: 0 10px;
+    }
+
+    .textarea {
+        min-height: 84px;
+        padding: 9px 10px;
+        resize: vertical;
+    }
+
+    .field-hint {
+        margin-top: 6px;
+        color: #808b96;
+        font-size: 12px;
+        line-height: 18px;
+    }
+
+    .required-hint {
+        color: #b99a62;
+    }
+
+    .control-line {
+        min-width: 0;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .control-line .input {
+        width: 0;
+        min-width: 0;
+        flex-grow: 1;
+    }
+
+    .control-line .button {
+        min-width: 90px;
+        flex-shrink: 0;
+        margin-left: 7px;
+        margin-right: 0;
+    }
+
+    /* ---------- 扁平分区 ---------- */
+
+    .content-section {
+        min-width: 0;
+        margin-top: 24px;
+        padding-top: 16px;
+        border-top: 1px solid #3b424a;
+    }
+
+    .content-section:first-child {
+        margin-top: 0;
+        padding-top: 0;
+        border-top: 0;
+    }
+
+    .section-heading {
+        min-height: 38px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        margin-bottom: 12px;
+    }
+
+    .section-title {
+        min-width: 0;
+        flex-grow: 1;
+        color: #edf1f5;
+        font-size: 17px;
+        font-weight: 700;
+    }
+
+    .section-description {
+        margin-left: 12px;
+        color: #8f99a4;
+        font-size: 12px;
+    }
+
+    /* ---------- 可重复项：只保留一层边界 ---------- */
+
+    .item-card {
+        margin-bottom: 12px;
+        border: 1px solid #414a54;
+        border-left-width: 3px;
+        border-left-color: #4f8bd7;
+        border-radius: 6px;
+        background-color: #20252a;
+    }
+
+    .item-card:last-child {
+        margin-bottom: 0;
+    }
+
+    .item-card.disabled-item {
+        border-left-color: #69727c;
+        background-color: #1c2024;
+    }
+
+    .item-card.disabled-item .item-header {
+        background-color: #23282d;
+    }
+
+    .item-card.disabled-item .item-body {
+        background-color: #1c2024;
+    }
+
+    .item-card.disabled-item .item-name,
+    .item-card.disabled-item .item-meta,
+    .item-card.disabled-item .subsection-title,
+    .item-card.disabled-item .reference-name,
+    .item-card.disabled-item .reference-meta,
+    .item-card.disabled-item .field-hint {
+        color: #737d87;
+    }
+
+    .item-card.disabled-item .reference-box {
+        border-color: #353c43;
+        background-color: #191c1f;
+    }
+
+    .item-card.disabled-item .chip {
+        border-color: #414850;
+        background-color: #272c31;
+        color: #7f8993;
+    }
+
+    .rule-enable-button {
+        min-width: 78px;
+        margin-left: 8px;
+        margin-right: 0;
+        font-weight: 700;
+    }
+
+    .rule-enable-button.enabled {
+        border-color: #397755;
+        background-color: #24442f;
+        color: #91dfaf;
+    }
+
+    .rule-enable-button.disabled {
+        border-color: #646d76;
+        background-color: #343a40;
+        color: #b0b8c1;
+    }
+
+    .config-issue-summary {
+        min-width: 0;
+        margin-bottom: 20px;
+        padding: 12px 14px;
+        border-left-width: 4px;
+        border-left-style: solid;
+        border-left-color: #d45b63;
+        border-radius: 5px;
+        background-color: #342125;
+    }
+
+    .config-issue-summary.hidden {
+        display: none;
+    }
+
+    .config-issue-title {
+        margin-bottom: 8px;
+        color: #ffb0b6;
+        font-size: 15px;
+        font-weight: 700;
+    }
+
+    .config-issue-list {
+        min-width: 0;
+    }
+
+    .config-issue-row {
+        min-width: 0;
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        padding-top: 8px;
+        padding-bottom: 8px;
+        border-top: 1px solid rgba(255, 255, 255, 0.10);
+    }
+
+    .config-issue-row:first-child {
+        padding-top: 0;
+        border-top: 0;
+    }
+
+    .config-issue-icon {
+        width: 24px;
+        min-width: 24px;
+        height: 24px;
+        margin-right: 9px;
+        border-radius: 12px;
+        background-color: #6f3036;
+        color: #ffffff;
+        font-size: 14px;
+        font-weight: 700;
+        line-height: 24px;
+        text-align: center;
+    }
+
+    .config-issue-content {
+        min-width: 0;
+        flex-grow: 1;
+    }
+
+    .config-issue-name {
+        color: #ffd1d4;
+        font-size: 14px;
+        font-weight: 700;
+    }
+
+    .config-issue-detail {
+        margin-top: 3px;
+        color: #caa6aa;
+        font-size: 12px;
+        line-height: 18px;
+    }
+
+    .item-card.conflict-item {
+        border-left-color: #d45b63;
+    }
+
+    .rule-state-panel {
+        min-width: 0;
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        padding: 12px;
+        border-left-width: 4px;
+        border-left-style: solid;
+        border-radius: 5px;
+        background-color: #191d21;
+    }
+
+    .rule-state-panel.state-success {
+        border-left-color: #45a56d;
+        background-color: #1d2b23;
+    }
+
+    .rule-state-panel.state-error {
+        border-left-color: #d45b63;
+        background-color: #342125;
+    }
+
+    .rule-state-panel.state-warning {
+        border-left-color: #c6903d;
+        background-color: #30291e;
+    }
+
+    .rule-state-panel.state-muted {
+        border-left-color: #69727c;
+        background-color: #23272b;
+    }
+
+    .rule-state-icon {
+        width: 34px;
+        min-width: 34px;
+        height: 34px;
+        margin-right: 11px;
+        border-radius: 17px;
+        background-color: rgba(255, 255, 255, 0.08);
+        color: #ffffff;
+        font-size: 18px;
+        font-weight: 700;
+        line-height: 34px;
+        text-align: center;
+    }
+
+    .rule-state-content {
+        min-width: 0;
+        flex-grow: 1;
+    }
+
+    .rule-state-title {
+        margin-bottom: 4px;
+        color: #f0f4f7;
+        font-size: 15px;
+        font-weight: 700;
+    }
+
+    .rule-state-detail {
+        color: #aeb7c0;
+        font-size: 13px;
+        line-height: 20px;
+    }
+
+    .rule-state-grid {
+        min-width: 0;
+        margin-top: 10px;
+        padding-top: 8px;
+        border-top: 1px solid rgba(255, 255, 255, 0.10);
+    }
+
+    .rule-state-row {
+        min-height: 25px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .rule-state-key {
+        width: 120px;
+        min-width: 120px;
+        color: #8f99a4;
+        font-size: 12px;
+    }
+
+    .rule-state-value {
+        min-width: 0;
+        flex-grow: 1;
+        color: #dce2e8;
+        font-size: 13px;
+    }
+
+    .state-text-success {
+        color: #83d7a3;
+        font-weight: 700;
+    }
+
+    .state-text-error {
+        color: #ff9fa6;
+        font-weight: 700;
+    }
+
+    .state-text-warning {
+        color: #e8bd6b;
+        font-weight: 700;
+    }
+
+    .enable-control {
+        min-height: 48px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding: 9px 11px;
+        border: 1px solid #414952;
+        border-radius: 5px;
+        background-color: #191c20;
+    }
+
+    .enable-control input {
+        width: 18px;
+        height: 18px;
+        margin-right: 9px;
+    }
+
+    .enable-control-main {
+        min-width: 0;
+        flex-grow: 1;
+    }
+
+    .enable-control-title {
+        color: #e8edf2;
+        font-size: 14px;
+        font-weight: 700;
+    }
+
+    .enable-control-description {
+        margin-top: 3px;
+        color: #8e99a4;
+        font-size: 12px;
+    }
+
+    .rule-reference-actions {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        flex-shrink: 0;
+        margin-left: 8px;
+    }
+
+    .rule-reference-actions .button {
+        margin-right: 0;
+        margin-left: 7px;
+    }
+
+    .item-header {
+        min-height: 54px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding: 8px 10px;
+        border-bottom: 1px solid #363e47;
+        background-color: #282e34;
+    }
+
+    .item-title {
+        min-width: 0;
+        flex-grow: 1;
+    }
+
+    .item-name {
+        margin-bottom: 3px;
+        color: #edf1f5;
+        font-size: 15px;
+        font-weight: 700;
+    }
+
+    .item-meta {
+        color: #929da8;
+        font-size: 12px;
+    }
+
+    .item-body {
+        padding: 14px;
+    }
+
+    .item-subsection {
+        min-width: 0;
+        margin-top: 18px;
+        padding-top: 14px;
+        border-top: 1px solid #39414a;
+    }
+
+    .item-subsection:first-child {
+        margin-top: 0;
+        padding-top: 0;
+        border-top: 0;
+    }
+
+    .subsection-title {
+        margin-bottom: 9px;
+        color: #cbd3dc;
+        font-size: 14px;
+        font-weight: 700;
+    }
+
+    .reference-box {
+        min-height: 56px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding: 8px;
+        border: 1px solid #414952;
+        border-radius: 5px;
+        background-color: #191c20;
+    }
+
+    .reference-info {
+        min-width: 0;
+        flex-grow: 1;
+    }
+
+    .reference-name {
+        margin-bottom: 3px;
+        color: #e5ebf1;
+        font-size: 14px;
+        font-weight: 700;
+    }
+
+    .reference-meta {
+        color: #89949f;
+        font-size: 12px;
+    }
+
+    .chip-list {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        margin-top: -5px;
+    }
+
+    .chip {
+        min-height: 27px;
+        display: inline-flex;
+        align-items: center;
+        margin-top: 5px;
+        margin-right: 6px;
+        padding: 0 10px;
+        border: 1px solid #4a5662;
+        border-radius: 14px;
+        background-color: #2a3138;
+        color: #d0d8e0;
+        font-size: 12px;
+    }
+
+    .chip-blue {
+        border-color: #456f9e;
+        background-color: #253b52;
+        color: #a9d2f5;
+    }
+
+    .chip-purple {
+        border-color: #705d91;
+        background-color: #362f46;
+        color: #d0bdf0;
+    }
+
+    .inline-foldout {
+        margin-top: 18px;
+        padding-top: 14px;
+        border-top: 1px solid #39414a;
+    }
+
+    .inline-foldout-header {
+        min-height: 38px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        color: #dfe5eb;
+        font-size: 14px;
+        font-weight: 700;
+    }
+
+    .inline-foldout-body {
+        padding-top: 10px;
+    }
+
+    /* ---------- 白名单：分组标题 + 扁平列表 ---------- */
+
+    .profile-group {
+        margin-top: 18px;
+    }
+
+    .profile-group:first-child {
+        margin-top: 0;
+    }
+
+    .profile-header {
+        min-height: 50px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding-bottom: 10px;
+        border-bottom: 1px solid #39414a;
+    }
+
+    .profile-title {
+        min-width: 0;
+        flex-grow: 1;
+    }
+
+    .profile-name {
+        color: #eef2f6;
+        font-size: 15px;
+        font-weight: 700;
+    }
+
+    .profile-meta {
+        margin-top: 3px;
+        color: #919ca7;
+        font-size: 12px;
+    }
+
+    .white-list {
+        min-width: 0;
+    }
+
+    .white-row {
+        min-height: 66px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding: 10px 4px;
+        border-bottom: 1px solid #343b43;
+    }
+
+    .white-row:last-child {
+        border-bottom: 0;
+    }
+
+    .white-main {
+        min-width: 0;
+        flex-grow: 1;
+    }
+
+    .white-title {
+        color: #e6ebf0;
+        font-size: 14px;
+        font-weight: 700;
+    }
+
+    .white-meta {
+        margin-top: 4px;
+        color: #9ba5af;
+        font-size: 12px;
+    }
+
+    /* ---------- 页签顶部全局错误区域 ---------- */
+
+    .page-global-issues {
+        min-width: 0;
+        margin-bottom: 16px;
+        padding: 14px 16px;
+        border-left: 4px solid #d45b63;
+        border-radius: 6px;
+        background-color: #342125;
+    }
+
+    .page-global-issues.hidden {
+        display: none;
+    }
+
+    .page-global-issue-title {
+        margin-bottom: 10px;
+        color: #ffb3b9;
+        font-size: 16px;
+        font-weight: 700;
+    }
+
+    .page-global-issue-row {
+        min-width: 0;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        border-top: 1px solid rgba(255, 255, 255, 0.10);
+    }
+
+    .page-global-issue-row:first-child {
+        padding-top: 0;
+        border-top: 0;
+    }
+
+    .page-global-issue-name {
+        color: #ffd1d4;
+        font-size: 14px;
+        font-weight: 700;
+    }
+
+    .page-global-issue-detail {
+        margin-top: 4px;
+        color: #cba8ab;
+        font-size: 12px;
+        line-height: 18px;
+    }
+
+    .issue-target-list {
+        min-width: 0;
+        margin-top: 8px;
+        padding-left: 12px;
+        border-left: 1px solid rgba(255, 255, 255, 0.14);
+    }
+
+    .issue-target-row {
+        min-width: 0;
+        min-height: 34px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding-top: 4px;
+        padding-bottom: 4px;
+    }
+
+    .issue-target-main {
+        min-width: 0;
+        flex-grow: 1;
+    }
+
+    .issue-target-name {
+        color: #e9c6c9;
+        font-size: 13px;
+        font-weight: 700;
+    }
+
+    .issue-target-meta {
+        margin-top: 2px;
+        color: #aa8d91;
+        font-size: 12px;
+    }
+
+    .issue-locate-button {
+        min-width: 62px;
+        flex-shrink: 0;
+        margin-left: 10px;
+        margin-right: 0;
+    }
+
+    .locate-flash {
+        border-color: #e1a14c !important;
+        background-color: #342d22 !important;
+    }
+
+    /* ---------- 白名单可编辑项 ---------- */
+
+    .white-edit-list {
+        min-width: 0;
+        margin-top: 10px;
+    }
+
+    .white-edit-item {
+        min-width: 0;
+        margin-bottom: 12px;
+        border: 1px solid #414a54;
+        border-radius: 6px;
+        background-color: #20252a;
+    }
+
+    .white-edit-item:last-child {
+        margin-bottom: 0;
+    }
+
+    .white-edit-header {
+        min-height: 48px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding: 8px 10px;
+        border-bottom: 1px solid #363e47;
+        background-color: #282e34;
+    }
+
+    .white-edit-title {
+        min-width: 0;
+        flex-grow: 1;
+        color: #edf1f5;
+        font-size: 14px;
+        font-weight: 700;
+    }
+
+    .white-edit-body {
+        min-width: 0;
+        padding: 14px;
+    }
+
+    .white-edit-body .field-block {
+        margin-bottom: 14px;
+    }
+
+    .white-rule-reference {
+        min-width: 0;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding: 8px;
+        border: 1px solid #414952;
+        border-radius: 5px;
+        background-color: #191c20;
+    }
+
+    .white-rule-reference .reference-info {
+        min-width: 0;
+        flex-grow: 1;
+    }
+
+    /* ---------- 状态栏 ---------- */
+
+    .statusbar {
+        min-height: 30px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        flex-shrink: 0;
+        padding: 0 12px;
+        border-top: 1px solid #2f353c;
+        background-color: #1d2024;
+        color: #7f8994;
+        font-size: 12px;
+    }
+
+    .status-end {
+        margin-left: auto;
+        color: #b08953;
+    }
+
+    /* ---------- 弹窗 ---------- */
+
+    .modal-overlay {
+        position: fixed;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        background-color: rgba(0, 0, 0, 0.66);
+    }
+
+    .modal-overlay.visible {
+        display: flex;
+    }
+
+    .modal {
+        width: 760px;
+        max-width: 92%;
+        max-height: 86%;
+        display: flex;
+        flex-direction: column;
+        border: 1px solid #59636e;
+        border-radius: 7px;
+        overflow: hidden;
+        background-color: #23272c;
+    }
+
+    .modal.modal-wide {
+        width: 980px;
+        max-height: 90%;
+    }
+
+    .edit-rule-summary {
+        min-height: 52px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        margin-bottom: 18px;
+        padding-bottom: 12px;
+        border-bottom: 1px solid #3b434c;
+    }
+
+    .edit-rule-summary-main {
+        min-width: 0;
+        flex-grow: 1;
+    }
+
+    .edit-rule-summary-name {
+        color: #eef2f6;
+        font-size: 16px;
+        font-weight: 700;
+    }
+
+    .edit-rule-summary-meta {
+        margin-top: 4px;
+        color: #929ca7;
+        font-size: 12px;
+    }
+
+    .modal-header {
+        min-height: 52px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding: 0 12px;
+        border-bottom: 1px solid #3c444d;
+        background-color: #2d3238;
+    }
+
+    .modal-title {
+        min-width: 0;
+        flex-grow: 1;
+        color: #f1f4f7;
+        font-size: 17px;
+        font-weight: 700;
+    }
+
+    .modal-body {
+        min-height: 0;
+        overflow-y: auto;
+        padding: 16px;
+    }
+
+    .modal-footer {
+        min-height: 58px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-end;
+        padding: 0 12px;
+        border-top: 1px solid #3c444d;
+        background-color: #282d33;
+    }
+
+    .modal-field {
+        margin-bottom: 17px;
+    }
+
+    .modal-field:last-child {
+        margin-bottom: 0;
+    }
+
+    .modal-field-title {
+        margin-bottom: 7px;
+        color: #e8edf2;
+        font-size: 14px;
+        font-weight: 700;
+    }
+
+    .modal-hint {
+        margin-top: 6px;
+        color: #8e99a4;
+        font-size: 12px;
+        line-height: 18px;
+    }
+
+    .modal-required {
+        color: #c6a56c;
+    }
+
+    .selection-list {
+        max-height: 360px;
+        overflow-y: auto;
+        border-top: 1px solid #414952;
+        border-bottom: 1px solid #414952;
+    }
+
+    .selection-row {
+        min-height: 52px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding: 8px 4px;
+        border-bottom: 1px solid #30363d;
+    }
+
+    .selection-row:last-child {
+        border-bottom: 0;
+    }
+
+    .selection-row.selected {
+        background-color: #26384f;
+    }
+
+    .selection-row:hover {
+        background-color: #242a30;
+    }
+
+    .selection-text {
+        min-width: 0;
+        flex-grow: 1;
+    }
+
+    .selection-name {
+        color: #e9eef3;
+        font-weight: 700;
+    }
+
+    .selection-asset {
+        margin-top: 3px;
+        color: #8e99a4;
+        font-size: 12px;
+    }
+
+    .selection-state {
+        color: #8dbdf0;
+        font-size: 12px;
+    }
+
+    /* ---------- 设置页 ---------- */
+
+    .settings-page-card .config-header {
+        min-height: 62px;
+    }
+
+    .settings-page-card .content-section {
+        margin-top: 26px;
+    }
+
+    .settings-page-card .content-section:first-child {
+        margin-top: 0;
+    }
+
+    @media (max-width: 1120px) {
+        .sidebar {
+            width: 208px;
+            min-width: 208px;
+        }
+
+        .config-summary {
+            display: none;
+        }
+    }
+</style>
+</head>
+<body>
+<div class="app">
+<div class="toolbar">
+<div class="tool-title">资产评分配置中心</div>
+<div class="toolbar-main">
+<button class="button button-primary">保存全部</button>
+<button class="button">还原修改</button>
+<button class="button">刷新</button>
+</div>
+<div class="toolbar-end">
+<div class="dirty-state">未保存修改：2</div>
+<button class="button">打开配置目录</button>
+</div>
+</div>
+<div class="workspace">
+<div class="sidebar">
+<div class="sidebar-label">配置分类</div>
+<button class="nav-button" data-page="profile">
+<span class="nav-title">检测配置档</span>
+<span class="nav-count">3</span>
+</button>
+<button class="nav-button active" data-page="ruleApply">
+<span class="nav-title">规则应用配置</span>
+<span class="nav-count">2</span>
+</button>
+<button class="nav-button" data-page="rule">
+<span class="nav-title">检测规则配置</span>
+<span class="nav-count">8</span>
+</button>
+<button class="nav-button" data-page="assetType">
+<span class="nav-title">资源类型配置</span>
+<span class="nav-count">5</span>
+</button><button class="nav-button" data-page="settings">
+<span class="nav-title">设置</span>
+</button>
+</div>
+<div class="content">
+<div class="page-toolbar">
+<div class="page-heading">
+<div class="page-title" id="pageTitle">规则应用配置</div>
+<div class="page-description" id="pageDescription">组合当前配置中的规则应用项，并直接管理该配置的白名单。</div>
+</div>
+<div class="page-actions">
+<button class="button button-primary" id="createPageButton">
+                        新建规则应用配置
+                    </button>
+<input class="search-input" id="searchInput" placeholder="搜索名称、资源名或 ID"/>
+</div>
+</div>
+<div class="scroll">
+<!-- 检测配置档 -->
+<div class="page" id="page-profile">
+<div class="page-global-issues">
+<div class="page-global-issue-title">
+                            检测配置档异常
+                        </div>
+<div class="page-global-issue-row">
+<div class="page-global-issue-name">
+                                配置档 ID 冲突：pc.default
+                            </div>
+<div class="page-global-issue-detail">
+                                该 ID 在多个配置文件中重复使用。
+                            </div>
+<div class="issue-target-list">
+<div class="issue-target-row">
+<div class="issue-target-main">
+<div class="issue-target-name">
+                                            ScoreRuleProfile_PC
+                                        </div>
+<div class="issue-target-meta">
+                                            PC 默认配置档
+                                        </div>
+</div>
+<button class="button button-small issue-locate-button" data-locate-target="ProfileConfigPC">
+                                        定位
+                                    </button>
+</div>
+<div class="issue-target-row">
+<div class="issue-target-main">
+<div class="issue-target-name">
+                                            ScoreRuleProfile_PC_Copy
+                                        </div>
+<div class="issue-target-meta">
+                                            PC 默认配置档副本
+                                        </div>
+</div>
+<button class="button button-small issue-locate-button" data-locate-target="ProfileConfigPCCopy">
+                                        定位
+                                    </button>
+</div>
+</div>
+</div>
+</div>
+<div class="config-card active-card" data-search-extra="pc.default" id="ProfileConfigPC">
+<div class="config-header">
+<button class="fold-button">▼</button>
+<div class="asset-icon">SO</div>
+<div class="config-title">
+<div class="config-display-name">PC 默认配置档</div>
+<div class="config-asset-name">ScoreRuleProfile_PC</div>
+</div>
+<div class="config-summary">
+<span class="summary-item">配置档 ID：pc.default</span>
+</div>
+<span class="badge badge-local">本地</span>
+<div class="header-actions">
+<button class="button button-small">定位</button>
+<button class="button button-small button-danger">删除</button>
+</div>
+</div>
+<div class="config-body">
+<div class="vertical-form">
+<div class="field-block">
+<div class="field-title">配置档 ID *</div>
+<input class="input" value="pc.default"/>
+<div class="field-hint required-hint">
+                                        必填。检测配置档的唯一标识。
+                                    </div>
+</div>
+<div class="field-block">
+<div class="field-title">显示名称 *</div>
+<input class="input" value="PC 默认配置档"/>
+<div class="field-hint required-hint">
+                                        必填。配置中心中显示的配置档名称。
+                                    </div>
+</div>
+</div>
+</div>
+</div>
+<div class="config-card" data-search-extra="pc.default" id="ProfileConfigPCCopy">
+<div class="config-header">
+<button class="fold-button">▶</button>
+<div class="asset-icon">SO</div>
+<div class="config-title">
+<div class="config-display-name">
+                                    PC 默认配置档副本
+                                </div>
+<div class="config-asset-name">
+                                    ScoreRuleProfile_PC_Copy
+                                </div>
+</div>
+<div class="config-summary">
+<span class="summary-item">配置档 ID：pc.default</span>
+</div>
+<span class="badge badge-error">ID 冲突</span>
+<span class="badge badge-local">本地</span>
+<div class="header-actions">
+<button class="button button-small">定位</button>
+<button class="button button-small button-danger">删除</button>
+</div>
+</div>
+<div class="config-body hidden">
+<div class="vertical-form">
+<div class="field-block">
+<div class="field-title">配置档 ID *</div>
+<input class="input" value="pc.default"/>
+</div>
+<div class="field-block">
+<div class="field-title">显示名称 *</div>
+<input class="input" value="PC 默认配置档副本"/>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- 规则应用配置 -->
+<div class="page active" id="page-ruleApply">
+<div class="page-global-issues" id="RuleApplyIssueSummary">
+<div class="page-global-issue-title">
+                            规则应用配置异常
+                        </div>
+<div id="RuleApplyIssueList"></div>
+</div>
+<div class="config-card active-card" data-config-name="RuleApplyConfig_PC" data-search-extra="basic.texture.readwrite basic.model.polygons pc.default Assets/Art/UI/Atlas" id="RuleApplyConfigPC">
+<div class="config-header">
+<button class="fold-button">▼</button>
+<div class="asset-icon">SO</div>
+<div class="config-title">
+<div class="config-display-name">
+                                    PC 资源检测方案
+                                </div>
+<div class="config-asset-name">
+                                    RuleApplyConfig_PC
+                                </div>
+</div>
+<div class="config-summary">
+<span class="summary-item">规则应用项：2</span>
+<span class="summary-item">白名单：2</span>
+</div>
+<span class="badge badge-success active-config-badge">当前生效</span><span class="badge badge-local">本地</span>
+<div class="header-actions">
+<button class="button button-small">定位</button>
+<button class="button button-small button-danger">删除</button>
+</div>
+</div>
+<div class="config-body">
+<div class="content-section">
+<div class="section-heading">
+<div class="section-title">规则应用项</div>
+<div class="section-description">
+                                        2 项
+                                    </div>
+<button class="button button-small button-primary" data-dialog="ruleApplyItem">
+                                        添加规则应用项
+                                    </button>
+</div>
+<div class="item-card rule-apply-item" data-config-name="RuleApplyConfig_PC" data-enabled="true" data-item-name="Texture 可读写检测" data-rule-id="basic.texture.readwrite" id="RuleApplyPCTextureReadWrite">
+<div class="item-header">
+<button class="fold-button">▼</button>
+<div class="item-title">
+<div class="item-name">
+                                                Texture 可读写检测
+                                            </div>
+<div class="item-meta">
+                                                规则 ID：basic.texture.readwrite
+                                            </div>
+</div>
+<span class="badge badge-error conflict-badge hidden">
+                                            ID 冲突
+                                        </span>
+<button class="button button-small rule-enable-button enabled" data-enabled="true">
+                                            已启用
+                                        </button>
+<button class="button button-small button-danger">
+                                            删除
+                                        </button>
+</div>
+<div class="item-body">
+<div class="item-subsection">
+<div class="subsection-title">规则配置</div>
+<div class="reference-box">
+<div class="asset-icon">SO</div>
+<div class="reference-info">
+<div class="reference-name">
+                                                        Texture 可读写检测
+                                                    </div>
+<div class="reference-meta">
+                                                        ScoreRule_TextureReadWrite ·
+                                                        basic.texture.readwrite
+                                                    </div>
+</div>
+<div class="rule-reference-actions">
+<button class="button button-small" data-open-selection="rule">
+                                                        选择
+                                                    </button>
+<button class="button button-small">
+                                                        清除
+                                                    </button>
+<button class="button button-small button-primary" data-dialog="editRule">
+                                                        编辑
+                                                    </button>
+</div>
+</div>
+</div>
+<div class="item-subsection">
+<div class="subsection-title">
+                                                资源类型配置
+                                            </div>
+<div class="chip-list">
+<span class="chip chip-blue">Texture ×</span>
+<span class="chip chip-blue">Sprite ×</span>
+<button class="button button-small" data-open-selection="assetType">
+                                                    添加
+                                                </button>
+</div>
+</div>
+<div class="item-subsection">
+<div class="subsection-title">
+                                                检测配置档
+                                            </div>
+<div class="chip-list">
+<span class="chip chip-purple">
+                                                    PC 默认配置档 ×
+                                                </span>
+<button class="button button-small" data-open-selection="profile">
+                                                    添加
+                                                </button>
+</div>
+</div>
+</div>
+</div>
+<div class="item-card rule-apply-item disabled-item" data-config-name="RuleApplyConfig_PC" data-enabled="false" data-item-name="模型面数检测" data-rule-id="basic.model.polygons" id="RuleApplyPCModelPolygons">
+<div class="item-header">
+<button class="fold-button">▶</button>
+<div class="item-title">
+<div class="item-name">模型面数检测</div>
+<div class="item-meta">
+                                                规则 ID：basic.model.polygons
+                                            </div>
+</div>
+<span class="badge badge-error conflict-badge hidden">
+                                            ID 冲突
+                                        </span>
+<button class="button button-small rule-enable-button disabled" data-enabled="false">
+                                            未启用
+                                        </button>
+<button class="button button-small button-danger">
+                                            删除
+                                        </button>
+</div>
+<div class="item-body hidden">
+<div class="item-subsection">
+<div class="subsection-title">规则配置</div>
+<div class="reference-box">
+<div class="asset-icon">SO</div>
+<div class="reference-info">
+<div class="reference-name">
+                                                        模型面数检测
+                                                    </div>
+<div class="reference-meta">
+                                                        ScoreRule_ModelPolygons ·
+                                                        basic.model.polygons
+                                                    </div>
+</div>
+<div class="rule-reference-actions">
+<button class="button button-small" data-open-selection="rule">
+                                                        选择
+                                                    </button>
+<button class="button button-small">
+                                                        清除
+                                                    </button>
+<button class="button button-small button-primary" data-dialog="editRule">
+                                                        编辑
+                                                    </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="content-section">
+<div class="section-heading">
+<div class="section-title">白名单</div>
+<div class="section-description">由当前规则应用配置直接管理</div>
+<button class="button button-small button-primary" data-dialog="whiteList">添加白名单</button>
+</div>
+<div class="white-edit-list">
+<div class="item-card white-list-item">
+<div class="item-header">
+<button class="fold-button">▼</button>
+<div class="item-title">
+<div class="item-name">Atlas</div>
+<div class="item-meta">Assets/Art/UI/Atlas</div>
+</div>
+<button class="button button-small button-danger">删除</button>
+</div>
+<div class="item-body">
+<div class="field-block">
+<div class="field-title">资源路径 *</div>
+<div class="control-line">
+<input class="input" value="Assets/Art/UI/Atlas"/>
+<button class="button button-small choose-resource-file">选择文件</button>
+<button class="button button-small choose-resource-folder">选择文件夹</button>
+</div>
+<div class="field-hint required-hint">必填。支持单个资源或文件夹递归匹配。</div>
+</div>
+<div class="field-block">
+<div class="field-title">规则配置</div>
+<div class="white-rule-reference">
+<div class="asset-icon">SO</div>
+<div class="reference-info">
+<div class="reference-name">全部规则</div>
+<div class="reference-meta">未指定 ScoreRuleConfig</div>
+</div>
+<div class="rule-reference-actions">
+<button class="button button-small" data-open-selection="rule">选择</button>
+<button class="button button-small">清除</button>
+</div>
+</div>
+<div class="field-hint">可留空。留空时匹配全部规则。</div>
+</div>
+<div class="field-block">
+<div class="field-title">问题 ID</div>
+<input class="input" placeholder="留空表示全部问题" value=""/>
+<div class="field-hint">可留空。留空时匹配所选规则下的全部问题。</div>
+</div>
+<div class="field-block">
+<div class="field-title">备注</div>
+<textarea class="textarea">旧版 UI 图集目录暂不参与评分。</textarea>
+</div>
+</div>
+</div>
+<div class="item-card white-list-item">
+<div class="item-header">
+<button class="fold-button">▶</button>
+<div class="item-title">
+<div class="item-name">LegacyButton.png</div>
+<div class="item-meta">Assets/Art/UI/LegacyButton.png</div>
+</div>
+<button class="button button-small button-danger">删除</button>
+</div>
+<div class="item-body hidden">
+<div class="field-block">
+<div class="field-title">资源路径 *</div>
+<div class="control-line">
+<input class="input" value="Assets/Art/UI/LegacyButton.png"/>
+<button class="button button-small choose-resource-file">选择文件</button>
+<button class="button button-small choose-resource-folder">选择文件夹</button>
+</div>
+<div class="field-hint required-hint">必填。支持单个资源或文件夹递归匹配。</div>
+</div>
+<div class="field-block">
+<div class="field-title">规则配置</div>
+<div class="white-rule-reference">
+<div class="asset-icon">SO</div>
+<div class="reference-info">
+<div class="reference-name">Texture 可读写检测</div>
+<div class="reference-meta">ScoreRule_TextureReadWrite · basic.texture.readwrite</div>
+</div>
+<div class="rule-reference-actions">
+<button class="button button-small" data-open-selection="rule">选择</button>
+<button class="button button-small">清除</button>
+</div>
+</div>
+<div class="field-hint">可留空。留空时匹配全部规则。</div>
+</div>
+<div class="field-block">
+<div class="field-title">问题 ID</div>
+<input class="input" placeholder="留空表示全部问题" value="isReadable"/>
+<div class="field-hint">可留空。留空时匹配所选规则下的全部问题。</div>
+</div>
+<div class="field-block">
+<div class="field-title">备注</div>
+<textarea class="textarea">历史资源，待后续替换。</textarea>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="config-card" data-config-name="RuleApplyConfig_Mobile" data-search-extra="basic.texture.readwrite mobile.default Assets/Art/Textures/UI/Generated" id="RuleApplyConfigMobile">
+<div class="config-header">
+<button class="fold-button">▼</button>
+<div class="asset-icon">SO</div>
+<div class="config-title">
+<div class="config-display-name">
+                                    移动端资源检测方案
+                                </div>
+<div class="config-asset-name">
+                                    RuleApplyConfig_Mobile
+                                </div>
+</div>
+<div class="config-summary">
+<span class="summary-item">规则应用项：1</span>
+<span class="summary-item">白名单：1</span>
+</div>
+<span class="badge badge-success active-config-badge hidden">当前生效</span><span class="badge badge-local">本地</span>
+<div class="header-actions">
+<button class="button button-small">定位</button>
+<button class="button button-small button-danger">删除</button>
+</div>
+</div>
+<div class="config-body">
+<div class="content-section">
+<div class="section-heading">
+<div class="section-title">规则应用项</div>
+<div class="section-description">
+                                        1 项
+                                    </div>
+<button class="button button-small button-primary" data-dialog="ruleApplyItem">
+                                        添加规则应用项
+                                    </button>
+</div>
+<div class="item-card rule-apply-item" data-config-name="RuleApplyConfig_Mobile" data-enabled="true" data-item-name="Texture 可读写检测" data-rule-id="basic.texture.readwrite" id="RuleApplyMobileTextureReadWrite">
+<div class="item-header">
+<button class="fold-button">▶</button>
+<div class="item-title">
+<div class="item-name">
+                                                Texture 可读写检测
+                                            </div>
+<div class="item-meta">
+                                                规则 ID：basic.texture.readwrite
+                                            </div>
+</div>
+<span class="badge badge-error conflict-badge hidden">
+                                            ID 冲突
+                                        </span>
+<button class="button button-small rule-enable-button enabled" data-enabled="true">
+                                            已启用
+                                        </button>
+<button class="button button-small button-danger">
+                                            删除
+                                        </button>
+</div>
+<div class="item-body hidden">
+<div class="item-subsection">
+<div class="subsection-title">规则配置</div>
+<div class="reference-box">
+<div class="asset-icon">SO</div>
+<div class="reference-info">
+<div class="reference-name">
+                                                        Texture 可读写检测
+                                                    </div>
+<div class="reference-meta">
+                                                        ScoreRule_TextureReadWrite ·
+                                                        basic.texture.readwrite
+                                                    </div>
+</div>
+<div class="rule-reference-actions">
+<button class="button button-small" data-open-selection="rule">
+                                                        选择
+                                                    </button>
+<button class="button button-small">
+                                                        清除
+                                                    </button>
+<button class="button button-small button-primary" data-dialog="editRule">
+                                                        编辑
+                                                    </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="content-section">
+<div class="section-heading">
+<div class="section-title">白名单</div>
+<div class="section-description">由当前规则应用配置直接管理</div>
+<button class="button button-small button-primary" data-dialog="whiteList">添加白名单</button>
+</div>
+<div class="white-edit-list">
+<div class="item-card white-list-item">
+<div class="item-header">
+<button class="fold-button">▼</button>
+<div class="item-title">
+<div class="item-name">Generated</div>
+<div class="item-meta">Assets/Art/Textures/UI/Generated</div>
+</div>
+<button class="button button-small button-danger">删除</button>
+</div>
+<div class="item-body">
+<div class="field-block">
+<div class="field-title">资源路径 *</div>
+<div class="control-line">
+<input class="input" value="Assets/Art/Textures/UI/Generated"/>
+<button class="button button-small choose-resource-file">选择文件</button>
+<button class="button button-small choose-resource-folder">选择文件夹</button>
+</div>
+<div class="field-hint required-hint">必填。支持单个资源或文件夹递归匹配。</div>
+</div>
+<div class="field-block">
+<div class="field-title">规则配置</div>
+<div class="white-rule-reference">
+<div class="asset-icon">SO</div>
+<div class="reference-info">
+<div class="reference-name">Texture 最大尺寸检测</div>
+<div class="reference-meta">ScoreRule_TextureMaxSize</div>
+</div>
+<div class="rule-reference-actions">
+<button class="button button-small" data-open-selection="rule">选择</button>
+<button class="button button-small">清除</button>
+</div>
+</div>
+<div class="field-hint">可留空。留空时匹配全部规则。</div>
+</div>
+<div class="field-block">
+<div class="field-title">问题 ID</div>
+<input class="input" placeholder="留空表示全部问题" value=""/>
+<div class="field-hint">可留空。留空时匹配所选规则下的全部问题。</div>
+</div>
+<div class="field-block">
+<div class="field-title">备注</div>
+<textarea class="textarea">运行时生成贴图目录。</textarea>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- 检测规则配置 -->
+<div class="page" id="page-rule">
+<div class="page-global-issues">
+<div class="page-global-issue-title">
+                            检测规则配置异常
+                        </div>
+<div class="page-global-issue-row">
+<div class="page-global-issue-name">
+                                Rule ID 冲突：basic.texture.readwrite
+                            </div>
+<div class="page-global-issue-detail">
+                                多个检测规则配置文件使用了相同 Rule ID。
+                            </div>
+<div class="issue-target-list">
+<div class="issue-target-row">
+<div class="issue-target-main">
+<div class="issue-target-name">
+                                            ScoreRule_TextureReadWrite
+                                        </div>
+<div class="issue-target-meta">
+                                            Texture 可读写检测
+                                        </div>
+</div>
+<button class="button button-small issue-locate-button" data-locate-target="RuleConfigTextureReadWrite">
+                                        定位
+                                    </button>
+</div>
+<div class="issue-target-row">
+<div class="issue-target-main">
+<div class="issue-target-name">
+                                            ScoreRule_TextureReadWrite_Copy
+                                        </div>
+<div class="issue-target-meta">
+                                            Texture 可读写检测副本
+                                        </div>
+</div>
+<button class="button button-small issue-locate-button" data-locate-target="RuleConfigTextureReadWriteCopy">
+                                        定位
+                                    </button>
+</div>
+</div>
+</div>
+<div class="page-global-issue-row">
+<div class="page-global-issue-name">
+                                问题 ID 冲突：isOpen
+                            </div>
+<div class="page-global-issue-detail">
+                                ScoreRule_TextureReadWrite 中存在两个相同的问题 ID。
+                            </div>
+<div class="issue-target-list">
+<div class="issue-target-row">
+<div class="issue-target-main">
+<div class="issue-target-name">
+                                            ScoreRule_TextureReadWrite / 问题项 0、1
+                                        </div>
+</div>
+<button class="button button-small issue-locate-button" data-locate-target="RuleConfigTextureReadWrite">
+                                        定位
+                                    </button>
+</div>
+</div>
+</div>
+</div>
+<div class="config-card active-card" data-search-extra="basic.texture.readwrite isOpen" id="RuleConfigTextureReadWrite">
+<div class="config-header">
+<button class="fold-button">▼</button>
+<div class="asset-icon">SO</div>
+<div class="config-title">
+<div class="config-display-name">
+                                    Texture 可读写检测
+                                </div>
+<div class="config-asset-name">
+                                    ScoreRule_TextureReadWrite
+                                </div>
+</div>
+<div class="config-summary">
+<span class="summary-item">
+                                    规则 ID：basic.texture.readwrite
+                                </span>
+<span class="summary-item">问题项：2</span>
+</div>
+<span class="badge badge-error">ID 冲突</span>
+<span class="badge badge-success">检测脚本已创建</span>
+<span class="badge badge-local">本地</span>
+</div>
+<div class="config-body">
+<div class="content-section">
+<div class="section-heading">
+<div class="section-title">规则基础配置</div>
+</div>
+<div class="vertical-form">
+<div class="field-block">
+<div class="field-title">规则 ID *</div>
+<input class="input" value="basic.texture.readwrite"/>
+</div>
+<div class="field-block">
+<div class="field-title">显示名称 *</div>
+<input class="input" value="Texture 可读写检测"/>
+</div>
+<div class="field-block">
+<div class="field-title">规则说明</div>
+<textarea class="textarea">Texture 资源无特殊情况需要设置为不可读写。</textarea>
+</div>
+<div class="field-block">
+<div class="field-title">优先级</div>
+<input class="input" value="0"/>
+</div>
+</div>
+</div>
+<div class="content-section">
+<div class="section-heading">
+<div class="section-title">问题项</div>
+<div class="section-description">2 条</div>
+<button class="button button-small button-primary" data-dialog="issueInfo">
+                                        添加问题项
+                                    </button>
+</div>
+<div class="item-card">
+<div class="item-header">
+<button class="fold-button">▼</button>
+<div class="item-title">
+<div class="item-name">
+                                                图片资源可读写问题
+                                            </div>
+<div class="item-meta">
+                                                问题 ID：isOpen
+                                            </div>
+</div>
+<span class="badge badge-error">ID 冲突</span>
+<span class="badge badge-warning">Warning</span>
+<button class="button button-small button-danger">
+                                            删除
+                                        </button>
+</div>
+<div class="item-body vertical-form">
+<div class="field-block">
+<div class="field-title">问题 ID *</div>
+<input class="input" value="isOpen"/>
+</div>
+<div class="field-block">
+<div class="field-title">显示名称 *</div>
+<input class="input" value="图片资源可读写问题"/>
+</div>
+<div class="field-block">
+<div class="field-title">扣分</div>
+<input class="input" value="5"/>
+</div>
+<div class="field-block">
+<div class="field-title">问题级别</div>
+<select class="select">
+<option>Warning</option>
+</select>
+</div>
+<div class="field-block">
+<div class="field-title">问题提示 *</div>
+<textarea class="textarea">贴图开启了 Read/Write，会增加运行时内存占用，建议关闭。</textarea>
+</div>
+</div>
+</div>
+</div>
+<div class="content-section">
+<div class="section-heading">
+<div class="section-title">检测脚本</div>
+</div>
+<div class="reference-box">
+<div class="asset-icon">CS</div>
+<div class="reference-info">
+<div class="reference-name">
+                                            TextureReadWriteChecker
+                                        </div>
+<div class="reference-meta">
+                                            已关联 IScoreRuleChecker 实现
+                                        </div>
+</div>
+<button class="button button-small">
+                                        打开脚本
+                                    </button>
+</div>
+</div>
+</div>
+</div>
+<div class="config-card" data-search-extra="basic.texture.readwrite" id="RuleConfigTextureReadWriteCopy">
+<div class="config-header">
+<button class="fold-button">▶</button>
+<div class="asset-icon">SO</div>
+<div class="config-title">
+<div class="config-display-name">
+                                    Texture 可读写检测副本
+                                </div>
+<div class="config-asset-name">
+                                    ScoreRule_TextureReadWrite_Copy
+                                </div>
+</div>
+<div class="config-summary">
+<span class="summary-item">
+                                    规则 ID：basic.texture.readwrite
+                                </span>
+</div>
+<span class="badge badge-error">ID 冲突</span>
+<span class="badge badge-local">本地</span>
+</div>
+<div class="config-body hidden"></div>
+</div>
+</div>
+<!-- 资源类型配置 -->
+<div class="page" id="page-assetType">
+<div class="page-global-issues">
+<div class="page-global-issue-title">
+                            资源类型配置异常
+                        </div>
+<div class="page-global-issue-row">
+<div class="page-global-issue-name">
+                                资源类型 ID 冲突：texture
+                            </div>
+<div class="page-global-issue-detail">
+                                多个资源类型配置文件使用了相同 ID。
+                            </div>
+<div class="issue-target-list">
+<div class="issue-target-row">
+<div class="issue-target-main">
+<div class="issue-target-name">
+                                            AssetType_Texture
+                                        </div>
+<div class="issue-target-meta">
+                                            Texture
+                                        </div>
+</div>
+<button class="button button-small issue-locate-button" data-locate-target="AssetTypeTexture">
+                                        定位
+                                    </button>
+</div>
+<div class="issue-target-row">
+<div class="issue-target-main">
+<div class="issue-target-name">
+                                            AssetType_Texture_Copy
+                                        </div>
+<div class="issue-target-meta">
+                                            Texture 副本
+                                        </div>
+</div>
+<button class="button button-small issue-locate-button" data-locate-target="AssetTypeTextureCopy">
+                                        定位
+                                    </button>
+</div>
+</div>
+</div>
+</div>
+<div class="config-card active-card" data-search-extra="texture" id="AssetTypeTexture">
+<div class="config-header">
+<button class="fold-button">▼</button>
+<div class="asset-icon">SO</div>
+<div class="config-title">
+<div class="config-display-name">Texture</div>
+<div class="config-asset-name">
+                                    AssetType_Texture
+                                </div>
+</div>
+<div class="config-summary">
+<span class="summary-item">
+                                    资源类型 ID：texture
+                                </span>
+</div>
+<span class="badge badge-error">ID 冲突</span>
+<span class="badge badge-local">本地</span>
+</div>
+<div class="config-body">
+<div class="vertical-form">
+<div class="field-block">
+<div class="field-title">资源类型 ID *</div>
+<input class="input" value="texture"/>
+<div class="field-hint required-hint">
+                                        必填。资源类型的唯一标识。
+                                    </div>
+</div>
+<div class="field-block">
+<div class="field-title">显示名称 *</div>
+<input class="input" value="Texture"/>
+<div class="field-hint required-hint">
+                                        必填。配置中心中显示的名称。
+                                    </div>
+</div>
+</div>
+</div>
+</div>
+<div class="config-card" data-search-extra="texture" id="AssetTypeTextureCopy">
+<div class="config-header">
+<button class="fold-button">▶</button>
+<div class="asset-icon">SO</div>
+<div class="config-title">
+<div class="config-display-name">
+                                    Texture 副本
+                                </div>
+<div class="config-asset-name">
+                                    AssetType_Texture_Copy
+                                </div>
+</div>
+<div class="config-summary">
+<span class="summary-item">
+                                    资源类型 ID：texture
+                                </span>
+</div>
+<span class="badge badge-error">ID 冲突</span>
+<span class="badge badge-local">本地</span>
+</div>
+<div class="config-body hidden"></div>
+</div>
+</div>
+<div class="page" id="page-settings">
+<div class="config-card active-card settings-page-card" data-search-extra="UserSettingConfig RuleApply 默认保存位置">
+<div class="config-header">
+<div class="asset-icon">SO</div>
+<div class="config-title">
+<div class="config-display-name">项目设置</div>
+<div class="config-asset-name">AssetScoreProjectSettings</div>
+</div>
+<span class="badge badge-local">项目共享</span>
+<div class="header-actions">
+<button class="button button-small">定位</button>
+</div>
+</div>
+<div class="config-body">
+<div class="content-section">
+<div class="section-heading">
+<div class="section-title">当前生效规则应用配置</div>
+<div class="section-description">扫描、评分和白名单统一使用该配置</div>
+</div>
+<div class="field-block">
+<div class="field-title">生效配置</div>
+<select class="select" id="activeRuleApplyConfigSelect">
+<option value="RuleApplyConfig_Default">Package 默认配置</option>
+<option selected="" value="RuleApplyConfig_PC">PC 资源检测方案</option>
+<option value="RuleApplyConfig_Mobile">移动端资源检测方案</option>
+</select>
+<div class="field-hint">引用为空或失效时，回退到 RuleApplyConfig_Default。</div>
+</div>
+</div>
+<div class="content-section">
+<div class="section-heading">
+<div class="section-title">默认保存位置</div>
+<div class="section-description">仅作为新建窗口的默认值，可在创建时单独修改</div>
+</div>
+<div class="vertical-form">
+<div class="field-block">
+<div class="field-title">检测配置档</div>
+<div class="control-line">
+<input class="input" data-default-folder="profile" value="Assets/AssetScoreTool/Configs/Profiles"/>
+<button class="button button-small settings-folder-button">选择文件夹</button>
+</div>
+</div>
+<div class="field-block">
+<div class="field-title">规则应用配置</div>
+<div class="control-line">
+<input class="input" data-default-folder="ruleApply" value="Assets/AssetScoreTool/Configs/RuleApply"/>
+<button class="button button-small settings-folder-button">选择文件夹</button>
+</div>
+</div>
+<div class="field-block">
+<div class="field-title">检测规则配置</div>
+<div class="control-line">
+<input class="input" data-default-folder="rule" value="Assets/AssetScoreTool/Configs/Rules"/>
+<button class="button button-small settings-folder-button">选择文件夹</button>
+</div>
+</div>
+<div class="field-block">
+<div class="field-title">资源类型配置</div>
+<div class="control-line">
+<input class="input" data-default-folder="assetType" value="Assets/AssetScoreTool/Configs/AssetTypes"/>
+<button class="button button-small settings-folder-button">选择文件夹</button>
+</div>
+</div>
+<div class="field-block">
+<div class="field-title">CheckRule 脚本</div>
+<div class="control-line">
+<input class="input" data-default-folder="checker" value="Assets/AssetScoreTool/Editor/CheckRules"/>
+<button class="button button-small settings-folder-button">选择文件夹</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div></div>
+<div class="statusbar">
+<span id="statusText">当前页面：规则应用配置</span>
+<span class="status-end">未保存修改：2</span>
+</div>
+</div>
+</div>
+</div>
+<div class="modal-overlay" id="modalOverlay">
+<div class="modal" id="modalPanel">
+<div class="modal-header">
+<div class="modal-title" id="modalTitle">新建配置</div>
+<button class="button button-small" id="modalCloseTop">关闭</button>
+</div>
+<div class="modal-body" id="modalBody"></div>
+<div class="modal-footer" id="modalFooter">
+<button class="button" id="modalCancel">取消</button>
+<button class="button button-primary" id="modalConfirm">
+                创建
+            </button>
+</div>
+</div>
+</div>
+<script>
+    function getDefaultFolder(folderType) {
+        const input = document.querySelector(
+            `[data-default-folder="${folderType}"]`
+        );
+
+        return input ? input.value : "Assets";
+    }
+
+    const pageInfo = {
+        profile: {
+            title: "检测配置档",
+            description: "维护检测配置档的唯一标识与显示名称。",
+            createText: "新建检测配置档",
+            createDialog: "createProfile"
+        },
+        ruleApply: {
+            title: "规则应用配置",
+            description: "组合规则、资源类型与检测配置档，并集中管理对应白名单。",
+            createText: "新建规则应用配置",
+            createDialog: "createRuleApply"
+        },
+        rule: {
+            title: "检测规则配置",
+            description: "维护规则基础信息、问题项以及对应检测脚本。",
+            createText: "新建检测规则",
+            createDialog: "createRule"
+        },
+        assetType: {
+            title: "资源类型配置",
+            description: "维护扫描范围使用的资源类型配置。",
+            createText: "新建资源类型",
+            createDialog: "createAssetType"
+        },
+        settings: {
+            title: "设置",
+            description: "维护项目共享的生效配置与新建资源默认保存位置。",
+            createText: "",
+            createDialog: ""
+        }
+    };
+
+    let currentPage = "ruleApply";
+    let activeDialogType = "";
+
+    function field(title, control, hint, required) {
+        return `
+            <div class="modal-field">
+                <div class="modal-field-title">${title}</div>
+                ${control}
+                <div class="modal-hint ${required ? "modal-required" : ""}">
+                    ${hint}
+                </div>
+            </div>
+        `;
+    }
+
+    function folderField(title, value, key, hint) {
+        return field(
+            title,
+            `
+            <div class="control-line">
+                <input class="input folder-input"
+                       data-folder-key="${key}"
+                       value="${value}">
+                <button class="button button-small choose-folder-button"
+                        data-folder-key="${key}">
+                    选择文件夹
+                </button>
+            </div>
+            `,
+            hint,
+            true
+        );
+    }
+
+    function createConfigDialog(
+        title,
+        assetName,
+        folderType,
+        extraFields
+    ) {
+        return {
+            title: title,
+            confirm: "创建",
+            body:
+                field(
+                    "资源文件名 *",
+                    `<input class="input" value="${assetName}">`,
+                    "必填。用于生成 .asset 文件名。",
+                    true
+                ) +
+                folderField(
+                    "保存文件夹 *",
+                    getDefaultFolder(folderType),
+                    folderType,
+                    "必填。默认使用上一次创建配置时选择的文件夹。"
+                ) +
+                extraFields
+        };
+    }
+
+    function buildDialogTemplates() {
+        return {
+            createProfile: createConfigDialog(
+                "新建检测配置档",
+                "ScoreRuleProfile_New",
+                "profile",
+                field(
+                    "配置档 ID *",
+                    '<input class="input" value="new">',
+                    "必填。检测配置档的唯一标识。",
+                    true
+                ) +
+                field(
+                    "显示名称 *",
+                    '<input class="input" value="新检测配置档">',
+                    "必填。配置中心中显示的名称。",
+                    true
+                )
+            ),
+
+            createRuleApply: createConfigDialog(
+                "新建规则应用配置",
+                "RuleApplyConfig_New",
+                "ruleApply",
+                ""
+            ),
+
+            createRule: createConfigDialog(
+                "新建检测规则配置",
+                "ScoreRule_NewRule",
+                "rule",
+                field(
+                    "规则 ID *",
+                    '<input class="input" value="NewRule">',
+                    "必填。检测规则的唯一标识。",
+                    true
+                ) +
+                field(
+                    "显示名称 *",
+                    '<input class="input" value="新检测规则">',
+                    "必填。配置中心中显示的名称。",
+                    true
+                )
+            ),
+
+            createAssetType: createConfigDialog(
+                "新建资源类型配置",
+                "AssetType_New",
+                "assetType",
+                field(
+                    "资源类型 ID *",
+                    '<input class="input" value="NewType">',
+                    "必填。资源类型的唯一标识。",
+                    true
+                ) +
+                field(
+                    "显示名称 *",
+                    '<input class="input" value="新资源类型">',
+                    "必填。配置中心中显示的名称。",
+                    true
+                )
+            ),
+
+            ruleApplyItem: {
+                title: "添加规则应用项",
+                confirm: "添加",
+                body:
+                    field(
+                        "启用状态",
+                        '<label><input type="checkbox" checked> 启用此规则应用项</label>',
+                        "默认启用。全部字段允许为空。",
+                        false
+                    ) +
+                    field(
+                        "规则配置",
+                        `
+                        <div class="reference-box">
+                            <div class="asset-icon">SO</div>
+                            <div class="reference-info">
+                                <div class="reference-name">未选择规则</div>
+                                <div class="reference-meta">
+                                    留空时该应用项不会注册生效
+                                </div>
+                            </div>
+                            <button class="button button-small"
+                                    data-open-selection="rule">
+                                选择
+                            </button>
+                        </div>
+                        `,
+                        "可留空，也可以清除已选择内容。",
+                        false
+                    ) +
+                    field(
+                        "资源类型配置",
+                        `
+                        <div class="reference-box">
+                            <div class="reference-info">
+                                <div class="reference-name">尚未添加</div>
+                                <div class="reference-meta">
+                                    支持添加多个 AssetTypeConfig
+                                </div>
+                            </div>
+                            <button class="button button-small"
+                                    data-open-selection="assetType">
+                                添加
+                            </button>
+                        </div>
+                        `,
+                        "允许为空。为空时不会匹配任何资源类型。",
+                        false
+                    ) +
+                    field(
+                        "检测配置档",
+                        `
+                        <div class="reference-box">
+                            <div class="reference-info">
+                                <div class="reference-name">尚未添加</div>
+                                <div class="reference-meta">
+                                    支持添加多个 ScoreRuleProfileConfig
+                                </div>
+                            </div>
+                            <button class="button button-small"
+                                    data-open-selection="profile">
+                                添加
+                            </button>
+                        </div>
+                        `,
+                        "允许为空。为空时不会匹配任何检测配置档。",
+                        false
+                    )
+            },
+
+            issueInfo: {
+                title: "添加问题项",
+                confirm: "添加",
+                body:
+                    field(
+                        "问题 ID *",
+                        '<input class="input" placeholder="例如 isOpen">',
+                        "必填。问题的唯一 ID。",
+                        true
+                    ) +
+                    field(
+                        "显示名称 *",
+                        '<input class="input" placeholder="例如 图片资源可读写问题">',
+                        "必填。配置中心中显示的问题名称。",
+                        true
+                    ) +
+                    field(
+                        "扣分",
+                        '<input class="input" value="0">',
+                        "允许为 0。",
+                        false
+                    ) +
+                    field(
+                        "问题级别",
+                        `
+                        <select class="select">
+                            <option>Info</option>
+                            <option selected>Warning</option>
+                            <option>Error</option>
+                            <option>Blocker</option>
+                        </select>
+                        `,
+                        "默认 Warning。",
+                        false
+                    ) +
+                    field(
+                        "问题提示 *",
+                        '<textarea class="textarea" placeholder="填写问题原因和修改建议"></textarea>',
+                        "必填。",
+                        true
+                    )
+            },
+
+            whiteList: {
+                title: "添加白名单",
+                confirm: "添加",
+                body:
+                    field(
+                        "资源路径 *",
+                        `
+                        <div class="control-line">
+                            <input class="input resource-path-input"
+                                   placeholder="Assets/...">
+                            <button class="button button-small choose-resource-file">
+                                选择文件
+                            </button>
+                            <button class="button button-small choose-resource-folder">
+                                选择文件夹
+                            </button>
+                        </div>
+                        `,
+                        "必填。支持单个资源路径或文件夹递归匹配。",
+                        true
+                    ) +
+                    field(
+                        "规则配置",
+                        `
+                        <div class="reference-box">
+                            <div class="asset-icon">SO</div>
+                            <div class="reference-info">
+                                <div class="reference-name">全部规则</div>
+                                <div class="reference-meta">
+                                    未指定 ScoreRuleConfig
+                                </div>
+                            </div>
+                            <button class="button button-small"
+                                    data-open-selection="rule">
+                                选择
+                            </button>
+                        </div>
+                        `,
+                        "可留空。留空时匹配全部规则。",
+                        false
+                    ) +
+                    field(
+                        "问题 ID",
+                        '<input class="input" placeholder="留空表示全部问题">',
+                        "可留空。留空时匹配所选规则下的全部问题。",
+                        false
+                    ) +
+                    field(
+                        "备注",
+                        '<textarea class="textarea" placeholder="说明加入白名单的原因"></textarea>',
+                        "可选。",
+                        false
+                    )
+            },
+
+            checker: {
+                title: "创建检测脚本（CheckRule）",
+                confirm: "创建并打开脚本",
+                body:
+                    field(
+                        "类名 *",
+                        '<input class="input" value="TextureReadWriteChecker">',
+                        "必填。默认根据当前规则 ID 生成。",
+                        true
+                    ) +
+                    folderField(
+                        "保存文件夹 *",
+                        getDefaultFolder("checker"),
+                        "checker",
+                        "必填。默认使用上一次创建检测脚本时选择的文件夹。"
+                    )
+            },
+
+            editRule: {
+                title: "编辑检测规则配置",
+                confirm: "关闭",
+                showFooter: false,
+                wide: true,
+                body: `
+                    <div class="edit-rule-summary">
+                        <div class="asset-icon">SO</div>
+                        <div class="edit-rule-summary-main">
+                            <div class="edit-rule-summary-name">
+                                Texture 可读写检测
+                            </div>
+                            <div class="edit-rule-summary-meta">
+                                ScoreRule_TextureReadWrite · 本地配置 ·
+                                修改会计入配置窗口的未保存状态
+                            </div>
+                        </div>
+                        <span class="badge badge-success">检测脚本已创建</span>
+                        <span class="badge badge-local">本地</span>
+                    </div>
+
+                    <div class="content-section">
+                        <div class="section-heading">
+                            <div class="section-title">规则基础配置</div>
+                        </div>
+
+                        <div class="vertical-form">
+                            <div class="field-block">
+                                <div class="field-title">规则 ID *</div>
+                                <input class="input"
+                                       value="basic.texture.readwrite">
+                                <div class="field-hint required-hint">
+                                    必填。规则的唯一标识。
+                                </div>
+                            </div>
+
+                            <div class="field-block">
+                                <div class="field-title">显示名称 *</div>
+                                <input class="input"
+                                       value="Texture 可读写检测">
+                                <div class="field-hint required-hint">
+                                    必填。配置中心中显示的规则名称。
+                                </div>
+                            </div>
+
+                            <div class="field-block">
+                                <div class="field-title">规则说明</div>
+                                <textarea class="textarea">Texture 资源无特殊情况需要设置为不可读写。</textarea>
+                            </div>
+
+                            <div class="field-block">
+                                <div class="field-title">优先级</div>
+                                <input class="input" value="0">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="content-section">
+                        <div class="section-heading">
+                            <div class="section-title">问题项</div>
+                            <div class="section-description">1 条</div>
+                            <button class="button button-small button-primary"
+                                    data-dialog="issueInfo">
+                                添加问题项
+                            </button>
+                        </div>
+
+                        <div class="item-card">
+                            <div class="item-header">
+                                <button class="fold-button">▼</button>
+                                <div class="item-title">
+                                    <div class="item-name">
+                                        图片资源可读写问题
+                                    </div>
+                                    <div class="item-meta">
+                                        问题 ID：isOpen
+                                    </div>
+                                </div>
+                                <span class="badge badge-warning">Warning</span>
+                                <button class="button button-small button-danger">
+                                    删除
+                                </button>
+                            </div>
+
+                            <div class="item-body vertical-form">
+                                <div class="field-block">
+                                    <div class="field-title">问题 ID *</div>
+                                    <input class="input" value="isOpen">
+                                </div>
+                                <div class="field-block">
+                                    <div class="field-title">显示名称 *</div>
+                                    <input class="input"
+                                           value="图片资源可读写问题">
+                                </div>
+                                <div class="field-block">
+                                    <div class="field-title">扣分</div>
+                                    <input class="input" value="5">
+                                </div>
+                                <div class="field-block">
+                                    <div class="field-title">问题级别</div>
+                                    <select class="select">
+                                        <option selected>Warning</option>
+                                    </select>
+                                </div>
+                                <div class="field-block">
+                                    <div class="field-title">问题提示 *</div>
+                                    <textarea class="textarea">贴图开启了 Read/Write，会增加运行时内存占用，建议关闭。</textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="content-section">
+                        <div class="section-heading">
+                            <div class="section-title">检测脚本</div>
+                        </div>
+
+                        <div class="reference-box">
+                            <div class="asset-icon">CS</div>
+                            <div class="reference-info">
+                                <div class="reference-name">
+                                    TextureReadWriteChecker
+                                </div>
+                                <div class="reference-meta">
+                                    已关联 IScoreRuleChecker 实现
+                                </div>
+                            </div>
+                            <button class="button button-small">
+                                打开脚本
+                            </button>
+                        </div>
+                    </div>
+                `
+            },
+
+            selection: {
+                title: "选择配置",
+                confirm: "选择",
+                body:
+                    field(
+                        "搜索",
+                        '<input class="input" placeholder="搜索显示名称或资源名">',
+                        "从项目中的现有配置中选择。",
+                        false
+                    ) +
+                    `
+                    <div class="selection-list">
+                        <div class="selection-row selected">
+                            <div class="selection-text">
+                                <div class="selection-name">
+                                    Texture 可读写检测
+                                </div>
+                                <div class="selection-asset">
+                                    ScoreRule_TextureReadWrite
+                                </div>
+                            </div>
+                            <div class="selection-state">已选择</div>
+                        </div>
+                        <div class="selection-row">
+                            <div class="selection-text">
+                                <div class="selection-name">
+                                    Texture 最大尺寸检测
+                                </div>
+                                <div class="selection-asset">
+                                    ScoreRule_TextureMaxSize
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    `
+            }
+        };
+    }
+
+    const overlay = document.getElementById("modalOverlay");
+    const modalPanel = document.getElementById("modalPanel");
+    const modalTitle = document.getElementById("modalTitle");
+    const modalBody = document.getElementById("modalBody");
+    const modalFooter = document.getElementById("modalFooter");
+    const modalConfirm = document.getElementById("modalConfirm");
+
+    function choosePath(defaultValue, title) {
+        return window.prompt(
+            title + "\nHTML 原型中使用文本输入模拟 Unity 文件夹选择器：",
+            defaultValue
+        );
+    }
+
+    function bindDialogActions() {
+        modalBody
+            .querySelectorAll(".choose-folder-button")
+            .forEach(button => {
+                button.addEventListener("click", event => {
+                    event.preventDefault();
+
+                    const key = button.dataset.folderKey;
+                    const input = button.parentElement
+                        .querySelector(".folder-input");
+
+                    const selected = choosePath(
+                        input.value,
+                        "选择保存文件夹"
+                    );
+
+                    if (!selected) {
+                        return;
+                    }
+
+                    input.value = selected;
+                });
+            });
+
+        modalBody
+            .querySelectorAll(".choose-resource-file")
+            .forEach(button => {
+                button.addEventListener("click", event => {
+                    event.preventDefault();
+
+                    const input = button.parentElement
+                        .querySelector(".resource-path-input");
+
+                    const selected = choosePath(
+                        input.value || "Assets/",
+                        "选择白名单资源"
+                    );
+
+                    if (selected) {
+                        input.value = selected;
+                    }
+                });
+            });
+
+        modalBody
+            .querySelectorAll(".choose-resource-folder")
+            .forEach(button => {
+                button.addEventListener("click", event => {
+                    event.preventDefault();
+
+                    const input = button.parentElement
+                        .querySelector(".resource-path-input");
+
+                    const selected = choosePath(
+                        input.value || "Assets/",
+                        "选择白名单文件夹"
+                    );
+
+                    if (selected) {
+                        input.value = selected;
+                    }
+                });
+            });
+
+        modalBody
+            .querySelectorAll("[data-open-selection]")
+            .forEach(button => {
+                button.addEventListener("click", event => {
+                    event.preventDefault();
+                    openDialog("selection");
+                });
+            });
+
+        modalBody
+            .querySelectorAll("[data-dialog]")
+            .forEach(button => {
+                button.addEventListener("click", event => {
+                    event.preventDefault();
+                    openDialog(button.dataset.dialog);
+                });
+            });
+
+        modalBody
+            .querySelectorAll(".fold-button")
+            .forEach(button => {
+                button.addEventListener("click", event => {
+                    event.preventDefault();
+
+                    const card = button.closest(".item-card");
+                    const body = card
+                        ? card.querySelector(":scope > .item-body")
+                        : null;
+
+                    if (!body) {
+                        return;
+                    }
+
+                    const hidden = body.classList.toggle("hidden");
+                    button.textContent = hidden ? "▶" : "▼";
+                });
+            });
+    }
+
+    function openDialog(type) {
+        const template = buildDialogTemplates()[type];
+
+        if (!template) {
+            return;
+        }
+
+        activeDialogType = type;
+        modalPanel.classList.toggle(
+            "modal-wide",
+            template.wide === true
+        );
+        modalTitle.textContent = template.title;
+        modalBody.innerHTML = template.body;
+        modalConfirm.textContent = template.confirm;
+        modalFooter.classList.toggle(
+            "hidden",
+            template.showFooter === false
+        );
+        overlay.classList.add("visible");
+        bindDialogActions();
+    }
+
+    function closeDialog() {
+        overlay.classList.remove("visible");
+        activeDialogType = "";
+    }
+
+    document.querySelectorAll(".nav-button").forEach(button => {
+        button.addEventListener("click", () => {
+            currentPage = button.dataset.page;
+
+            document.querySelectorAll(".nav-button").forEach(item => {
+                item.classList.remove("active");
+            });
+
+            document.querySelectorAll(".page").forEach(item => {
+                item.classList.remove("active");
+            });
+
+            button.classList.add("active");
+            document
+                .getElementById("page-" + currentPage)
+                .classList.add("active");
+
+            document.getElementById("pageTitle").textContent =
+                pageInfo[currentPage].title;
+
+            document.getElementById("pageDescription").textContent =
+                pageInfo[currentPage].description;
+
+            const pageActions = document.querySelector(".page-actions");
+            const settingsPage = currentPage === "settings";
+
+            pageActions.classList.toggle("hidden", settingsPage);
+
+            if (!settingsPage) {
+                document.getElementById("createPageButton").textContent =
+                    pageInfo[currentPage].createText;
+            }
+
+            document.getElementById("statusText").textContent =
+                "当前页面：" + pageInfo[currentPage].title;
+        });
+    });
+
+    document
+        .getElementById("createPageButton")
+        .addEventListener("click", () => {
+            const dialogType = pageInfo[currentPage].createDialog;
+
+            if (dialogType) {
+                openDialog(dialogType);
+            }
+        });
+
+    document.querySelectorAll("[data-dialog]").forEach(button => {
+        button.addEventListener("click", () => {
+            openDialog(button.dataset.dialog);
+        });
+    });
+
+    document.querySelectorAll("[data-open-selection]").forEach(button => {
+        button.addEventListener("click", () => {
+            openDialog("selection");
+        });
+    });
+
+    document.querySelectorAll(".fold-button").forEach(button => {
+        button.addEventListener("click", event => {
+            event.stopPropagation();
+
+            const card = button.closest(".config-card, .item-card");
+
+            if (!card) {
+                return;
+            }
+
+            const body = card.querySelector(
+                ":scope > .config-body, :scope > .item-body"
+            );
+
+            if (!body) {
+                return;
+            }
+
+            const hidden = body.classList.toggle("hidden");
+            button.textContent = hidden ? "▶" : "▼";
+        });
+    });
+
+    function updateRuleApplyIssues() {
+        const allItems = Array.from(
+            document.querySelectorAll(
+                "#page-ruleApply .rule-apply-item"
+            )
+        );
+
+        const activeSelect = document.getElementById(
+            "activeRuleApplyConfigSelect"
+        );
+
+        const activeConfigName = activeSelect
+            ? activeSelect.value
+            : "RuleApplyConfig_PC";
+
+        allItems.forEach(item => {
+            const enabled = item.dataset.enabled === "true";
+
+            item.classList.toggle(
+                "disabled-item",
+                !enabled
+            );
+
+            const button = item.querySelector(
+                ".rule-enable-button"
+            );
+
+            if (button) {
+                button.dataset.enabled = enabled ? "true" : "false";
+                button.textContent = enabled ? "已启用" : "未启用";
+                button.classList.toggle("enabled", enabled);
+                button.classList.toggle("disabled", !enabled);
+            }
+
+            const badge = item.querySelector(".conflict-badge");
+
+            if (badge) {
+                badge.classList.add("hidden");
+            }
+        });
+
+        const items = allItems.filter(item => {
+            const card = item.closest(".config-card");
+
+            return card &&
+                card.dataset.configName === activeConfigName;
+        });
+
+        const enabledItemsById = new Map();
+
+        items.forEach(item => {
+            const enabled = item.dataset.enabled === "true";
+            const ruleId = (item.dataset.ruleId || "").trim();
+
+            if (!enabled || ruleId.length === 0) {
+                return;
+            }
+
+            if (!enabledItemsById.has(ruleId)) {
+                enabledItemsById.set(ruleId, []);
+            }
+
+            enabledItemsById.get(ruleId).push(item);
+        });
+
+        const conflicts = Array.from(
+            enabledItemsById.entries()
+        ).filter(entry => entry[1].length > 1);
+
+        conflicts.forEach(entry => {
+            entry[1].forEach(item => {
+                const badge = item.querySelector(".conflict-badge");
+
+                if (badge) {
+                    badge.classList.remove("hidden");
+                }
+            });
+        });
+
+        const issueSummary = document.getElementById(
+            "RuleApplyIssueSummary"
+        );
+
+        const issueList = document.getElementById(
+            "RuleApplyIssueList"
+        );
+
+        if (!issueSummary || !issueList) {
+            return;
+        }
+
+        const missingRuleItems = items.filter(item => {
+            return item.dataset.enabled === "true" &&
+                (item.dataset.ruleId || "").trim().length === 0;
+        });
+
+        const issueRows = [];
+
+        conflicts.forEach(entry => {
+            const ruleId = entry[0];
+            const targets = entry[1]
+                .map(item => {
+                    const configName = item.dataset.configName ||
+                        "未知规则应用配置";
+                    const itemName = item.dataset.itemName ||
+                        "未命名规则应用项";
+
+                    return `
+                        <div class="issue-target-row">
+                            <div class="issue-target-main">
+                                <div class="issue-target-name">
+                                    ${configName}
+                                </div>
+                                <div class="issue-target-meta">
+                                    ${itemName}
+                                </div>
+                            </div>
+                            <button class="button button-small issue-locate-button"
+                                    data-locate-target="${item.id}">
+                                定位
+                            </button>
+                        </div>
+                    `;
+                })
+                .join("");
+
+            issueRows.push(`
+                <div class="page-global-issue-row">
+                    <div class="page-global-issue-name">
+                        Rule ID 冲突：${ruleId}
+                    </div>
+                    <div class="page-global-issue-detail">
+                        仅检查当前生效配置中的已启用规则应用项。
+                    </div>
+                    <div class="issue-target-list">
+                        ${targets}
+                    </div>
+                </div>
+            `);
+        });
+
+        missingRuleItems.forEach(item => {
+            const configName = item.dataset.configName ||
+                "未知规则应用配置";
+            const itemName = item.dataset.itemName ||
+                "未命名规则应用项";
+
+            issueRows.push(`
+                <div class="page-global-issue-row">
+                    <div class="page-global-issue-name">
+                        已启用的规则应用项尚未选择规则配置
+                    </div>
+                    <div class="page-global-issue-detail">
+                        ${configName} / ${itemName}
+                    </div>
+                    <div class="issue-target-list">
+                        <div class="issue-target-row">
+                            <div class="issue-target-main">
+                                <div class="issue-target-name">
+                                    ${configName}
+                                </div>
+                                <div class="issue-target-meta">
+                                    ${itemName}
+                                </div>
+                            </div>
+                            <button class="button button-small issue-locate-button"
+                                    data-locate-target="${item.id}">
+                                定位
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `);
+        });
+
+        issueList.innerHTML = issueRows.join("");
+        issueSummary.classList.toggle(
+            "hidden",
+            issueRows.length === 0
+        );
+    }
+
+    function updateActiveRuleApplyVisuals() {
+        const select = document.getElementById(
+            "activeRuleApplyConfigSelect"
+        );
+
+        if (!select) {
+            return;
+        }
+
+        const activeConfigName = select.value;
+
+        document
+            .querySelectorAll("#page-ruleApply .config-card")
+            .forEach(card => {
+                const active =
+                    card.dataset.configName === activeConfigName;
+
+                card.classList.toggle("active-card", active);
+
+                const badge = card.querySelector(
+                    ".active-config-badge"
+                );
+
+                if (badge) {
+                    badge.classList.toggle("hidden", !active);
+                }
+            });
+
+        updateRuleApplyIssues();
+    }
+
+    document
+        .querySelectorAll(
+            "#page-ruleApply .rule-enable-button"
+        )
+        .forEach(button => {
+            button.addEventListener("click", event => {
+                event.stopPropagation();
+
+                const item =
+                    button.closest(
+                        ".rule-apply-item"
+                    );
+
+                if (!item) {
+                    return;
+                }
+
+                const enabled =
+                    item.dataset.enabled === "true";
+
+                item.dataset.enabled =
+                    enabled ? "false" : "true";
+
+                updateRuleApplyIssues();
+            });
+        });
+
+    const activeRuleApplyConfigSelect = document.getElementById(
+        "activeRuleApplyConfigSelect"
+    );
+
+    if (activeRuleApplyConfigSelect) {
+        activeRuleApplyConfigSelect.addEventListener(
+            "change",
+            updateActiveRuleApplyVisuals
+        );
+    }
+
+    document
+        .querySelectorAll(".settings-folder-button")
+        .forEach(button => {
+            button.addEventListener("click", () => {
+                const input = button.parentElement.querySelector(".input");
+                const selected = choosePath(
+                    input.value,
+                    "选择默认保存文件夹"
+                );
+
+                if (selected) {
+                    input.value = selected;
+                }
+            });
+        });
+
+    updateActiveRuleApplyVisuals();
+
+    document.addEventListener("click", event => {
+        const button = event.target.closest(
+            "[data-locate-target]"
+        );
+
+        if (!button) {
+            return;
+        }
+
+        const target = document.getElementById(
+            button.dataset.locateTarget
+        );
+
+        if (!target) {
+            return;
+        }
+
+        const page = target.closest(".page");
+
+        if (page && !page.classList.contains("active")) {
+            const pageName = page.id.replace("page-", "");
+            const navButton = document.querySelector(
+                `.nav-button[data-page="${pageName}"]`
+            );
+
+            if (navButton) {
+                navButton.click();
+            }
+        }
+
+        const configBody = target.querySelector(
+            ":scope > .config-body"
+        );
+
+        const itemBody = target.querySelector(
+            ":scope > .item-body"
+        );
+
+        if (configBody) {
+            configBody.classList.remove("hidden");
+        }
+
+        if (itemBody) {
+            itemBody.classList.remove("hidden");
+        }
+
+        target.scrollIntoView({
+            behavior: "smooth",
+            block: "center"
+        });
+
+        target.classList.add("locate-flash");
+
+        window.setTimeout(() => {
+            target.classList.remove("locate-flash");
+        }, 1200);
+    });
+
+    document
+        .getElementById("modalCloseTop")
+        .addEventListener("click", closeDialog);
+
+    document
+        .getElementById("modalCancel")
+        .addEventListener("click", closeDialog);
+
+    modalConfirm.addEventListener("click", () => {
+        closeDialog();
+    });
+
+    overlay.addEventListener("click", event => {
+        if (event.target === overlay) {
+            closeDialog();
+        }
+    });
+
+    document
+        .getElementById("searchInput")
+        .addEventListener("input", event => {
+            const keyword = event.target.value
+                .trim()
+                .toLowerCase();
+
+            document
+                .querySelectorAll(".page.active .config-card")
+                .forEach(card => {
+                    const searchText =
+                        (
+                            card.textContent +
+                            " " +
+                            (card.dataset.searchExtra || "")
+                        ).toLowerCase();
+
+                    const matched =
+                        keyword.length === 0 ||
+                        searchText.includes(keyword);
+
+                    card.style.display =
+                        matched ? "block" : "none";
+                });
+        });
+</script>
+</body>
+</html>

@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_Script: {fileID: 11500000, guid: 99511ab169e84641b15383800502a0cf, type: 3}
+  m_Name: ScoreRule_ShaderKeywordCount16
+  ruleId: basic.shader.keywordcount16
+  displayName: Shader(着色器) Keyword(关键字)数量超过16
+  description: 统计Shader(着色器)中的#pragma声明的去重Keyword(关键字)数量，超过16。
+  priority: 0
+  issueInfos:
+  - issueInfoId: is_larger
+    displayName: Shader(着色器) Keyword(关键字)数量超过16
+    deductScore: 5
+    issueLevel: 1
+    issueMessage: Shader(着色器) Keyword(关键字)数量超过16。建议：移除未使用的Keyword(关键字)并合并可复用的Variant(变体)。

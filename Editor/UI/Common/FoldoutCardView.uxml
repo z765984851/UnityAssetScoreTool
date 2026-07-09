@@ -1,0 +1,44 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements"
+         xmlns:uie="UnityEditor.UIElements"
+         xsi="http://www.w3.org/2001/XMLSchema-instance"
+         engine="UnityEngine.UIElements"
+         editor="UnityEditor.UIElements"
+         noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd"
+         editor-extension-mode="True">
+
+    <Style src="Common.uss"/>
+
+    <ui:VisualElement name="FoldoutCardRoot"
+                      class="foldout-card">
+        <ui:VisualElement class="foldout-card-status-bar"/>
+
+        <ui:VisualElement class="foldout-card-main">
+            <ui:VisualElement name="FoldoutCardHeader"
+                              class="foldout-card-header">
+                <ui:Button name="FoldoutCardButton"
+                           text="▶"
+                           class="foldout-card-button"/>
+                <ui:Label name="FoldoutCardIcon"
+                          class="foldout-card-icon"/>
+
+                <ui:VisualElement class="foldout-card-title-container">
+                    <ui:Label name="FoldoutCardTitle"
+                              class="foldout-card-title"/>
+                    <ui:Label name="FoldoutCardSubtitle"
+                              class="foldout-card-subtitle"/>
+                </ui:VisualElement>
+
+                <ui:Label name="FoldoutCardStatus"
+                          class="foldout-card-status-label"/>
+                <ui:VisualElement name="FoldoutCardHeaderActions"
+                                  class="foldout-card-header-actions"/>
+            </ui:VisualElement>
+
+            <ui:VisualElement name="FoldoutCardBody"
+                              class="foldout-card-body">
+                <ui:VisualElement name="FoldoutCardContentContainer"
+                                  class="foldout-card-content"/>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

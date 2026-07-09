@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99511ab169e84641b15383800502a0cf, type: 3}
+  m_Name: ScoreRule_PrefabAnimationMissingBinding
+  m_EditorClassIdentifier:
+  ruleId: basic.prefab.animationmissingbinding
+  displayName: Prefab 动画存在失效绑定路径
+  description: 检查 Prefab 中实际引用的 AnimationClip 是否存在失效绑定路径。
+  priority: 0
+  issueInfos:
+  - issueInfoId: is_missing
+    displayName: Prefab 动画存在失效绑定路径
+    deductScore: 10
+    issueLevel: 2
+    issueMessage: 失效绑定会导致动画表现缺失，并增加无效数据。建议：修复绑定路径，重新导出动画，或删除无效曲线。

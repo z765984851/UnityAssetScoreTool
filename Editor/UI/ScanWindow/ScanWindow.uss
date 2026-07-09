@@ -1,0 +1,610 @@
+/* 扫描窗口中的静态与运行时创建文本统一使用项目字体。 */
+* {
+    -unity-font-definition: url("../../../Fonts/SourceHanSansSC-Regular SDF.asset");
+}
+
+.custom-label {
+    font-size: 20px;
+    color: rgb(68, 138, 255);
+}
+
+.scan-top-input {
+    min-width: 0;
+    flex-shrink: 0;
+    padding-left: 18px;
+    padding-right: 18px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    border-bottom-width: 1px;
+    border-bottom-color: rgb(45, 50, 56);
+    background-color: rgb(29, 32, 36);
+}
+
+.scan-top-input-row {
+    min-width: 0;
+    min-height: 34px;
+    flex-shrink: 0;
+    flex-direction: row;
+    align-items: center;
+}
+
+.scan-top-input-profile-row {
+    margin-bottom: 9px;
+}
+
+.scan-top-input-row .unity-base-field__label,
+.scan-top-input-row .unity-base-popup-field__label,
+.scan-top-input-row .unity-popup-field__label {
+    width: 120px;
+    min-width: 120px;
+    padding-right: 12px;
+    color: rgb(232, 237, 242);
+}
+
+.scan-top-input-control {
+    min-width: 0;
+    flex-grow: 1;
+    flex-shrink: 1;
+}
+
+.scan-top-input-path-row {
+    margin-bottom: 0;
+}
+
+.scan-main-content {
+    min-width: 0;
+    min-height: 0;
+    padding-left: 18px;
+    padding-right: 18px;
+    padding-top: 16px;
+    padding-bottom: 18px;
+    background-color: rgb(29, 32, 36);
+}
+
+.scan-result-panel {
+    width: 0;
+    min-width: 0;
+    min-height: 0;
+    flex-grow: 1.18;
+    flex-shrink: 1;
+    flex-direction: column;
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    border-left-color: rgb(58, 65, 73);
+    border-right-color: rgb(58, 65, 73);
+    border-top-color: rgb(58, 65, 73);
+    border-bottom-color: rgb(58, 65, 73);
+    border-radius: 7px;
+    overflow: hidden;
+    margin-right: 14px;
+    background-color: rgb(32, 37, 42);
+}
+
+.scan-panel-title {
+    min-height: 46px;
+    flex-shrink: 0;
+    padding-left: 12px;
+    padding-right: 12px;
+    padding-top: 0;
+    padding-bottom: 0;
+    border-bottom-width: 1px;
+    border-bottom-color: rgb(54, 61, 69);
+    background-color: rgb(40, 46, 52);
+    color: rgb(237, 241, 245);
+    font-size: 16px;
+    -unity-text-align: middle-left;
+}
+
+.scan-filter-bar {
+    min-width: 0;
+    min-height: 49px;
+    flex-shrink: 0;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 9px;
+    padding-bottom: 9px;
+    border-bottom-width: 1px;
+    border-bottom-color: rgb(57, 65, 74);
+    background-color: rgb(35, 40, 45);
+}
+
+.scan-filter-control {
+    min-width: 0;
+    flex-grow: 1;
+    flex-shrink: 1;
+    height: 31px;
+    margin-right: 8px;
+}
+
+.scan-filter-control:last-child {
+    margin-right: 0;
+}
+
+.scan-filter-control .unity-base-field__label,
+.scan-filter-control .unity-base-popup-field__label,
+.scan-filter-control .unity-popup-field__label {
+    min-width: 70px;
+    width: 70px;
+    padding-right: 8px;
+    color: rgb(146, 156, 167);
+    font-size: 12px;
+}
+
+.scan-filter-control .unity-base-field__input,
+.scan-filter-control .unity-base-popup-field__input,
+.scan-filter-control .unity-popup-field__input {
+    min-width: 0;
+    flex-grow: 1;
+    flex-shrink: 1;
+}
+
+.scan-result-header-row {
+    min-width: 799px;
+    min-height: 31px;
+    flex-shrink: 0;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-bottom-width: 1px;
+    border-bottom-color: rgb(59, 66, 74);
+    background-color: rgb(32, 37, 42);
+    color: rgb(142, 153, 164);
+    font-size: 12px;
+}
+
+.scan-result-header-expand,
+.scan-result-header-name,
+.scan-result-header-type,
+.scan-result-header-score,
+.scan-result-header-grade,
+.scan-result-header-severity,
+.scan-result-header-issue-count,
+.scan-result-header-path {
+    min-width: 0;
+    flex-shrink: 0;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.scan-result-header-expand {
+    width: 24px;
+}
+
+.scan-result-header-name {
+    width: 300px;
+}
+
+.scan-result-header-type {
+    width: 90px;
+}
+
+.scan-result-header-score,
+.scan-result-header-grade {
+    width: 50px;
+}
+
+.scan-result-header-severity {
+    width: 90px;
+}
+
+.scan-result-header-issue-count {
+    width: 60px;
+}
+
+.scan-result-header-path {
+    width: 120px;
+    min-width: 120px;
+}
+
+.scan-result-scroll {
+    min-width: 0;
+    min-height: 0;
+    flex-grow: 1;
+    flex-shrink: 1;
+}
+
+.scan-result-tree-node,
+.scan-result-children {
+    min-width: 0;
+    flex-direction: column;
+}
+
+.scan-result-row {
+    min-width: 799px;
+    min-height: 22px;
+    flex-shrink: 0;
+    flex-direction: row;
+    align-items: center;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-bottom-width: 1px;
+    border-bottom-color: rgba(255, 255, 255, 0.06);
+    color: rgb(220, 226, 232);
+}
+
+.scan-result-row:hover {
+    background-color: rgba(255, 255, 255, 0.035);
+}
+
+.scan-result-expand-button {
+    width: 24px;
+    min-width: 24px;
+    height: 22px;
+    min-height: 22px;
+    flex-shrink: 0;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    border-left-width: 0;
+    border-right-width: 0;
+    border-top-width: 0;
+    border-bottom-width: 0;
+    background-color: rgba(0, 0, 0, 0);
+    color: rgb(174, 183, 192);
+}
+
+.scan-result-name-cell {
+    width: 324px;
+    min-width: 324px;
+    flex-shrink: 0;
+    flex-direction: row;
+    align-items: center;
+}
+
+.scan-result-indent {
+    flex-shrink: 0;
+}
+
+.scan-result-name-label {
+    min-width: 0;
+    flex-grow: 1;
+    color: rgb(240, 243, 246);
+}
+
+.scan-result-type-cell {
+    width: 90px;
+    flex-shrink: 0;
+}
+
+.scan-result-score-cell {
+    width: 50px;
+    flex-shrink: 0;
+    font-weight: bold;
+}
+
+.scan-result-grade-cell {
+    width: 50px;
+    flex-shrink: 0;
+    font-weight: bold;
+}
+
+.scan-result-severity-cell {
+    width: 90px;
+    flex-shrink: 0;
+    font-weight: bold;
+}
+
+.scan-quality-a {
+    color: rgb(114, 198, 244);
+}
+
+.scan-quality-b {
+    color: rgb(143, 214, 168);
+}
+
+.scan-quality-c {
+    color: rgb(216, 176, 106);
+}
+
+.scan-quality-d {
+    color: rgb(238, 114, 125);
+}
+
+.scan-severity-none {
+    color: rgb(142, 153, 164);
+}
+
+.scan-severity-info {
+    color: rgb(125, 191, 242);
+}
+
+.scan-severity-warning {
+    color: rgb(240, 199, 107);
+}
+
+.scan-severity-error {
+    color: rgb(242, 154, 98);
+}
+
+.scan-severity-blocker {
+    color: rgb(238, 114, 125);
+}
+
+.scan-result-issue-count-cell {
+    width: 60px;
+    flex-shrink: 0;
+}
+
+.scan-result-path-cell {
+    width: 120px;
+    min-width: 120px;
+    flex-shrink: 0;
+    color: rgb(142, 153, 164);
+}
+
+.scan-detail-panel {
+    width: 0;
+    min-width: 0;
+    min-height: 0;
+    flex-grow: 0.82;
+    flex-shrink: 1;
+    flex-direction: column;
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    border-left-color: rgb(58, 65, 73);
+    border-right-color: rgb(58, 65, 73);
+    border-top-color: rgb(58, 65, 73);
+    border-bottom-color: rgb(58, 65, 73);
+    border-radius: 7px;
+    overflow: hidden;
+    background-color: rgb(32, 37, 42);
+}
+
+.scan-detail-scroll {
+    min-width: 0;
+    min-height: 0;
+    padding-left: 14px;
+    padding-right: 14px;
+    padding-top: 14px;
+    padding-bottom: 14px;
+}
+
+.scan-detail-action-row {
+    min-height: 28px;
+    flex-shrink: 0;
+    margin-bottom: 13px;
+}
+
+.scan-detail-action-row .object-reference-action-button {
+    padding-left: 11px;
+    padding-right: 11px;
+}
+
+.scan-detail-action-row .object-reference-action-button:first-child {
+    margin-left: 0;
+}
+
+.scan-detail-info {
+    min-width: 0;
+    flex-shrink: 0;
+    padding-left: 12px;
+    padding-right: 12px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    border-left-color: rgb(65, 73, 82);
+    border-right-color: rgb(65, 73, 82);
+    border-top-color: rgb(65, 73, 82);
+    border-bottom-color: rgb(65, 73, 82);
+    border-radius: 5px;
+    background-color: rgb(25, 28, 32);
+}
+
+.scan-detail-info-label {
+    min-width: 0;
+    min-height: 21px;
+    color: rgb(220, 226, 232);
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.scan-detail-info-label.scan-quality-a,
+.scan-detail-info-label.scan-quality-b,
+.scan-detail-info-label.scan-quality-c,
+.scan-detail-info-label.scan-quality-d {
+    font-weight: bold;
+}
+
+.scan-detail-empty {
+    min-width: 0;
+    padding-left: 4px;
+    padding-right: 4px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    color: rgb(142, 153, 164);
+    font-size: 12px;
+    white-space: normal;
+}
+
+.scan-issue-item {
+    min-width: 0;
+    flex-direction: column;
+    margin-bottom: 8px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 9px;
+    padding-bottom: 9px;
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    border-left-color: rgb(57, 65, 73);
+    border-right-color: rgb(57, 65, 73);
+    border-top-color: rgb(57, 65, 73);
+    border-bottom-color: rgb(57, 65, 73);
+    border-radius: 5px;
+    background-color: rgb(27, 31, 35);
+}
+
+.scan-issue-title {
+    font-size: 15px;
+    -unity-font-style: bold;
+    white-space: normal;
+}
+
+.scan-issue-metadata {
+    margin-top: 4px;
+    color: rgb(166, 181, 195);
+    font-size: 12px;
+    white-space: normal;
+}
+
+.scan-issue-message {
+    margin-top: 7px;
+    color: rgb(255, 255, 255);
+    font-size: 14px;
+    white-space: normal;
+}
+
+.scan-issue-location-toggle {
+    min-width: 0;
+    margin-top: 9px;
+    padding-left: 7px;
+    padding-right: 7px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-left-width: 0;
+    border-right-width: 0;
+    border-top-width: 0;
+    border-bottom-width: 0;
+    background-color: rgb(35, 41, 47);
+    color: rgb(184, 206, 227);
+    font-size: 13px;
+    -unity-text-align: middle-left;
+}
+
+.scan-issue-location-toggle:hover {
+    background-color: rgb(47, 57, 67);
+}
+
+.scan-issue-location-list {
+    margin-top: 4px;
+    padding-left: 6px;
+    padding-right: 6px;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    border-left-color: rgb(50, 59, 68);
+    border-right-color: rgb(50, 59, 68);
+    border-top-color: rgb(50, 59, 68);
+    border-bottom-color: rgb(50, 59, 68);
+    background-color: rgb(23, 27, 31);
+}
+
+.scan-issue-location-button {
+    min-width: 0;
+    flex-direction: column;
+    margin-bottom: 4px;
+    padding-left: 7px;
+    padding-right: 7px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-left-width: 0;
+    border-right-width: 0;
+    border-top-width: 0;
+    border-bottom-width: 0;
+    background-color: rgb(32, 37, 42);
+    -unity-text-align: middle-left;
+}
+
+.scan-issue-location-button:hover {
+    background-color: rgb(42, 52, 62);
+}
+
+.scan-issue-location-path {
+    color: rgb(166, 207, 246);
+    font-size: 13px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.scan-issue-location-description {
+    margin-top: 3px;
+    color: rgb(198, 206, 214);
+    font-size: 12px;
+    white-space: normal;
+}
+
+.scan-dependency-item {
+    min-width: 0;
+    flex-direction: column;
+    margin-bottom: 6px;
+    padding-left: 9px;
+    padding-right: 9px;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    border-left-color: rgb(57, 65, 73);
+    border-right-color: rgb(57, 65, 73);
+    border-top-color: rgb(57, 65, 73);
+    border-bottom-color: rgb(57, 65, 73);
+    border-radius: 5px;
+    background-color: rgb(27, 31, 35);
+}
+
+.scan-dependency-path {
+    min-width: 0;
+    color: rgb(220, 226, 232);
+    font-size: 13px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.scan-dependency-issue-count {
+    margin-top: 4px;
+    color: rgb(234, 190, 103);
+    font-size: 12px;
+}
+
+.scan-detail-foldout-host {
+    min-width: 0;
+    flex-shrink: 0;
+    margin-top: 14px;
+}
+
+.scan-status-bar {
+    height: 28px;
+    min-height: 28px;
+    flex-shrink: 0;
+    padding-left: 16px;
+    padding-right: 16px;
+    border-top-width: 1px;
+    border-top-color: rgb(47, 53, 60);
+    background-color: rgb(32, 35, 40);
+    align-items: center;
+}
+
+.scan-status-text {
+    margin-right: 16px;
+    color: rgb(146, 156, 167);
+    font-size: 12px;
+}
+
+.scan-progress-bar {
+    width: 300px;
+    height: 12px;
+    min-height: 12px;
+    margin-right: 16px;
+    flex-shrink: 0;
+}

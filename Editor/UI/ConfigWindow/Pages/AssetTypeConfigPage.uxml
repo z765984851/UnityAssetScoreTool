@@ -1,0 +1,13 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
+    <Style src="../../Common/Common.uss" />
+    <Style src="../ConfigWindow.uss" />
+    <ui:VisualElement name="AssetTypePage" class="config-page" style="flex-grow: 1;">
+        <ui:VisualElement class="page-toolbar" style="flex-grow: 0; flex-direction: row; align-items: center;">
+            <ui:VisualElement class="config-page-heading"><ui:Label text="资源类型配置" class="config-page-title" /><ui:Label text="定义规则应用项可匹配的资源类型。" class="config-page-description" /></ui:VisualElement>
+            <ui:Button name="CreateAssetTypeButton" text="新建资源类型配置" class="tool-button primary-button" />
+            <ui:VisualElement class="grow" /><ui:TextField name="AssetTypeSearchField" label="搜索" class="search-field" style="width: 270px; flex-shrink: 1;" />
+        </ui:VisualElement>
+        <ui:VisualElement name="AssetTypeValidationHost" class="validation-message-host" />
+        <ui:ScrollView name="AssetTypeScrollView" class="page-scroll" mode="Vertical" horizontal-scroller-visibility="Hidden" vertical-scroller-visibility="Auto" style="flex-grow: 1;"><ui:VisualElement name="AssetTypeListContainer" class="list-container" /><ui:Label name="AssetTypeEmptyLabel" text="没有资源类型配置" class="empty-label" /></ui:ScrollView>
+    </ui:VisualElement>
+</ui:UXML>

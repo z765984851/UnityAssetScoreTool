@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99511ab169e84641b15383800502a0cf, type: 3}
+  m_Name: ScoreRule_PrefabRendererCount80
+  m_EditorClassIdentifier: 
+  ruleId: basic.prefab.renderercount80
+  displayName: Prefab(预制体) Renderer(渲染器)数量超过80
+  description: 检查Prefab(预制体)中的Renderer(渲染器)数量是否超过80。
+  priority: 0
+  issueInfos:
+  - issueInfoId: is_larger
+    displayName: Renderer(渲染器)数量超过80
+    deductScore: 5
+    issueLevel: 1
+    issueMessage: Renderer(渲染器)数量过多会增加渲染管理和Draw Call(绘制调用)风险。建议：合并网格或特效层，减少渲染组件数量。

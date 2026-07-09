@@ -1,0 +1,81 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements"
+         xmlns:uie="UnityEditor.UIElements"
+         xsi="http://www.w3.org/2001/XMLSchema-instance"
+         engine="UnityEngine.UIElements"
+         editor="UnityEditor.UIElements"
+         noNamespaceSchemaLocation="../../../../../../UIElementsSchema/UIElements.xsd"
+         editor-extension-mode="True">
+
+    <Style src="../ConfigWindow.uss"/>
+
+    <ui:VisualElement class="item-create-dialog-content">
+        <ui:ScrollView class="item-create-dialog-scroll"
+                       mode="Vertical"
+                       horizontal-scroller-visibility="Hidden"
+                       vertical-scroller-visibility="Auto">
+            <ui:VisualElement class="item-create-form-container dialog-form">
+                <ui:VisualElement class="dialog-field-row">
+                    <ui:Label text="资源路径 *"
+                              class="dialog-field-label"/>
+                    <ui:VisualElement class="dialog-field-content">
+                        <ui:VisualElement class="dialog-control-line">
+                            <ui:TextField name="CreateWhiteListPathField"
+                                          class="dialog-control"/>
+                            <ui:Button name="CreateWhiteListSelectFileButton"
+                                       text="选择文件"
+                                       class="small-button"/>
+                            <ui:Button name="CreateWhiteListSelectFolderButton"
+                                       text="选择文件夹"
+                                       class="small-button"/>
+                        </ui:VisualElement>
+                        <ui:Label text="必填。可以选择单个资源，也可以选择文件夹递归匹配。"
+                                  class="field-hint required-field-hint"/>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+
+                <ui:VisualElement class="dialog-field-row">
+                    <ui:Label text="规则配置"
+                              class="dialog-field-label"/>
+                    <ui:VisualElement class="dialog-field-content">
+                        <ui:VisualElement name="CreateWhiteListRuleContainer"
+                                          class="dialog-reference-container"/>
+                        <ui:Label text="可留空；留空时匹配全部规则。"
+                                  class="field-hint"/>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+
+                <ui:VisualElement class="dialog-field-row">
+                    <ui:Label text="问题 ID"
+                              class="dialog-field-label"/>
+                    <ui:VisualElement class="dialog-field-content">
+                        <ui:TextField name="CreateWhiteListIssueIdField"
+                                      class="dialog-control"/>
+                        <ui:Label text="可留空；留空时匹配所选规则下的全部问题。填写时仅允许小写字母、数字、下划线和点；必须以小写字母开头、以小写字母或数字结尾，分隔符不能连续。"
+                                  class="field-hint"/>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+
+                <ui:VisualElement class="dialog-field-row">
+                    <ui:Label text="备注"
+                              class="dialog-field-label"/>
+                    <ui:VisualElement class="dialog-field-content">
+                        <ui:TextField name="CreateWhiteListRemarkField"
+                                      multiline="true"
+                                      class="dialog-control dialog-multiline-control"/>
+                        <ui:Label text="可选，用于说明加入白名单的原因。"
+                                  class="field-hint"/>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:ScrollView>
+
+        <ui:VisualElement class="dialog-footer">
+            <ui:Button name="CreateWhiteListCancelButton"
+                       text="取消"
+                       class="tool-button"/>
+            <ui:Button name="CreateWhiteListConfirmButton"
+                       text="添加"
+                       class="tool-button primary-button"/>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

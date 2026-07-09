@@ -1,0 +1,807 @@
+/* HTML 基准字体：所有复用通用组件的文本统一使用项目字体。 */
+* {
+    font-size: 15px;
+    -unity-font-definition: url("../../../Fonts/SourceHanSansSC-Regular SDF.asset");
+}
+
+/* ============================================================
+ * 通用模态面板
+ * ============================================================ */
+
+.modal-panel {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    min-width: 0;
+    min-height: 0;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.66);
+}
+
+.modal-panel-surface {
+    width: 760px;
+    min-width: 460px;
+    max-width: 92%;
+    max-height: 86%;
+    flex-direction: column;
+    flex-shrink: 1;
+    overflow: hidden;
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    border-left-color: rgb(89, 99, 110);
+    border-right-color: rgb(89, 99, 110);
+    border-top-color: rgb(89, 99, 110);
+    border-bottom-color: rgb(89, 99, 110);
+    border-radius: 7px;
+    background-color: rgb(35, 39, 44);
+}
+
+.modal-panel-header {
+    min-height: 52px;
+    flex-shrink: 0;
+    flex-direction: row;
+    align-items: center;
+    padding-left: 12px;
+    padding-right: 12px;
+    border-bottom-width: 1px;
+    border-bottom-color: rgb(60, 68, 77);
+    background-color: rgb(45, 50, 56);
+}
+
+.modal-panel-title {
+    min-width: 0;
+    flex-grow: 1;
+    color: rgb(241, 244, 247);
+    font-size: 17px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.modal-panel-close-button {
+    width: 49px;
+    height: 34px;
+    min-width: 49px;
+    min-height: 34px;
+    margin-left: 12px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 0;
+    padding-bottom: 0;
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    border-left-color: rgb(65, 73, 82);
+    border-right-color: rgb(65, 73, 82);
+    border-top-color: rgb(65, 73, 82);
+    border-bottom-color: rgb(65, 73, 82);
+    border-radius: 5px;
+    color: rgb(232, 237, 242);
+    background-color: rgb(43, 48, 54);
+    font-size: 13px;
+}
+
+.modal-panel-close-button:hover {
+    background-color: rgb(52, 59, 67);
+}
+
+.modal-panel-content {
+    min-width: 0;
+    min-height: 0;
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-direction: column;
+}
+
+/* ============================================================
+ * 页面标题区域
+ * ============================================================ */
+
+.page-header-view {
+    min-height: 78px;
+    flex-direction: row;
+    align-items: center;
+    flex-shrink: 0;
+    padding-left: 18px;
+    padding-right: 18px;
+    padding-top: 13px;
+    padding-bottom: 13px;
+    border-bottom-width: 1px;
+    border-bottom-color: rgb(45, 50, 56);
+    background-color: rgb(29, 32, 36);
+}
+
+.page-header-heading {
+    min-width: 0;
+    flex-grow: 1;
+}
+
+.page-header-title {
+    margin-bottom: 4px;
+    color: rgb(243, 246, 249);
+    font-size: 20px;
+}
+
+.page-header-description {
+    color: rgb(146, 156, 167);
+    font-size: 13px;
+}
+
+.page-header-actions,
+.page-header-action-buttons {
+    flex-direction: row;
+    align-items: center;
+    flex-shrink: 0;
+    margin-left: 14px;
+}
+
+.page-header-action-button {
+    min-height: 34px;
+    min-width: 0;
+    flex-shrink: 0;
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 14px;
+    padding-right: 14px;
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    border-left-color: rgb(74, 82, 92);
+    border-right-color: rgb(74, 82, 92);
+    border-top-color: rgb(74, 82, 92);
+    border-bottom-color: rgb(74, 82, 92);
+    border-radius: 5px;
+    background-color: rgb(43, 48, 54);
+    color: rgb(226, 231, 236);
+}
+
+.page-header-action-button:hover {
+    background-color: rgb(52, 59, 67);
+}
+
+.page-header-start-button {
+    min-width: 120px;
+    border-left-color: rgb(57, 119, 85);
+    border-right-color: rgb(57, 119, 85);
+    border-top-color: rgb(57, 119, 85);
+    border-bottom-color: rgb(57, 119, 85);
+    background-color: rgb(36, 68, 47);
+    color: rgb(145, 223, 175);
+}
+
+.page-header-export-button {
+    min-width: 90px;
+    margin-left: 7px;
+}
+
+.page-header-search {
+    width: 270px;
+    height: 34px;
+    margin-left: 9px;
+}
+
+.page-header-search > .unity-base-field__label {
+    width: 42px;
+    min-width: 42px;
+    color: rgb(146, 156, 167);
+}
+
+.page-header-search > .unity-base-text-field__input,
+.page-header-search .unity-base-text-field__input,
+.page-header-search > .unity-text-field__input,
+.page-header-search .unity-text-field__input {
+    padding-left: 10px;
+    padding-right: 10px;
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    border-left-color: rgb(65, 73, 82);
+    border-right-color: rgb(65, 73, 82);
+    border-top-color: rgb(65, 73, 82);
+    border-bottom-color: rgb(65, 73, 82);
+    border-radius: 5px;
+    background-color: rgb(21, 24, 27);
+    color: rgb(230, 235, 240);
+}
+
+/* ============================================================
+ * 路径输入字段
+ * ============================================================ */
+
+.path-input-field {
+    min-width: 0;
+    margin-bottom: 17px;
+}
+
+.path-input-label {
+    margin-bottom: 7px;
+    color: rgb(232, 237, 242);
+    font-size: 14px;
+}
+
+.path-input-row {
+    min-width: 0;
+    flex-direction: row;
+    align-items: center;
+}
+
+.path-input-text {
+    min-width: 0;
+    height: 34px;
+    flex-grow: 1;
+    flex-shrink: 1;
+}
+
+.path-input-text > .unity-base-text-field__input,
+.path-input-text .unity-base-text-field__input,
+.path-input-text > .unity-text-field__input,
+.path-input-text .unity-text-field__input {
+    padding-left: 10px;
+    padding-right: 10px;
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    border-left-color: rgb(65, 73, 82);
+    border-right-color: rgb(65, 73, 82);
+    border-top-color: rgb(65, 73, 82);
+    border-bottom-color: rgb(65, 73, 82);
+    border-radius: 5px;
+    background-color: rgb(21, 24, 27);
+    color: rgb(230, 235, 240);
+}
+
+.path-input-browse-button {
+    height: 29px;
+    min-height: 29px;
+    min-width: 0;
+    margin-left: 8px;
+    margin-right: 0;
+    padding-left: 11px;
+    padding-right: 11px;
+    flex-shrink: 0;
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    border-left-color: rgb(74, 82, 92);
+    border-right-color: rgb(74, 82, 92);
+    border-top-color: rgb(74, 82, 92);
+    border-bottom-color: rgb(74, 82, 92);
+    border-radius: 5px;
+    background-color: rgb(43, 48, 54);
+    color: rgb(226, 231, 236);
+    font-size: 13px;
+}
+
+.path-input-browse-button:hover {
+    background-color: rgb(52, 59, 67);
+}
+
+.path-input-hint {
+    margin-top: 6px;
+    color: rgb(142, 153, 164);
+    font-size: 12px;
+    white-space: normal;
+}
+
+/* ============================================================
+ * 折叠卡片
+ * ============================================================ */
+
+.foldout-card {
+    min-width: 0;
+    margin-bottom: 12px;
+    flex-direction: row;
+    overflow: hidden;
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    border-left-color: rgb(65, 74, 84);
+    border-right-color: rgb(65, 74, 84);
+    border-top-color: rgb(65, 74, 84);
+    border-bottom-color: rgb(65, 74, 84);
+    border-radius: 6px;
+    background-color: rgb(32, 37, 42);
+}
+
+.foldout-card-status-bar {
+    width: 3px;
+    min-width: 3px;
+    flex-shrink: 0;
+    background-color: rgb(79, 139, 215);
+}
+
+.foldout-card-main {
+    min-width: 0;
+    flex-grow: 1;
+    flex-shrink: 1;
+}
+
+.foldout-card-header {
+    min-height: 54px;
+    flex-direction: row;
+    align-items: center;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    background-color: rgb(40, 46, 52);
+}
+
+.foldout-card-with-icon .foldout-card-header {
+    min-height: 66px;
+    padding-left: 11px;
+    padding-right: 11px;
+    padding-top: 9px;
+    padding-bottom: 9px;
+}
+
+.foldout-card-button {
+    width: 30px;
+    min-width: 30px;
+    height: 30px;
+    min-height: 30px;
+    margin-right: 6px;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    border-left-width: 0;
+    border-right-width: 0;
+    border-top-width: 0;
+    border-bottom-width: 0;
+    color: rgb(171, 181, 192);
+    background-color: rgba(0, 0, 0, 0);
+    font-size: 15px;
+}
+
+.foldout-card-button:hover {
+    background-color: rgb(52, 59, 67);
+}
+
+.foldout-card-icon {
+    width: 36px;
+    min-width: 36px;
+    height: 36px;
+    min-height: 36px;
+    margin-right: 10px;
+    align-items: center;
+    justify-content: center;
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    border-left-color: rgb(77, 119, 159);
+    border-right-color: rgb(77, 119, 159);
+    border-top-color: rgb(77, 119, 159);
+    border-bottom-color: rgb(77, 119, 159);
+    border-radius: 5px;
+    background-color: rgb(32, 50, 67);
+    color: rgb(143, 196, 241);
+    font-size: 12px;
+    -unity-text-align: middle-center;
+}
+
+.foldout-card-title-container {
+    min-width: 0;
+    flex-grow: 1;
+    flex-shrink: 1;
+}
+
+.foldout-card-title {
+    margin-bottom: 3px;
+    color: rgb(237, 241, 245);
+    font-size: 15px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.foldout-card-with-icon .foldout-card-title {
+    color: rgb(240, 243, 246);
+    font-size: 16px;
+}
+
+.foldout-card-subtitle {
+    color: rgb(146, 157, 168);
+    font-size: 12px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.foldout-card-status-label {
+    min-height: 24px;
+    margin-left: 8px;
+    padding-left: 9px;
+    padding-right: 9px;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    border-left-color: rgb(76, 86, 97);
+    border-right-color: rgb(76, 86, 97);
+    border-top-color: rgb(76, 86, 97);
+    border-bottom-color: rgb(76, 86, 97);
+    border-radius: 12px;
+    background-color: rgb(48, 54, 61);
+    color: rgb(199, 207, 216);
+    font-size: 12px;
+    white-space: nowrap;
+}
+
+.foldout-card-header-actions {
+    flex-direction: row;
+    align-items: center;
+    margin-left: 10px;
+    flex-shrink: 0;
+}
+
+.foldout-card-body {
+    min-width: 0;
+    padding-left: 14px;
+    padding-right: 14px;
+    padding-top: 14px;
+    padding-bottom: 14px;
+    border-top-width: 1px;
+    border-top-color: rgb(54, 62, 71);
+}
+
+.foldout-card-with-icon .foldout-card-body {
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-top: 16px;
+    padding-bottom: 16px;
+}
+
+.foldout-card-content {
+    min-width: 0;
+}
+
+.foldout-card-muted {
+    background-color: rgb(28, 32, 36);
+}
+
+.foldout-card-muted .foldout-card-status-bar {
+    background-color: rgb(105, 114, 124);
+}
+
+.foldout-card-muted .foldout-card-header {
+    background-color: rgb(35, 40, 45);
+}
+
+.foldout-card-muted .foldout-card-body {
+    background-color: rgb(28, 32, 36);
+}
+
+.foldout-card-muted .foldout-card-title,
+.foldout-card-muted .foldout-card-subtitle,
+.foldout-card-muted .foldout-card-content {
+    color: rgb(115, 125, 135);
+}
+
+.foldout-card.foldout-card-status-active {
+    border-left-color: rgb(78, 115, 157);
+    border-right-color: rgb(78, 115, 157);
+    border-top-color: rgb(78, 115, 157);
+    border-bottom-color: rgb(78, 115, 157);
+}
+
+.foldout-card-status-active .foldout-card-status-bar {
+    background-color: rgb(79, 139, 215);
+}
+
+.foldout-card-status-success .foldout-card-status-bar {
+    background-color: rgb(57, 119, 85);
+}
+
+.foldout-card-status-warning .foldout-card-status-bar {
+    background-color: rgb(138, 102, 45);
+}
+
+.foldout-card-status-error .foldout-card-status-bar {
+    background-color: rgb(212, 91, 99);
+}
+
+.foldout-card-status-label.foldout-card-status-active {
+    border-left-color: rgb(78, 115, 157);
+    border-right-color: rgb(78, 115, 157);
+    border-top-color: rgb(78, 115, 157);
+    border-bottom-color: rgb(78, 115, 157);
+    background-color: rgb(32, 50, 67);
+    color: rgb(143, 196, 241);
+}
+
+.foldout-card-status-label.foldout-card-status-success {
+    border-left-color: rgb(57, 119, 85);
+    border-right-color: rgb(57, 119, 85);
+    border-top-color: rgb(57, 119, 85);
+    border-bottom-color: rgb(57, 119, 85);
+    background-color: rgb(32, 58, 42);
+    color: rgb(131, 215, 163);
+}
+
+.foldout-card-status-label.foldout-card-status-warning {
+    border-left-color: rgb(138, 102, 45);
+    border-right-color: rgb(138, 102, 45);
+    border-top-color: rgb(138, 102, 45);
+    border-bottom-color: rgb(138, 102, 45);
+    background-color: rgb(70, 54, 31);
+    color: rgb(232, 189, 107);
+}
+
+.foldout-card-status-label.foldout-card-status-error {
+    border-left-color: rgb(165, 77, 84);
+    border-right-color: rgb(165, 77, 84);
+    border-top-color: rgb(165, 77, 84);
+    border-bottom-color: rgb(165, 77, 84);
+    background-color: rgb(82, 40, 45);
+    color: rgb(255, 170, 170);
+}
+
+/* ============================================================
+ * 对象引用选择器
+ * ============================================================ */
+
+.object-reference-selector {
+    min-width: 0;
+    margin-bottom: 14px;
+}
+
+.object-reference-field-label {
+    margin-bottom: 7px;
+    color: rgb(232, 237, 242);
+    font-size: 14px;
+}
+
+.object-reference-box {
+    min-width: 0;
+    min-height: 56px;
+    flex-direction: row;
+    align-items: center;
+    padding-left: 8px;
+    padding-right: 8px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    border-left-color: rgb(65, 73, 82);
+    border-right-color: rgb(65, 73, 82);
+    border-top-color: rgb(65, 73, 82);
+    border-bottom-color: rgb(65, 73, 82);
+    border-radius: 5px;
+    background-color: rgb(25, 28, 32);
+}
+
+.object-reference-selector-icon {
+    width: 36px;
+    min-width: 36px;
+    height: 36px;
+    min-height: 36px;
+    margin-right: 10px;
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    border-left-color: rgb(77, 119, 159);
+    border-right-color: rgb(77, 119, 159);
+    border-top-color: rgb(77, 119, 159);
+    border-bottom-color: rgb(77, 119, 159);
+    border-radius: 5px;
+    background-color: rgb(32, 50, 67);
+    color: rgb(143, 196, 241);
+    font-size: 12px;
+    -unity-text-align: middle-center;
+}
+
+.object-reference-info {
+    min-width: 0;
+    flex-grow: 1;
+    flex-shrink: 1;
+}
+
+.object-reference-name {
+    margin-bottom: 3px;
+    color: rgb(229, 235, 241);
+    font-size: 14px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.object-reference-metadata {
+    color: rgb(137, 148, 159);
+    font-size: 12px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.object-reference-actions {
+    flex-direction: row;
+    align-items: center;
+    margin-left: 8px;
+    flex-shrink: 0;
+}
+
+.object-reference-action-button {
+    height: 28px;
+    min-width: 52px;
+    margin-left: 7px;
+    border-left-color: rgb(76, 86, 97);
+    border-right-color: rgb(76, 86, 97);
+    border-top-color: rgb(76, 86, 97);
+    border-bottom-color: rgb(76, 86, 97);
+    border-radius: 4px;
+    background-color: rgb(48, 54, 61);
+    color: rgb(220, 226, 232);
+}
+
+.object-reference-action-button:hover {
+    background-color: rgb(60, 68, 77);
+}
+
+.object-reference-select-button {
+    border-left-color: rgb(62, 111, 162);
+    border-right-color: rgb(62, 111, 162);
+    border-top-color: rgb(62, 111, 162);
+    border-bottom-color: rgb(62, 111, 162);
+    background-color: rgb(41, 79, 119);
+    color: rgb(235, 244, 252);
+}
+
+.object-reference-select-button:hover {
+    background-color: rgb(50, 94, 140);
+}
+
+.object-reference-hint {
+    margin-top: 6px;
+    color: rgb(142, 153, 164);
+    font-size: 12px;
+    white-space: normal;
+}
+
+/* ============================================================
+ * 配置校验错误区域
+ * ============================================================ */
+
+.validation-message-view {
+    min-width: 0;
+    margin-bottom: 20px;
+    padding-left: 14px;
+    padding-right: 14px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    border-left-width: 4px;
+    border-left-color: rgb(212, 91, 99);
+    border-radius: 5px;
+    background-color: rgb(52, 33, 37);
+}
+
+.validation-message-view-warning {
+    border-left-color: rgb(202, 157, 74);
+    background-color: rgb(54, 46, 31);
+}
+
+.validation-message-header {
+    min-width: 0;
+    margin-bottom: 8px;
+    flex-direction: row;
+    align-items: center;
+}
+
+.validation-message-icon {
+    width: 24px;
+    min-width: 24px;
+    height: 24px;
+    min-height: 24px;
+    margin-right: 9px;
+    border-radius: 12px;
+    background-color: rgb(111, 48, 54);
+    color: rgb(255, 255, 255);
+    font-size: 14px;
+    -unity-text-align: middle-center;
+}
+
+.validation-message-title {
+    min-width: 0;
+    flex-grow: 1;
+    color: rgb(255, 176, 182);
+    font-size: 15px;
+}
+
+.validation-message-count {
+    min-width: 24px;
+    height: 24px;
+    margin-left: 8px;
+    padding-left: 7px;
+    padding-right: 7px;
+    border-radius: 12px;
+    background-color: rgb(111, 48, 54);
+    color: rgb(255, 209, 212);
+    font-size: 12px;
+    -unity-text-align: middle-center;
+}
+
+.validation-message-list {
+    min-width: 0;
+}
+
+.validation-message-row {
+    min-width: 0;
+    flex-direction: row;
+    align-items: flex-start;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    border-top-width: 1px;
+    border-top-color: rgba(255, 255, 255, 0.10);
+}
+
+.validation-message-row-warning {
+    border-top-color: rgba(224, 184, 94, 0.20);
+}
+
+.validation-message-row-warning .validation-message-name {
+    color: rgb(245, 211, 137);
+}
+
+.validation-message-row-warning .validation-message-detail {
+    color: rgb(203, 180, 130);
+}
+
+.validation-message-row-first {
+    padding-top: 0;
+    border-top-width: 0;
+}
+
+.validation-message-content {
+    min-width: 0;
+    flex-grow: 1;
+    flex-shrink: 1;
+}
+
+.validation-message-name {
+    color: rgb(255, 209, 212);
+    font-size: 14px;
+    white-space: normal;
+}
+
+.validation-message-detail {
+    margin-top: 3px;
+    color: rgb(202, 166, 170);
+    font-size: 12px;
+    white-space: normal;
+}
+
+.validation-message-locate-button {
+    height: 28px;
+    min-width: 52px;
+    margin-left: 12px;
+    flex-shrink: 0;
+    border-left-color: rgb(138, 73, 80);
+    border-right-color: rgb(138, 73, 80);
+    border-top-color: rgb(138, 73, 80);
+    border-bottom-color: rgb(138, 73, 80);
+    border-radius: 4px;
+    background-color: rgb(82, 40, 45);
+    color: rgb(255, 209, 212);
+}
+
+.validation-message-locate-button:hover {
+    background-color: rgb(103, 48, 54);
+}

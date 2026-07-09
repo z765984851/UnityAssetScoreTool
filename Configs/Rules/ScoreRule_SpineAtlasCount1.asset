@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99511ab169e84641b15383800502a0cf, type: 3}
+  m_Name: ScoreRule_SpineAtlasCount1
+  m_EditorClassIdentifier:
+  ruleId: basic.spine.atlascount1
+  displayName: Spine Atlas数量是否超过1
+  description: 检查Spine Atlas数量是否过多。
+  priority: 0
+  issueInfos:
+  - issueInfoId: is_larger
+    displayName: Spine Atlas数量超过1
+    deductScore: 5
+    issueLevel: 1
+    issueMessage: Atlas数量过多会增加贴图切换和内存占用。建议：合并Atlas，减少拆图数量，优化Spine导出设置。

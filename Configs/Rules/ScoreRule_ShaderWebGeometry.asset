@@ -1,0 +1,15 @@
+%YAML 1.1
+--- !u!114 &11400000
+MonoBehaviour:
+  m_Script: {fileID: 11500000, guid: 99511ab169e84641b15383800502a0cf, type: 3}
+  m_Name: ScoreRule_ShaderWebGeometry
+  ruleId: basic.shader.web.geometry
+  displayName: Web平台不支持Geometry Shader(几何着色器)
+  description: 检测Shader(着色器)中是否包含#pragma geometry声明；Web平台不支持Geometry Shader(几何着色器)。
+  priority: 0
+  issueInfos:
+  - issueInfoId: is_exists
+    displayName: Web平台不支持Geometry Shader(几何着色器)
+    deductScore: 10
+    issueLevel: 2
+    issueMessage: Web平台不支持Geometry Shader(几何着色器)。建议：移除该特性或提供兼容实现。

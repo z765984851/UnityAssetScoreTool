@@ -1,0 +1,46 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements"
+         xmlns:uie="UnityEditor.UIElements"
+         xsi="http://www.w3.org/2001/XMLSchema-instance"
+         engine="UnityEngine.UIElements"
+         editor="UnityEditor.UIElements"
+         noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd"
+         editor-extension-mode="True">
+
+    <Style src="Common.uss"/>
+
+    <ui:VisualElement name="ObjectReferenceSelectorRoot"
+                      class="object-reference-selector">
+        <ui:Label name="ObjectReferenceFieldLabel"
+                  class="object-reference-field-label"/>
+
+        <ui:VisualElement class="object-reference-box">
+            <ui:Label name="ObjectReferenceIcon"
+                      class="object-reference-selector-icon"/>
+
+            <ui:VisualElement class="object-reference-info">
+                <ui:Label name="ObjectReferenceDisplayName"
+                          class="object-reference-name"/>
+                <ui:Label name="ObjectReferenceMetadata"
+                          class="object-reference-metadata"/>
+            </ui:VisualElement>
+
+            <ui:VisualElement class="object-reference-actions">
+                <ui:Button name="ObjectReferenceSelectButton"
+                           text="选择"
+                           class="object-reference-action-button object-reference-select-button"/>
+                <ui:Button name="ObjectReferenceClearButton"
+                           text="清除"
+                           class="object-reference-action-button"/>
+                <ui:Button name="ObjectReferencePingButton"
+                           text="定位"
+                           class="object-reference-action-button"/>
+                <ui:Button name="ObjectReferenceEditButton"
+                           text="编辑"
+                           class="object-reference-action-button"/>
+            </ui:VisualElement>
+        </ui:VisualElement>
+
+        <ui:Label name="ObjectReferenceHint"
+                  class="object-reference-hint"/>
+    </ui:VisualElement>
+</ui:UXML>

@@ -1,0 +1,30 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements"
+         xmlns:uie="UnityEditor.UIElements"
+         xsi="http://www.w3.org/2001/XMLSchema-instance"
+         engine="UnityEngine.UIElements"
+         editor="UnityEditor.UIElements"
+         noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd"
+         editor-extension-mode="True">
+
+    <Style src="Common.uss"/>
+
+    <ui:VisualElement name="PageHeaderRoot"
+                      class="page-header-view">
+        <ui:VisualElement name="PageHeaderHeading"
+                          class="page-header-heading">
+            <ui:Label name="PageHeaderTitle"
+                      class="page-header-title"/>
+            <ui:Label name="PageHeaderDescription"
+                      class="page-header-description"/>
+        </ui:VisualElement>
+
+        <ui:VisualElement name="PageHeaderActions"
+                          class="page-header-actions">
+            <ui:VisualElement name="PageHeaderActionContainer"
+                              class="page-header-action-buttons"/>
+            <ui:TextField name="PageHeaderSearchField"
+                          label="搜索"
+                          class="page-header-search"/>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

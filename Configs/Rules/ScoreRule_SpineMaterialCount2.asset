@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99511ab169e84641b15383800502a0cf, type: 3}
+  m_Name: ScoreRule_SpineMaterialCount2
+  m_EditorClassIdentifier:
+  ruleId: basic.spine.materialcount2
+  displayName: Spine材质数量是否超过2
+  description: 检查Spine Prefab使用的Atlas默认材质数量是否过多。
+  priority: 0
+  issueInfos:
+  - issueInfoId: is_larger
+    displayName: Spine材质数量超过2
+    deductScore: 5
+    issueLevel: 1
+    issueMessage: 材质数量过多会增加渲染批次。建议：合并材质，减少不同混合模式或不同贴图导致的材质拆分。

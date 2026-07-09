@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_Script: {fileID: 11500000, guid: 99511ab169e84641b15383800502a0cf, type: 3}
+  m_Name: ScoreRule_ShaderVariantCount512
+  ruleId: basic.shader.variantcount512
+  displayName: Shader(着色器) Variant(变体)数量超过512
+  description: 根据Shader(着色器)源码中的#pragma声明静态估算Variant(变体)组合上限，超过512。
+  priority: 0
+  issueInfos:
+  - issueInfoId: is_larger
+    displayName: Shader(着色器) Variant(变体)数量超过512
+    deductScore: 5
+    issueLevel: 1
+    issueMessage: Shader(着色器) Variant(变体)组合上限超过512。建议：减少multi_compile声明并移除未使用的Keyword(关键字)。

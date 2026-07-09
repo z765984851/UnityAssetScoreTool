@@ -1,0 +1,7 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
+    <Style src="../../Common/Common.uss" /><Style src="../ConfigWindow.uss" />
+    <ui:VisualElement name="RulePage" class="config-page" style="flex-grow: 1;">
+        <ui:VisualElement class="page-toolbar" style="flex-grow: 0; flex-direction: row; align-items: center;"><ui:VisualElement class="config-page-heading"><ui:Label text="检测规则配置" class="config-page-title" /><ui:Label text="维护规则标识、问题定义和对应的检测脚本。" class="config-page-description" /></ui:VisualElement><ui:Button name="CreateRuleButton" text="新建检测规则配置" class="tool-button primary-button" /><ui:VisualElement class="grow" /><ui:TextField name="RuleSearchField" label="搜索" class="search-field" style="width: 270px; flex-shrink: 1;" /></ui:VisualElement>
+        <ui:VisualElement name="RuleValidationHost" class="validation-message-host" /><ui:ScrollView name="RuleScrollView" class="page-scroll" mode="Vertical" horizontal-scroller-visibility="Hidden" vertical-scroller-visibility="Auto" style="flex-grow: 1;"><ui:VisualElement name="RuleListContainer" class="list-container" /><ui:Label name="RuleEmptyLabel" text="没有检测规则配置" class="empty-label" /></ui:ScrollView>
+    </ui:VisualElement>
+</ui:UXML>

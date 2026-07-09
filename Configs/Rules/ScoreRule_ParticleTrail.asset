@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99511ab169e84641b15383800502a0cf, type: 3}
+  m_Name: ScoreRule_ParticleTrail
+  m_EditorClassIdentifier: 
+  ruleId: basic.particle.trail
+  displayName: "Particle System(粒子系统)已启用Trails(拖尾)模块"
+  description: "检查Particle System(粒子系统)是否启用Trails(拖尾)模块。"
+  priority: 0
+  issueInfos:
+  - issueInfoId: is_enabled
+    displayName: "Particle System(粒子系统)已启用Trails(拖尾)模块"
+    deductScore: 5
+    issueLevel: 1
+    issueMessage: "Trails(拖尾)会增加Vertex(顶点)数量和渲染成本。建议：减少Trail(拖尾)数量，降低持续时间，或使用Texture(贴图)动画替代。"

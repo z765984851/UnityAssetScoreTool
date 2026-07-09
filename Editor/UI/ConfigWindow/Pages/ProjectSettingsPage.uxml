@@ -1,0 +1,89 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements"
+         xmlns:uie="UnityEditor.UIElements"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         engine="UnityEngine.UIElements"
+         editor="UnityEditor.UIElements"
+         noNamespaceSchemaLocation="../../../../../../UIElementsSchema/UIElements.xsd"
+         editor-extension-mode="True">
+    <Style src="../../Common/Common.uss" />
+    <Style src="../ConfigWindow.uss" />
+    <ui:VisualElement name="ProjectSettingsPage"
+                      class="config-page"
+                      style="flex-grow: 1;">
+        <ui:VisualElement class="page-toolbar"
+                          style="flex-grow: 0; flex-direction: row; align-items: center;">
+            <ui:VisualElement class="config-page-heading">
+                <ui:Label text="项目设置" class="config-page-title" />
+                <ui:Label text="设置默认配置和配置资源的创建目录。"
+                          class="config-page-description" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:ScrollView name="ProjectSettingsScrollView"
+                       class="page-scroll"
+                       mode="Vertical"
+                       horizontal-scroller-visibility="Hidden"
+                       vertical-scroller-visibility="Auto"
+                       style="flex-grow: 1;">
+            <ui:VisualElement name="ProjectSettingsContent"
+                              class="list-container">
+                <ui:VisualElement name="ProjectSettingsUnavailableView"
+                                  class="warning-message">
+                    <ui:Label name="ProjectSettingsUnavailableLabel" />
+                </ui:VisualElement>
+                <ui:VisualElement name="ProjectSettingsMultipleView"
+                                  class="warning-message">
+                    <ui:Label name="ProjectSettingsMultipleLabel"
+                              text="发现多个项目设置资产，无法确定当前应编辑的设置。请仅保留一个 UserSettingConfig。" />
+                    <ui:VisualElement name="ProjectSettingsMultiplePaths" />
+                </ui:VisualElement>
+                <ui:VisualElement name="ProjectSettingsForm"
+                                  class="config-card settings-page-card">
+                    <ui:VisualElement class="config-card-header"
+                                      style="flex-grow: 0; flex-direction: row; align-items: center;">
+                        <ui:Label text="SO" class="so-icon" />
+                        <ui:VisualElement class="config-title-container">
+                            <ui:Label text="项目设置" class="display-name" />
+                            <ui:Label name="ProjectSettingsAssetName" class="asset-name" />
+                        </ui:VisualElement>
+                        <ui:Label text="项目共享" class="local-badge" />
+                        <ui:Button name="ProjectSettingsPingButton"
+                                   text="定位"
+                                   class="small-button" />
+                    </ui:VisualElement>
+                    <ui:VisualElement class="config-card-body">
+                        <ui:VisualElement class="config-section">
+                            <ui:VisualElement class="config-section-header">
+                                <ui:Label text="当前生效规则应用配置"
+                                          class="config-section-title" />
+                            </ui:VisualElement>
+                            <ui:VisualElement name="ProjectSettingsActiveRuleApplyHost"
+                                              class="config-section-body" />
+                        </ui:VisualElement>
+                        <ui:VisualElement class="config-section settings-section-divider">
+                            <ui:VisualElement class="config-section-header">
+                                <ui:Label text="可选检测"
+                                          class="config-section-title" />
+                            </ui:VisualElement>
+                            <ui:VisualElement name="ProjectSettingsSpineChecksHost"
+                                              class="config-section-body" />
+                        </ui:VisualElement>
+                        <ui:VisualElement class="config-section settings-section-divider">
+                            <ui:VisualElement class="config-section-header">
+                                <ui:Label text="默认保存位置"
+                                          class="config-section-title" />
+                            </ui:VisualElement>
+                            <ui:VisualElement class="config-section-body">
+                                <ui:VisualElement name="ProjectSettingsProfileFolderHost" />
+                                <ui:VisualElement name="ProjectSettingsRuleApplyFolderHost" />
+                                <ui:VisualElement name="ProjectSettingsRuleFolderHost" />
+                                <ui:VisualElement name="ProjectSettingsAssetTypeFolderHost" />
+                                <ui:VisualElement name="ProjectSettingsCheckRuleFolderHost" />
+                                <ui:VisualElement name="ProjectSettingsExportFolderHost" />
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:ScrollView>
+    </ui:VisualElement>
+</ui:UXML>

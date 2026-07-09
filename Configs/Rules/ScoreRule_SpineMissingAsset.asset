@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99511ab169e84641b15383800502a0cf, type: 3}
+  m_Name: ScoreRule_SpineMissingAsset
+  m_EditorClassIdentifier:
+  ruleId: basic.spine.missingasset
+  displayName: Spine存在缺失依赖
+  description: 检查Skeleton、Atlas、Texture等依赖是否缺失。
+  priority: 0
+  issueInfos:
+  - issueInfoId: is_missing
+    displayName: Spine存在缺失依赖
+    deductScore: 10
+    issueLevel: 2
+    issueMessage: 依赖缺失会导致资源无法正常显示，应作为阻断问题处理。建议：修复资源引用，重新导出Spine资源，补齐缺失文件。

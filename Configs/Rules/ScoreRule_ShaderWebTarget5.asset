@@ -1,0 +1,15 @@
+%YAML 1.1
+--- !u!114 &11400000
+MonoBehaviour:
+  m_Script: {fileID: 11500000, guid: 99511ab169e84641b15383800502a0cf, type: 3}
+  m_Name: ScoreRule_ShaderWebTarget5
+  ruleId: basic.shader.web.target5
+  displayName: Web平台不支持Shader Model(着色器模型) 5.0
+  description: 检测Shader(着色器)中的#pragma target是否为5.0或以上；Web平台不支持Shader Model(着色器模型) 5.0。
+  priority: 0
+  issueInfos:
+  - issueInfoId: is_exists
+    displayName: Web平台不支持Shader Model(着色器模型) 5.0
+    deductScore: 10
+    issueLevel: 2
+    issueMessage: Web平台不支持Shader Model(着色器模型) 5.0。建议：将#pragma target降至兼容版本。

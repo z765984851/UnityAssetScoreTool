@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99511ab169e84641b15383800502a0cf, type: 3}
+  m_Name: ScoreRule_PrefabGameObjectCount150
+  m_EditorClassIdentifier: 
+  ruleId: basic.prefab.gameobjectcount150
+  displayName: Prefab(预制体) GameObject(游戏对象)数量超过150
+  description: 检查Prefab(预制体)中的GameObject(游戏对象)数量是否超过150。
+  priority: 0
+  issueInfos:
+  - issueInfoId: is_larger
+    displayName: Prefab(预制体) GameObject(游戏对象)数量超过150
+    deductScore: 5
+    issueLevel: 1
+    issueMessage: GameObject(游戏对象)数量过多会增加实例化、遍历和激活成本。建议：合并节点，删除空GameObject(游戏对象)，拆分过大的Prefab(预制体)。

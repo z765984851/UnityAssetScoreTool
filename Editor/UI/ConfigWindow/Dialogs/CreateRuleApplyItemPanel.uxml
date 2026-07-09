@@ -1,0 +1,82 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements"
+         xmlns:uie="UnityEditor.UIElements"
+         xsi="http://www.w3.org/2001/XMLSchema-instance"
+         engine="UnityEngine.UIElements"
+         editor="UnityEditor.UIElements"
+         noNamespaceSchemaLocation="../../../../../../UIElementsSchema/UIElements.xsd"
+         editor-extension-mode="True">
+
+    <Style src="../ConfigWindow.uss"/>
+
+    <ui:VisualElement class="item-create-dialog-content">
+        <ui:ScrollView class="item-create-dialog-scroll"
+                       mode="Vertical"
+                       horizontal-scroller-visibility="Hidden"
+                       vertical-scroller-visibility="Auto">
+            <ui:VisualElement class="item-create-form-container dialog-form">
+                <ui:VisualElement class="dialog-field-row">
+                    <ui:Label text="是否启用"
+                              class="dialog-field-label"/>
+                    <ui:VisualElement class="dialog-field-content">
+                        <ui:Toggle name="CreateRuleApplyItemEnabledToggle"
+                                   class="dialog-toggle-control"/>
+                        <ui:Label text="关闭后该规则应用项不会参与规则注册。"
+                                  class="field-hint"/>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+
+                <ui:VisualElement class="dialog-field-row">
+                    <ui:Label text="规则配置"
+                              class="dialog-field-label"/>
+                    <ui:VisualElement class="dialog-field-content">
+                        <ui:VisualElement name="CreateRuleApplyItemRuleContainer"
+                                          class="dialog-reference-container"/>
+                        <ui:Label text="可留空；留空时该应用项不会注册生效。"
+                                  class="field-hint"/>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+
+                <ui:VisualElement class="dialog-field-row">
+                    <ui:Label text="资源类型配置"
+                              class="dialog-field-label"/>
+                    <ui:VisualElement class="dialog-field-content">
+                        <ui:VisualElement class="dialog-reference-list">
+                            <ui:VisualElement name="CreateRuleApplyItemAssetTypeList"
+                                              class="dialog-reference-chip-list"/>
+                            <ui:Button name="CreateRuleApplyItemAddAssetTypeButton"
+                                       text="选择"
+                                       class="small-button"/>
+                        </ui:VisualElement>
+                        <ui:Label text="可留空；为空时不会匹配任何资源。"
+                                  class="field-hint"/>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+
+                <ui:VisualElement class="dialog-field-row">
+                    <ui:Label text="检测配置档"
+                              class="dialog-field-label"/>
+                    <ui:VisualElement class="dialog-field-content">
+                        <ui:VisualElement class="dialog-reference-list">
+                            <ui:VisualElement name="CreateRuleApplyItemProfileList"
+                                              class="dialog-reference-chip-list"/>
+                            <ui:Button name="CreateRuleApplyItemAddProfileButton"
+                                       text="选择"
+                                       class="small-button"/>
+                        </ui:VisualElement>
+                        <ui:Label text="可留空；为空时不会匹配任何检测配置档。"
+                                  class="field-hint"/>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:ScrollView>
+
+        <ui:VisualElement class="dialog-footer">
+            <ui:Button name="CreateRuleApplyItemCancelButton"
+                       text="取消"
+                       class="tool-button"/>
+            <ui:Button name="CreateRuleApplyItemConfirmButton"
+                       text="添加"
+                       class="tool-button primary-button"/>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
