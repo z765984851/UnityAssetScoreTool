@@ -5,7 +5,7 @@ namespace majsoul.tools.assetscoretool.editor
 {
     [CreateAssetMenu(
         fileName = "RuleApplyConfig",
-        menuName = "Catfood Tools/Asset Score Tool/创建规则应用配置")]
+        menuName = "Asset Score Tool/创建规则应用配置")]
     public class RuleApplyConfig : ScriptableObject
     {
         /// <summary>

@@ -4,7 +4,7 @@ namespace majsoul.tools.assetscoretool.editor
 {
     [CreateAssetMenu(
         fileName = "AssetTypeConfig",
-        menuName = "Catfood Tools/Asset Score Tool/创建资源类型")]
+        menuName = "Asset Score Tool/创建资源类型")]
     public class AssetTypeConfig : ScriptableObject
     {
         [SerializeField] private string assetTypeId;

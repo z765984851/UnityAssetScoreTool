@@ -9,7 +9,7 @@ namespace majsoul.tools.assetscoretool.editor
     /// </summary>
     [CreateAssetMenu(
         fileName = "AssetScoreProjectSettings",
-        menuName = "Catfood Tools/Asset Score Tool/创建项目设置")]
+        menuName = "Asset Score Tool/创建项目设置")]
     public class UserSettingConfig : ScriptableObject
     {
         [SerializeField] [InspectorName("当前生效规则应用配置")]

@@ -1,206 +1,90 @@
-# AssetScoreTool
+# UnityAssetScoreTool
+**Unity Editor 美术资产质量检查与评分工具。**
+扫描项目中的资源及其依赖，按可配置规则识别性能风险，并生成问题、扣分、等级与依赖汇总报告。面向需要在资源接入、迭代检查和优化排查中统一检查口径的 Unity 项目。
+### 导航
+[功能亮点](#功能亮点) · [安装](#安装) · [快速开始](#快速开始) · [架构设计](#架构设计) · [配置指南](#配置指南) · [扩展开发](#扩展开发) · [源码导航](#源码导航) · [规则清单](#规则清单)
+## 功能亮点
+| 能力 | 当前实现 |
+| --- | --- |
+| 资源检查 | 支持单个资源、文件夹和 Project 选择项，覆盖动画、材质、FBX 网格、粒子、Prefab、Shader、纹理等资源类型。 |
+| 配置驱动规则 | 内置 **81 条规则配置**，通过 PC、iOS、Android、Web 检测配置档组合规则、资源类型、启用状态和白名单；实际执行范围由配置档与可选依赖共同决定。 |
+| 依赖分析与评分 | 区分资源自身问题和依赖汇总问题，输出分数、等级、严重度和问题数量，便于沿依赖关系追查风险来源。 |
+| 问题定位 | 在 Prefab 问题详情中定位缺失脚本、缺失引用及相关 Renderer、Animator、Canvas、物理组件和动画绑定对象。 |
+| 结果浏览 | 通过树形结果与详情面板查看资源、问题和直接依赖，支持按资源类型、严重度、分数、问题数量和路径筛选或排序。 |
+| 配置编辑 | Package 内置配置只读；本地配置通过工作副本编辑，再统一校验和保存，支持复制、创建与删除。 |
+| 报告导出 | 导出 JSON 或 Excel；Excel 包含“扫描摘要”“资源总览”“问题明细”“依赖关系”四个工作表。 |
+| 规则扩展 | 通过 `IScoreRuleChecker` 和 `IAssetTypeChecker` 接入自定义检查，使用 Unity `TypeCache` 发现实现。 |
+| 可选 Spine 检测 | 独立 Editor 扩展程序集提供 Atlas、Skeleton 与 Prefab 检查，安装对应依赖并开启开关后生效。 |
+## 环境与依赖
+| 项目 | 说明 |
+| --- | --- |
+| Unity 基线 | `2022.3.0f1`，与 [package.json](package.json) 的声明一致。 |
+| 包名 / 版本 | `com.play.unityassetscoretool` / `1.0.0`。 |
+| 运行范围 | 仅 Unity Editor，主程序集为 `AssetScoreTool.Editor`。 |
+| UI | UI Toolkit，使用 UXML、USS 与 C# 组织界面。 |
+| 主包依赖 | `package.json` 未声明外部包依赖，主程序集未声明外部程序集引用；Excel 导出使用内置实现，无需本机安装 Microsoft Excel 或 Python。 |
+| Spine 扩展 | 可选依赖 `spine-unity` 与 `spine-csharp`，通过 `ASSET_SCORE_TOOL_SPINE` 隔离编译。 |
 
-## 1. 简介
-
-`AssetScoreTool` 是一个仅在 Unity Editor 中运行的美术资产评分工具包。它负责扫描项目 `Assets/...` 下的资源及其依赖，按照项目配置执行性能风险规则，并生成包含问题、扣分、等级、严重度和依赖汇总信息的报告。
-
-- 包名：`com.catfood.unitytools.assetscoretool`
-- 当前版本：`1.0.0`
-- Unity 基线：`2022.3.0f1`
-- 主程序集：`AssetScoreTool.Editor`（仅 Editor 平台）
-- 根命名空间：`majsoul.tools.assetscoretool.editor`
-
-## 2. 安装
-
-### 通过 Git URL 引入
-
-1. 在 Unity 中打开 `Window > Package Manager`。
+## 安装
+### 通过 Unity Package Manager 安装
+1. 打开 Unity 的 `Window > Package Manager`。
 2. 点击左上角的 `+`，选择 `Add package from git URL...`。
-3. 如果工具位于当前仓库的 `Assets/Tools/asset_score_tool` 子目录，使用以下格式，并将仓库地址替换为实际 Git URL：
-
+3. 填入以下地址并添加：
 ```text
-<仓库 Git URL>?path=Assets/Tools/asset_score_tool
+https://github.com/z765984851/UnityAssetScoreTool.git
 ```
-
-如果 `package.json` 位于目标 Git 仓库根目录，则直接填写仓库 Git URL，不需要 `?path=...`。
-
-### 通过本地路径引入
-
-1. 在 `Window > Package Manager` 中点击左上角的 `+`。
-2. 选择 `Add package from disk...`。
-3. 选择本工具根目录下的 `package.json`。
-
-安装完成后，Unity 会将工具作为 Package 加载。Package 中的脚本、配置和文档属于工具内置内容，不应复制到项目 `Assets` 目录后直接维护，也不应在 `Packages/...` 或 `Library/PackageCache/...` 中修改。
-
-## 3. 入口
-
+`package.json` 位于本仓库根目录，可直接使用上述地址。
+### 通过本地路径安装
+1. 将仓库克隆到本机目录。
+2. 在 Package Manager 中选择 `Add package from disk...`。
+3. 选择仓库根目录的 `package.json`。
+### 更新已有项目
+公开版本使用包名 `com.play.unityassetscoretool`。已有项目更新包标识时，先保存项目中的本地配置并关闭工具窗口，在 Package Manager 中移除原包，再通过上述 Git URL 重新添加；若项目中已有同名源码副本，应先处理重复导入，避免程序集冲突。重新导入后，核对当前生效规则应用配置及已有资源引用。
+本次包标识调整保留程序集名、C# 命名空间和既有资源 GUID。Package 内置内容保持只读；项目设置、自定义配置和扩展脚本应位于使用方项目的 `Assets/...` 下。
+## 工具入口
 | 功能 | Unity 入口 |
 | --- | --- |
-| 资源评分窗口 | `Catfood Tools > Asset Score Tool > 资源评分` |
-| 配置中心 | `Catfood Tools > Asset Score Tool > 配置中心` |
-| 扫描 Project 选中资源 | 在 Project 面板选中资源或文件夹后，使用 `Assets > Catfood Tools > Asset Score Tool > 扫描选中资源` |
+| 资源评分窗口 | `Tools > Asset Score Tool > 资源评分` |
+| 配置中心 | `Tools > Asset Score Tool > 配置中心` |
+| 扫描选中资源 | Project 面板右键 `Asset Score Tool > 扫描选中资源`，或使用 `Assets > Asset Score Tool > 扫描选中资源`。 |
+| 手动创建项目设置 | `Assets > Create > Asset Score Tool > 创建项目设置` |
 
-## 4. 快速开始
+## 快速开始
 
-### 一、扫描
+### 从评分窗口扫描
 
-#### 直接打开工具扫描
-
-1. 打开 `Catfood Tools > Asset Score Tool > 资源评分`。
+1. 打开 `Tools > Asset Score Tool > 资源评分`。
 2. 在 `Profile` 下拉框中选择本次扫描使用的检测配置档。
 3. 输入当前项目中的 `Assets/...` 资源路径，或者使用路径右侧的按钮选择文件或文件夹。
 4. 点击“开始评分”。扫描期间可以点击“取消评分”请求取消。
 5. 扫描完成后，在左侧结果树中筛选、排序、展开并选择资源，在右侧查看资源详情、问题和直接依赖。
 6. 需要留档时，点击“导出 Json”或“导出 Excel”；也可以点击“打开导出目录”查看报告。
 
-#### 从 Project 面板右键扫描
+### 从 Project 面板扫描
 
 1. 在 Unity 的 Project 面板中选中一个资源或文件夹。
-2. 使用 `Assets > Catfood Tools > Asset Score Tool > 扫描选中资源`。
+2. 使用 `Assets > Asset Score Tool > 扫描选中资源`。
 3. 工具会打开资源评分窗口并自动填写选中资源的 `Assets/...` 路径。
 4. 选择检测配置档，然后点击“开始评分”。
 
 扫描时选择的检测配置档必须包含在规则应用项的适用范围内，否则对应规则不会执行。
 
-### 二、配置
-
-打开 `Catfood Tools > Asset Score Tool > 配置中心`。配置卡片会标记为“包内”或“本地”：Package 内置配置只读，可以直接被本地规则应用配置引用；需要调整应用范围时，应先把规则应用配置“复制到本地”，为副本设置新的唯一 ID，再编辑本地副本。所有新配置和检测脚本都必须创建在使用方项目的 `Assets/...` 下，不能保存到 Package 目录。
-
-配置中心使用工作副本编辑本地配置。完成以下步骤后必须点击顶部的“保存全部”，修改才会写入项目 `Assets/...` 下的配置资产；Package 内置内容不会被改写。
-
-#### 2.1 项目配置（Setting）
-
-1. 打开“项目设置”页面。首次打开扫描窗口或配置中心时，工具会自动创建 `Assets/AssetScoreTool/ProjectSettings/AssetScoreProjectSettings.asset`。
-2. 查看“当前生效规则应用配置”。该字段留空时，扫描会自动回退到 Package 内置的 `RuleApplyConfig_Default`；需要自定义时，完成 2.5 后再选择本地规则应用配置。
-3. 根据项目目录调整“默认保存位置”。检测配置档、规则应用配置、检测规则配置、资源类型配置和 CheckRule 检测脚本必须保存在项目的 `Assets/...` 下；报告导出目录可以使用本机绝对路径。
-4. 如果项目同时安装了 `spine-unity` 和 `spine-csharp`，可以在“可选检测”中启用 Spine 检测；没有这些依赖时不要开启。
-
-项目中只能保留一个可用的项目设置资产。发现多个 `UserSettingConfig` 时，配置中心无法确定应使用哪一份设置。
-
-#### 2.2 新增平台（检测配置档）
-
-界面中的正式名称是“检测配置档”，可以用它表示 PC、iOS、Android、Web 或项目自定义平台。
-
-Package 已内置 PC、Web、Android 和 iOS 检测配置档，可以直接使用，不需要在 Package 中重新创建。只有项目需要额外平台或独立配置档时才执行以下步骤。
-
-1. 打开“检测配置档”页面，点击“新建检测配置档”。
-2. 填写不会与 Package 内置配置重复的“配置档 ID”，例如 `project.pc`；ID 只能使用界面提示允许的格式。
-3. 填写“显示名称”，例如 `项目 PC 配置`。
-4. 选择项目 `Assets/...` 下的保存目录并创建配置，不要选择 Package 目录。
-
-后续需要在规则应用项中选择该检测配置档，并在扫描窗口中选择同一配置档，规则才能匹配。
-
-#### 2.3 新增资源类型
-
-1. 打开“资源类型配置”页面，点击“新建资源类型配置”。
-2. 填写唯一的“资源类型 ID”，例如 `custom_texture`，并填写显示名称。
-3. 选择项目 `Assets/...` 下的保存目录并创建配置。
-4. 在项目自己的 Editor 目录中实现可被 Unity `TypeCache` 发现的 `IAssetTypeChecker`，例如 `Assets/AssetScoreTool/Extensions/Editor/AssetTypes/`，并保证 Checker 的 `AssetTypeId` 与配置中的资源类型 ID 完全一致。
-
-资源类型配置只定义可被规则引用的类型标识，不负责识别资源。仅创建配置但没有对应的 `IAssetTypeChecker` 时，扫描不会匹配到该资源类型。如果目标类型已经由 Package 内置，可以直接引用已有资源类型配置，不要创建重复 ID；自定义实现要求见第 8 节“新增资源类型”。
-
-#### 2.4 新增规则
-
-1. 打开“检测规则配置”页面，点击“新建检测规则配置”。
-2. 填写唯一的“规则 ID”、显示名称、描述和优先级。规则 ID 必须与对应检测脚本的 `RuleId` 完全一致。
-3. 在规则详情的“问题项”区域点击“+ 添加问题项”。
-4. 填写唯一的“问题 ID”、显示名称、扣分、问题级别和问题提示，然后点击“添加”。一个规则可以包含多个问题项。
-5. 在“检测脚本”区域点击“创建检测脚本”，确认类名，并把脚本保存到项目自己的 Editor 目录，例如 `Assets/AssetScoreTool/Extensions/Editor/Rules/`。检测脚本会进入等待保存状态。
-6. 点击顶部“保存全部”，让工具创建 CheckRule 脚本文件，并等待 Unity 编译完成。
-7. 打开生成的检测脚本，实现规则的适用条件和检测逻辑，确保命中时返回规则配置中存在的问题 ID。
-
-新规则配置和检测脚本都应位于项目 `Assets/...` 下。如果规则没有可用的 `IScoreRuleChecker`、脚本中的 `RuleId` 不一致，或者返回了配置中不存在的问题 ID，该规则不能产生有效扫描结果。项目使用自定义 Editor `.asmdef` 时，该程序集需要引用 `AssetScoreTool.Editor`。
-
-#### 2.5 为规则配置相关的生效内容
-
-如果要完整沿用 Package 默认规则，只需让项目设置中的“当前生效规则应用配置”保持为空。需要调整规则范围、启用状态或白名单时，可以在“规则应用配置”页面找到标记为“包内”的默认配置，点击“复制到本地”，将副本保存到项目 `Assets/...`，并把副本的规则应用配置 ID 改为新的唯一值。也可以执行以下步骤创建一份全新的本地配置。
-
-1. 打开“规则应用配置”页面，点击“新建规则应用配置”。
-2. 填写唯一的规则应用配置 ID 和显示名称，选择项目 `Assets/...` 下的保存目录并创建配置。
-3. 在新配置中点击“+ 添加规则应用项”。
-4. 开启“是否启用”。
-5. “规则配置”选择 2.4 新增的规则。
-6. “资源类型配置”选择 2.3 新增的资源类型，或者选择对应的内置资源类型。
-7. “检测配置档”选择 2.2 新增的平台配置档，然后点击“添加”。
-8. 返回“项目设置”，将“当前生效规则应用配置”设置为刚刚创建或复制到本地的配置。该选择列表只使用本地规则应用配置；Package 默认配置通过字段留空时的回退逻辑生效。
-
-规则真正生效必须同时满足：规则应用配置是项目当前生效配置、规则应用项已启用、规则具有可用的检测脚本、资源被所选资源类型识别，并且扫描时选择的检测配置档属于该应用项。规则、资源类型或检测配置档留空时，该应用项不会匹配完整的扫描条件。
-
-#### 2.6 白名单
-
-白名单保存在具体的规则应用配置中，并应用于使用该配置生成的报告。Package 内置规则应用配置只读；需要为默认规则增加白名单时，必须先按 2.5 将它复制到项目 `Assets/...`，设置新的唯一 ID，并将本地副本设为当前生效配置。
-
-1. 在“规则应用配置”页面展开需要编辑的本地配置。
-2. 在“白名单”区域点击“+ 添加白名单”。
-3. 选择单个资源或文件夹，也可以手动填写当前项目中的 `Assets/...` 路径。文件夹会递归匹配其下资源。
-4. 根据需要选择“规则配置”并填写“问题 ID”，也可以填写备注说明加入白名单的原因。
-5. 点击“添加”。
-
-白名单的匹配范围如下：
-
-- “规则配置”为空：忽略该资源路径匹配到的全部规则。
-- 已选择规则但“问题 ID”为空：忽略该规则下的全部问题。
-- 同时选择规则并填写“问题 ID”：只忽略该规则下的指定问题。
-
-#### 2.7 保存与生效检查
-
-1. 点击配置中心顶部的“保存全部”。
-2. 如果配置中心显示校验错误，按提示修正重复 ID、无效引用、缺少 Checker 或不完整的规则应用项，然后再次保存。
-3. 新建检测脚本后等待 Unity 完成编译，并确认规则详情显示检测脚本“已创建”。
-4. 确认项目设置指向正确的当前生效规则应用配置。
-5. 打开资源评分窗口，选择规则应用项关联的检测配置档，扫描能够被目标资源类型识别的资源。
-6. 在结果树和详情面板中确认新规则的问题；如果配置了白名单，再确认命中的问题已从最终报告中移除。
-
-“保存全部”只会写入项目 `Assets/...` 下的本地配置和待生成脚本，不会修改 Package 内置配置。
-
-## 5. 注意事项
-
-- 仅支持 Unity Editor，不包含 Runtime 程序集，也不会向构建后的 Player 注入代码。
-- Unity 基线为 `2022.3.0f1`；应优先使用 Unity 2022.3 LTS 或兼容版本。
-- 扫描路径必须是当前项目中的 `Assets/...` 路径。通过系统文件选择器取得的路径也必须能够转换到当前项目的 `Assets` 目录。
-- 首次打开扫描窗口或配置中心时，工具会在 `Assets/AssetScoreTool/ProjectSettings/AssetScoreProjectSettings.asset` 创建项目设置资产。项目中只能保留一个可用的 `UserSettingConfig`。
-- Package 内置配置只读，可以直接引用但不能编辑或删除。需要调整规则应用范围或白名单时，应先“复制到本地”、设置新的唯一 ID，再编辑项目 `Assets/...` 下的副本；“保存全部”不会改写 Package。
-- Excel 导出生成 `.xlsx` 文件，不依赖本机安装 Microsoft Excel；工具不依赖 Python。
-- Spine 检测是可选功能。启用前必须同时提供 `spine-unity` 与 `spine-csharp`，并在项目设置中开启 Spine 检测。
-- 新增 Unity 可导入文件时不要手写 `.meta`；切回 Unity 后由 Unity 生成和维护元数据。
-
-## 6. 能力概览
-
-- 扫描单个资源、文件夹或 Project 面板当前选择。
-- 识别动画、材质、FBX 网格、粒子、Prefab、Shader、纹理等内置资源类型。
-- 按 PC、iOS、Android、Web 等 Profile 调度规则。
-- 通过规则应用配置组合规则、资源类型、Profile 和白名单。
-- 对资源自身及其依赖的问题进行评分、白名单过滤和汇总。
-- 在树形结果中按资源类型、严重度、分数、问题数或路径筛选和排序。
-- 展示资源自身问题、汇总分数、等级、直接依赖和依赖问题数。
-- 在 Prefab 问题详情中定位缺失脚本、缺失引用、Renderer、Animator、Canvas、物理组件和动画绑定缺失对应的内部对象。
-- 将最终报告导出为 JSON 或 Excel。Excel 文件包含“扫描摘要”“资源总览”“问题明细”“依赖关系”四个工作表。
-- 通过配置中心创建、复制、编辑、删除和保存本地配置。
-- 可选启用 Spine Atlas、Skeleton 与 Prefab 的资源类型识别和评分规则。
-
-## 7. 架构与数据流（扩展参考）
+## 架构设计
 
 以下内容用于帮助使用方在项目 `Assets/...` 下开发自定义 Checker 或排查配置问题。这里列出的类型和目录属于 Package 内部实现，不应直接修改。
 
 ### 扫描与报告
 
-```text
-Profile + Assets 路径
-        │
-        ▼
-AssetScoreToolScanner
-        │  资源发现、依赖构建、规则执行
-        ▼
-AssetScanData
-        │  同一次扫描使用的 RuleApplyConfig
-        ▼
-AssetScoreReportBuilder
-        │  白名单、评分、等级和依赖汇总
-        ▼
-AssetScoreReport
-        ├── ScanResultListView
-        ├── ScanDetailPanelView
-        └── AssetScoreReportExporter（JSON / Excel）
+```mermaid
+flowchart TD
+    Input["Profile + Assets 资源路径"] --> Scanner["AssetScoreToolScanner"]
+    Config["生效 RuleApplyConfig"] --> Scanner
+    Scanner --> Raw["AssetScanData：原始扫描数据"]
+    Raw --> Builder["AssetScoreReportBuilder"]
+    Config --> Builder
+    Builder --> Report["AssetScoreReport：评分与依赖汇总"]
+    Report --> View["结果树与详情面板"]
+    Report --> Export["JSON / Excel 报告"]
 ```
 
 各层职责如下：
@@ -240,7 +124,98 @@ Scanner 只生成 `AssetScanData`，不负责 UI、等级文案或树形布局�
 - Spine 扩展只有在定义 `ASSET_SCORE_TOOL_SPINE` 时参与编译。
 - `AssetScoreTool.Spine.Editor.Tests` 是受同一符号限制的 EditMode 测试程序集。
 
-## 8. 配置与扩展
+## 配置指南
+
+打开 `Tools > Asset Score Tool > 配置中心`。配置卡片会标记为“包内”或“本地”：Package 内置配置只读，可以直接被本地规则应用配置引用；需要调整应用范围时，应先把规则应用配置“复制到本地”，为副本设置新的唯一 ID，再编辑本地副本。所有新配置和检测脚本都必须创建在使用方项目的 `Assets/...` 下，不能保存到 Package 目录。
+
+配置中心使用工作副本编辑本地配置。完成以下步骤后必须点击顶部的“保存全部”，修改才会写入项目 `Assets/...` 下的配置资产；Package 内置内容不会被改写。
+
+### 项目配置（Setting）
+
+1. 打开“项目设置”页面。首次打开扫描窗口或配置中心时，工具会自动创建 `Assets/AssetScoreTool/ProjectSettings/AssetScoreProjectSettings.asset`。
+2. 查看“当前生效规则应用配置”。该字段留空时，扫描会自动回退到 Package 内置的 `RuleApplyConfig_Default`；需要自定义时，完成下文“为规则配置相关的生效内容”后再选择本地规则应用配置。
+3. 根据项目目录调整“默认保存位置”。检测配置档、规则应用配置、检测规则配置、资源类型配置和 CheckRule 检测脚本必须保存在项目的 `Assets/...` 下；报告导出目录可以使用本机绝对路径。
+4. 如果项目同时安装了 `spine-unity` 和 `spine-csharp`，可以在“可选检测”中启用 Spine 检测；没有这些依赖时不要开启。
+
+项目中只能保留一个可用的项目设置资产。发现多个 `UserSettingConfig` 时，配置中心无法确定应使用哪一份设置。
+
+### 新增平台（检测配置档）
+
+界面中的正式名称是“检测配置档”，可以用它表示 PC、iOS、Android、Web 或项目自定义平台。
+
+Package 已内置 PC、Web、Android 和 iOS 检测配置档，可以直接使用，不需要在 Package 中重新创建。只有项目需要额外平台或独立配置档时才执行以下步骤。
+
+1. 打开“检测配置档”页面，点击“新建检测配置档”。
+2. 填写不会与 Package 内置配置重复的“配置档 ID”，例如 `project.pc`；ID 只能使用界面提示允许的格式。
+3. 填写“显示名称”，例如 `项目 PC 配置`。
+4. 选择项目 `Assets/...` 下的保存目录并创建配置，不要选择 Package 目录。
+
+后续需要在规则应用项中选择该检测配置档，并在扫描窗口中选择同一配置档，规则才能匹配。
+
+### 新增资源类型
+
+1. 打开“资源类型配置”页面，点击“新建资源类型配置”。
+2. 填写唯一的“资源类型 ID”，例如 `custom_texture`，并填写显示名称。
+3. 选择项目 `Assets/...` 下的保存目录并创建配置。
+4. 在项目自己的 Editor 目录中实现可被 Unity `TypeCache` 发现的 `IAssetTypeChecker`，例如 `Assets/AssetScoreTool/Extensions/Editor/AssetTypes/`，并保证 Checker 的 `AssetTypeId` 与配置中的资源类型 ID 完全一致。
+
+资源类型配置只定义可被规则引用的类型标识，不负责识别资源。仅创建配置但没有对应的 `IAssetTypeChecker` 时，扫描不会匹配到该资源类型。如果目标类型已经由 Package 内置，可以直接引用已有资源类型配置，不要创建重复 ID；自定义实现要求见[扩展开发](#扩展开发)中的“新增资源类型”。
+
+### 新增规则
+
+1. 打开“检测规则配置”页面，点击“新建检测规则配置”。
+2. 填写唯一的“规则 ID”、显示名称、描述和优先级。规则 ID 必须与对应检测脚本的 `RuleId` 完全一致。
+3. 在规则详情的“问题项”区域点击“+ 添加问题项”。
+4. 填写唯一的“问题 ID”、显示名称、扣分、问题级别和问题提示，然后点击“添加”。一个规则可以包含多个问题项。
+5. 在“检测脚本”区域点击“创建检测脚本”，确认类名，并把脚本保存到项目自己的 Editor 目录，例如 `Assets/AssetScoreTool/Extensions/Editor/Rules/`。检测脚本会进入等待保存状态。
+6. 点击顶部“保存全部”，让工具创建 CheckRule 脚本文件，并等待 Unity 编译完成。
+7. 打开生成的检测脚本，实现规则的适用条件和检测逻辑，确保命中时返回规则配置中存在的问题 ID。
+
+新规则配置和检测脚本都应位于项目 `Assets/...` 下。如果规则没有可用的 `IScoreRuleChecker`、脚本中的 `RuleId` 不一致，或者返回了配置中不存在的问题 ID，该规则不能产生有效扫描结果。项目使用自定义 Editor `.asmdef` 时，该程序集需要引用 `AssetScoreTool.Editor`。
+
+### 为规则配置相关的生效内容
+
+如果要完整沿用 Package 默认规则，只需让项目设置中的“当前生效规则应用配置”保持为空。需要调整规则范围、启用状态或白名单时，可以在“规则应用配置”页面找到标记为“包内”的默认配置，点击“复制到本地”，将副本保存到项目 `Assets/...`，并把副本的规则应用配置 ID 改为新的唯一值。也可以执行以下步骤创建一份全新的本地配置。
+
+1. 打开“规则应用配置”页面，点击“新建规则应用配置”。
+2. 填写唯一的规则应用配置 ID 和显示名称，选择项目 `Assets/...` 下的保存目录并创建配置。
+3. 在新配置中点击“+ 添加规则应用项”。
+4. 开启“是否启用”。
+5. “规则配置”选择前面新增的规则。
+6. “资源类型配置”选择前面新增的资源类型，或者选择对应的内置资源类型。
+7. “检测配置档”选择前面新增的平台配置档，然后点击“添加”。
+8. 返回“项目设置”，将“当前生效规则应用配置”设置为刚刚创建或复制到本地的配置。该选择列表只使用本地规则应用配置；Package 默认配置通过字段留空时的回退逻辑生效。
+
+规则真正生效必须同时满足：规则应用配置是项目当前生效配置、规则应用项已启用、规则具有可用的检测脚本、资源被所选资源类型识别，并且扫描时选择的检测配置档属于该应用项。规则、资源类型或检测配置档留空时，该应用项不会匹配完整的扫描条件。
+
+### 白名单
+
+白名单保存在具体的规则应用配置中，并应用于使用该配置生成的报告。Package 内置规则应用配置只读；需要为默认规则增加白名单时，必须先按“为规则配置相关的生效内容”将它复制到项目 `Assets/...`，设置新的唯一 ID，并将本地副本设为当前生效配置。
+
+1. 在“规则应用配置”页面展开需要编辑的本地配置。
+2. 在“白名单”区域点击“+ 添加白名单”。
+3. 选择单个资源或文件夹，也可以手动填写当前项目中的 `Assets/...` 路径。文件夹会递归匹配其下资源。
+4. 根据需要选择“规则配置”并填写“问题 ID”，也可以填写备注说明加入白名单的原因。
+5. 点击“添加”。
+
+白名单的匹配范围如下：
+
+- “规则配置”为空：忽略该资源路径匹配到的全部规则。
+- 已选择规则但“问题 ID”为空：忽略该规则下的全部问题。
+- 同时选择规则并填写“问题 ID”：只忽略该规则下的指定问题。
+
+### 保存与生效检查
+
+1. 点击配置中心顶部的“保存全部”。
+2. 如果配置中心显示校验错误，按提示修正重复 ID、无效引用、缺少 Checker 或不完整的规则应用项，然后再次保存。
+3. 新建检测脚本后等待 Unity 完成编译，并确认规则详情显示检测脚本“已创建”。
+4. 确认项目设置指向正确的当前生效规则应用配置。
+5. 打开资源评分窗口，选择规则应用项关联的检测配置档，扫描能够被目标资源类型识别的资源。
+6. 在结果树和详情面板中确认新规则的问题；如果配置了白名单，再确认命中的问题已从最终报告中移除。
+
+“保存全部”只会写入项目 `Assets/...` 下的本地配置和待生成脚本，不会修改 Package 内置配置。
+
+## 扩展开发
 
 配置中心包含以下页面：
 
@@ -286,12 +261,12 @@ Configs/
 
 安装 `spine-unity` 和 `spine-csharp` 后，在配置中心的项目设置中启用 Spine 检测。工具会确认程序集可用，并将 `ASSET_SCORE_TOOL_SPINE` 同步到有效的 Build Target Group。依赖缺失或符号未启用时，Spine 扩展不会参与编译和规则发现。
 
-## 9. Package 内部结构（只读）
+## 源码导航
 
 以下目录由 Package 提供，用于说明工具组成，不是使用方创建或修改内容的目标位置：
 
 ```text
-Packages/com.catfood.unitytools.assetscoretool/
+Packages/com.play.unityassetscoretool/
 ├── Editor/
 │   ├── Checkers/                   内置资源类型与评分规则 Checker
 │   ├── Config/                     配置模型、生效配置解析与 Spine 设置
@@ -314,7 +289,24 @@ Packages/com.catfood.unitytools.assetscoretool/
 └── README.md
 ```
 
-## 10. 验证
+### 关键源码
+| 阅读方向 | 入口 |
+| --- | --- |
+| 资源发现、依赖与规则调度 | [AssetScoreToolScanner](Editor/Core/Scanning/AssetScoreToolScanner.cs) |
+| 白名单、评分与报告构建 | [AssetScoreReportBuilder](Editor/Core/Reporting/AssetScoreReportBuilder.cs) |
+| 结果查询与展示数据 | [AssetScoreReport](Editor/Core/Reporting/AssetScoreReport.cs) |
+| JSON / Excel 导出 | [AssetScoreReportExporter](Editor/Core/Reporting/AssetScoreReportExporter.cs) |
+| 配置工作副本与保存 | [ConfigWindowData](Editor/UI/ConfigWindow/Data/ConfigWindowData.cs) |
+| 评分规则与资源类型契约 | [IScoreRuleChecker](Editor/Core/Rules/IScoreRuleChecker.cs) · [IAssetTypeChecker](Editor/Core/Rules/IAssetTypeChecker.cs) |
+| 可选 Spine 依赖检查 | [AssetScoreToolSpineSettings](Editor/Config/AssetScoreToolSpineSettings.cs) |
+
+## 规则清单
+
+[资产评分规则配置表](docs/资产评分规则配置表.md)汇总了当前 Package 版本内置的 81 条资产评分规则，包括规则配置资产名、规则 ID、检测内容、问题信息、扣分、等级、适用资源类型、检测配置档和启用状态。
+
+表内规则均具有对应的评分规则配置资产和 Checker 实现，并已在 Package 默认规则应用配置中启用。内置配置只读，可以直接用于扫描，也可以被本地规则应用配置引用；需要调整应用范围或白名单时，应先把默认规则应用配置复制到项目 `Assets/...`，设置新的唯一 ID，再将本地副本设为当前生效配置。Spine 规则需要同时安装 `spine-unity` 与 `spine-csharp`，并在项目设置中启用 Spine 检测后才会参与扫描。
+
+## 接入验证
 
 - 新建配置后，确认资产位于项目 `Assets/...` 下，而不是 Package 目录。
 - 新建资源类型或规则检测脚本后，确认 Unity Console 没有相关编译错误；使用自定义 `.asmdef` 时，确认它已引用 `AssetScoreTool.Editor`。
@@ -322,8 +314,21 @@ Packages/com.catfood.unitytools.assetscoretool/
 - 确认新规则能够命中预期问题，并检查取消、空结果和白名单过滤等场景。
 - 启用 Spine 检测时，确认项目已经同时安装 `spine-unity` 与 `spine-csharp`，且 Unity Console 没有 Spine 扩展相关编译错误。
 
-## 11. 资产评分规则配置表
+## 使用边界
 
-[资产评分规则配置表](docs/资产评分规则配置表.md)汇总了当前 Package 版本内置的 81 条资产评分规则，包括规则配置资产名、规则 ID、检测内容、问题信息、扣分、等级、适用资源类型、检测配置档和启用状态。
+- 仅支持 Unity Editor，不包含 Runtime 程序集，也不会向构建后的 Player 注入代码。
+- Unity 基线为 `2022.3.0f1`；应优先使用 Unity 2022.3 LTS 或兼容版本。
+- 扫描路径必须是当前项目中的 `Assets/...` 路径。通过系统文件选择器取得的路径也必须能够转换到当前项目的 `Assets` 目录。
+- 首次打开扫描窗口或配置中心时，工具会在 `Assets/AssetScoreTool/ProjectSettings/AssetScoreProjectSettings.asset` 创建项目设置资产。项目中只能保留一个可用的 `UserSettingConfig`。
+- Package 内置配置只读，可以直接引用但不能编辑或删除。需要调整规则应用范围或白名单时，应先“复制到本地”、设置新的唯一 ID，再编辑项目 `Assets/...` 下的副本；“保存全部”不会改写 Package。
+- Excel 导出生成 `.xlsx` 文件，不依赖本机安装 Microsoft Excel；工具不依赖 Python。
+- Spine 检测是可选功能。启用前必须同时提供 `spine-unity` 与 `spine-csharp`，并在项目设置中开启 Spine 检测。
+- 新增 Unity 可导入文件时不要手写 `.meta`；切回 Unity 后由 Unity 生成和维护元数据。
 
-表内规则均具有对应的评分规则配置资产和 Checker 实现，并已在 Package 默认规则应用配置中启用。内置配置只读，可以直接用于扫描，也可以被本地规则应用配置引用；需要调整应用范围或白名单时，应先把默认规则应用配置复制到项目 `Assets/...`，设置新的唯一 ID，再将本地副本设为当前生效配置。Spine 规则需要同时安装 `spine-unity` 与 `spine-csharp`，并在项目设置中启用 Spine 检测后才会参与扫描。
+评分用于静态检查与风险筛查，不能替代 Profiler 或目标设备上的性能实测；分数和等级应结合项目规则口径解释。
+
+## 许可与文档参考
+### 许可
+仓库当前尚未提供项目级 `LICENSE`。复用和分发前需明确项目代码及随包字体等资源的授权范围；可选 Spine 依赖的许可按其自身条款处理。
+### 文档结构参考
+本 README 的项目介绍、安装与使用说明结构参考 [UnityAssetUsageDetector](https://github.com/yasirkula/UnityAssetUsageDetector)、[AssetGraph](https://github.com/Unity-Technologies/AssetGraph) 和 [ProjectAuditor](https://github.com/Unity-Technologies/ProjectAuditor)。工具能力与安装要求以本仓库实现为依据。

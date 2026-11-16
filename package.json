@@ -1,5 +1,5 @@
 {
-  "name": "com.catfood.unitytools.assetscoretool",
+  "name": "com.play.unityassetscoretool",
   "version": "1.0.0",
   "displayName": "AssetScoreTool",
   "description": "美术资产评分工具,用来检测当前资产是否有性能风险",
@@ -10,8 +10,7 @@
     "tools"
   ],
   "author": {
-    "name": "跳跳",
-    "email": "zhangjiaying@catfoodstudio.cn"
+    "name": "跳跳"
   },
   "dependencies": {
     

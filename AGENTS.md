@@ -8,7 +8,7 @@
 
 ## 项目概况
 
-- 包名：`com.catfood.unitytools.assetscoretool`；版本：`1.0.0`；Unity 基线：`2022.3.0f1`。
+- 包名：`com.play.unityassetscoretool`；版本：`1.0.0`；Unity 基线：`2022.3.0f1`。
 - 主程序集为仅 Editor 平台的 `Editor/AssetScoreTool.Editor.asmdef`，根命名空间为 `majsoul.tools.assetscoretool.editor`。
 - 项目不包含 Runtime 程序集；不要主动恢复 Runtime，也不要将 UnityEditor API 引入运行时程序集。
 - `Editor/Spine/AssetScoreTool.Spine.Editor.asmdef` 是可选的 Spine Editor 扩展，依赖 `AssetScoreTool.Editor`、`spine-unity`、`spine-csharp`，且必须定义 `ASSET_SCORE_TOOL_SPINE` 才会参与编译。

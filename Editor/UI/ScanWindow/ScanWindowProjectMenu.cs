@@ -9,7 +9,7 @@ namespace majsoul.tools.assetscoretool.editor
     internal static class ScanWindowProjectMenu
     {
         private const string ScanSelectedMenuPath =
-            "Assets/Catfood Tools/Asset Score Tool/扫描选中资源";
+            "Assets/Asset Score Tool/扫描选中资源";
 
         /// <summary>
         /// 使用当前 Project 选择项打开扫描窗口，并将资源路径交给窗口处理。

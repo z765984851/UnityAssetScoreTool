@@ -69,7 +69,10 @@ namespace majsoul.tools.assetscoretool.editor
 
         #endregion
 
-        [MenuItem("Catfood Tools/Asset Score Tool/资源评分")]
+        /// <summary>
+        /// 打开资源评分窗口并设置窗口标题。
+        /// </summary>
+        [MenuItem("Tools/Asset Score Tool/资源评分")]
         public static void ShowWindow()
         {
             ScanWindow wnd = GetWindow<ScanWindow>();

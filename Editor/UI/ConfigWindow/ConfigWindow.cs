@@ -69,7 +69,10 @@ namespace majsoul.tools.assetscoretool.editor
         /// </summary>
         internal ConfigPageUIBuilder PageUIBuilder => pageUIBuilder;
 
-        [MenuItem("Catfood Tools/Asset Score Tool/配置中心")]
+        /// <summary>
+        /// 打开配置中心并设置窗口标题与最小尺寸。
+        /// </summary>
+        [MenuItem("Tools/Asset Score Tool/配置中心")]
         public static void ShowWindow()
         {
             ConfigWindow window = GetWindow<ConfigWindow>();

@@ -4,7 +4,7 @@ namespace majsoul.tools.assetscoretool.editor
 {
     [CreateAssetMenu(
         fileName = "ScoreRuleConfig",
-        menuName = "Catfood Tools/Asset Score Tool/创建规则")]
+        menuName = "Asset Score Tool/创建规则")]
     public class ScoreRuleConfig : ScriptableObject
     {
         [SerializeField] private string ruleId;

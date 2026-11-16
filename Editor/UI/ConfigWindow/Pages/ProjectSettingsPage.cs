@@ -250,10 +250,13 @@ namespace majsoul.tools.assetscoretool.editor
                 RuleApplyConfigResolver.GetDefaultConfig());
         }
 
+        /// <summary>
+        /// 显示缺少项目设置资产时的创建指引。
+        /// </summary>
         public void ShowMissing()
         {
             ShowUnavailable(
-                "未找到项目设置资产。请通过“Assets/Create/Catfood Tools/Asset Score Tool/创建项目设置”创建唯一的 UserSettingConfig。");
+                "未找到项目设置资产。请通过“Assets/Create/Asset Score Tool/创建项目设置”创建唯一的 UserSettingConfig。");
         }
 
         public void ShowMultiple(
